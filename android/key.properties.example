@@ -1,0 +1,8 @@
+# Copy to android/key.properties (ignored by Git) and fill in your values.
+# Create the keystore once, for example:
+#   keytool -genkey -v -keystore ~/rytmavo-release.jks -keyalg RSA \
+#     -keysize 2048 -validity 10000 -alias rytmavo
+storeFile=/absolute/path/to/rytmavo-release.jks
+storePassword=CHANGE_ME
+keyAlias=rytmavo
+keyPassword=CHANGE_ME

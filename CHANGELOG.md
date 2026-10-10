@@ -62,6 +62,18 @@ Versionierung SemVer. Noch unveröffentlicht.
 - Tests: Fälligkeit und Statistik, drift-Repository, Widget-Flows
   (Gewohnheit anlegen → abhaken → rückgängig; Auswertung).
 
+### Review-Runde 2 (2026-10-10)
+- App-Icon (Rytmavo-„R“) für iOS und Android aus `assets/icon/` erzeugt
+  (`tool/generate_icons.py`, adaptives Android-Icon mit eigener
+  Hintergrundebene).
+- Android-Release vorbereitet: Signing über `android/key.properties`
+  (Vorlage `key.properties.example`, nichts davon in Git), R8/Shrinking mit
+  Keep-Regeln für Erinnerungen, App-Name „Rytmavo“, ausgelieferte Sprachen
+  de/en.
+- iOS: Bundle-Name „Rytmavo“, Entwicklungsregion Deutsch, Lokalisierungen
+  de/en, `Signing.xcconfig` für die Team-ID.
+- `docs/RELEASE.md` mit den Schritten für Icon, Android und iOS.
+
 ### Review-Runde 1 (2026-10-10)
 - Schichtmodell bearbeiten: eigener Knopf in der App-Leiste von „Heute“ und
   „Kalender“ (zusätzlich zu Einstellungen → Rhythmus und Zeiten ändern).

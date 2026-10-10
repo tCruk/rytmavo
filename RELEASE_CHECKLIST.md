@@ -54,7 +54,7 @@ Stand: 2026-10-10 | Version: [VERSION – festzulegen] | Release-Verantwortliche
 - [ ] `applicationId` final und zum freigegebenen Namen passend (nachträglich nicht änderbar).
 - [ ] `versionCode` erhöht und `versionName` gesetzt.
 - [ ] `targetSdk` entspricht der zum Release-Zeitpunkt gültigen Play-Store-Anforderung (verifiziert, nicht angenommen).
-- [ ] Signing über lokale `key.properties`; **`key.properties` und Keystore nicht in Git** (`.gitignore` geprüft).
+- [ ] Signing über lokale `key.properties` (Vorlage `android/key.properties.example`, Anleitung `docs/RELEASE.md`); **`key.properties` und Keystore nicht in Git** (`.gitignore` geprüft).
 - [ ] `flutter build appbundle --release` erfolgreich; AAB auf Gerät als Release getestet.
 - [ ] Merged Manifest geprüft: nur erwartete Berechtigungen (`POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`; kein `SCHEDULE_EXACT_ALARM` ohne Notwendigkeit; kein `INTERNET`).
 - [ ] Data-Safety-Formular passend zu `PRIVACY_DATA_MAP.md` ausgefüllt.
@@ -65,7 +65,7 @@ Stand: 2026-10-10 | Version: [VERSION – festzulegen] | Release-Verantwortliche
 ## D. iOS
 
 - [ ] Bundle ID final und zum freigegebenen Namen passend.
-- [ ] Signing, Provisioning und Archivierung nur auf macOS mit Xcode.
+- [ ] Team-ID in `ios/Flutter/Signing.xcconfig` eingetragen; Signing, Provisioning und Archivierung nur auf macOS mit Xcode.
 - [ ] `flutter build ipa --release` erfolgreich; Archiv validiert.
 - [ ] `Info.plist`: nur Usage-Descriptions, die tatsächlich benötigt werden; keine ungenutzten Einträge.
 - [ ] Privacy-Manifest und Required-Reason-APIs der Pakete geprüft.
