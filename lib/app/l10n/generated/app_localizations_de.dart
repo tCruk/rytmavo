@@ -675,7 +675,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get infoPrivacyBody =>
-      'Stand: Oktober 2026\n\n# 1. Verantwortlicher\n\nVerantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:\n\nTim Kremers\nResinovo\nIn Venrath 17B\n41812 Erkelenz\nDeutschland\n\nTelefon: +49 176 43594878\nE-Mail: kontakt@resinovo.de\n\n# 2. Datenschutzbeauftragter\n\nEin Datenschutzbeauftragter ist nicht bestellt, da die gesetzlichen Voraussetzungen hierfür nicht vorliegen.\n\n# 3. Das Wichtigste in Kürze\n\nRytmavo funktioniert vollständig offline. Es gibt kein Benutzerkonto, keine Werbung, kein Tracking und keine Server des Anbieters. Alle Daten bleiben auf deinem Gerät. Daten verlassen das Gerät nur, wenn du selbst eine Sicherung exportierst oder teilst.\n\n# 4. Lokale Datenverarbeitung auf dem Gerät\n\nDie App speichert folgende Daten ausschließlich lokal auf deinem Gerät im App-Speicher: Schichtarten mit Zeiten und Farben, Rotationsmuster und Ankerdatum, Tagesänderungen, Gewohnheiten mit Regeln und Erinnerungszeiten, Erledigungen je Tag sowie App-Einstellungen (Sprache, Design, Erinnerungsstatus). Diese Daten werden nicht an den Anbieter übertragen. Du kannst sie in der App einzeln löschen, unter Einstellungen → Daten vollständig löschen oder die App deinstallieren. Ob Gerätesicherungen (z. B. iCloud, Google-Backup) diese Daten enthalten, richtet sich nach deinem Gerät und den Regeln von Apple bzw. Google.\n\nRechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der App-Funktionen).\n\n# 5. Erinnerungen (Mitteilungen)\n\nAuf Wunsch plant die App lokale Erinnerungen über das Benachrichtigungssystem deines Geräts. Dafür fragt sie einmalig nach der Berechtigung für Mitteilungen. Es werden keine Push-Dienste und keine Server genutzt; die Erinnerungen entstehen und bleiben auf dem Gerät. Du kannst sie jederzeit in den Einstellungen der App oder des Geräts abschalten.\n\n# 6. Sicherung, Import und Teilen\n\nEine Sicherung (JSON-Datei) entsteht nur auf deine Anweisung. Beim Teilen übergibt die App die Datei an das von dir gewählte Ziel (z. B. Dateien-App, E-Mail, Cloud-Speicher); ab dort gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Beim Import liest die App nur die Datei, die du selbst auswählst. Der Anbieter erhält diese Dateien nicht. Die Datei ist unverschlüsselt.\n\n# 7. Kauf über die App Stores\n\nDer Kauf der App wird ausschließlich über den Apple App Store bzw. Google Play abgewickelt. Dabei verarbeiten Apple bzw. Google deine Daten als eigenständig Verantwortliche nach ihren Datenschutzbestimmungen. Der Anbieter erhält keine personenbezogenen Kaufdaten.\n\n# 8. Keine Verarbeitung auf Servern des Anbieters\n\nAlle Funktionen laufen auf dem Gerät. Sollten künftig serverbasierte Funktionen hinzukommen, wird diese Datenschutzerklärung vorher angepasst und in der App angezeigt.\n\n# 9. Empfänger und Drittlandübermittlung\n\nEine Übermittlung an Dritte erfolgt nicht, außer an die von dir beim Teilen gewählten Ziele sowie an Apple bzw. Google im Rahmen des Kaufs. Eine Übermittlung in Drittländer durch den Anbieter findet nicht statt.\n\n# 10. Speicherdauer\n\nLokale Daten bleiben gespeichert, bis du sie löschst oder die App deinstallierst. E-Mail-Anfragen an den Anbieter werden gelöscht, sobald das Anliegen erledigt ist und keine gesetzlichen Aufbewahrungspflichten bestehen.\n\n# 11. Keine automatisierte Entscheidungsfindung\n\nEine automatisierte Entscheidungsfindung oder ein Profiling findet nicht statt.\n\n# 12. Minderjährige\n\nDie App richtet sich an Berufstätige. Sie ist nicht für Kinder unter 13 Jahren bestimmt; wissentlich werden keine personenbezogenen Daten von Kindern erhoben.\n\n# 13. Deine Rechte\n\nDu hast das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18) und Datenübertragbarkeit (Art. 20) sowie das Recht, erteilte Einwilligungen mit Wirkung für die Zukunft zu widerrufen. Soweit eine Verarbeitung auf berechtigten Interessen beruht, kannst du jederzeit Widerspruch einlegen (Art. 21 DSGVO). Eine E-Mail an kontakt@resinovo.de genügt. Da die App-Daten nur auf deinem Gerät liegen, kannst du Auskunft, Export und Löschung direkt in der App selbst vornehmen.\n\n# 14. Beschwerderecht\n\nDu hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig ist die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213 Düsseldorf.\n\n# 15. Änderungen dieser Datenschutzerklärung\n\nDiese Erklärung wird angepasst, wenn sich die Rechtslage, die Technik oder der Funktionsumfang der App ändert. Die jeweils aktuelle Fassung findest du in der App unter Einstellungen → Datenschutz.';
+      'Stand: Oktober 2026\n\n# 1. Verantwortlicher\n\nVerantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:\n\nTim Kremers\nResinovo\nIn Venrath 17B\n41812 Erkelenz\nDeutschland\n\nTelefon: +49 176 43594878\nE-Mail: kontakt@resinovo.de\n\n# 2. Datenschutzbeauftragter\n\nEin Datenschutzbeauftragter ist nicht bestellt, da die gesetzlichen Voraussetzungen hierfür nicht vorliegen.\n\n# 3. Das Wichtigste in Kürze\n\nRytmavo funktioniert vollständig offline. Es gibt kein Benutzerkonto, keine Werbung, kein Tracking und keine Server des Anbieters. Alle Daten bleiben auf deinem Gerät. Daten verlassen das Gerät nur, wenn du selbst eine Sicherung exportierst oder teilst.\n\n# 4. Lokale Datenverarbeitung auf dem Gerät\n\nDie App speichert folgende Daten ausschließlich lokal auf deinem Gerät im App-Speicher: Schichtarten mit Zeiten und Farben, Rotationsmuster und Ankerdatum, Tagesänderungen, Gewohnheiten mit Regeln und Erinnerungszeiten, Erledigungen je Tag sowie App-Einstellungen (Sprache, Design, Erinnerungsstatus). Diese Daten werden nicht an den Anbieter übertragen. Du kannst sie in der App einzeln löschen, unter Einstellungen → Daten vollständig löschen oder die App deinstallieren. Ob Gerätesicherungen (z. B. iCloud, Google-Backup) diese Daten enthalten, richtet sich nach deinem Gerät und den Regeln von Apple bzw. Google.\n\nRechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der App-Funktionen).\n\n# 5. Erinnerungen (Mitteilungen)\n\nAuf Wunsch plant die App lokale Erinnerungen über das Benachrichtigungssystem deines Geräts. Dafür fragt sie einmalig nach der Berechtigung für Mitteilungen. Es werden keine Push-Dienste und keine Server genutzt; die Erinnerungen entstehen und bleiben auf dem Gerät. Du kannst sie jederzeit in den Einstellungen der App oder des Geräts abschalten.\n\n# 6. Gerätekalender (optional)\n\nNur wenn du unter Einstellungen → Gerätekalender „Termine mit Schichten abgleichen“ einschaltest, fragt die App nach Zugriff auf den Kalender deines Geräts. Sie liest dann Titel und Zeiten der Termine aus den von dir gewählten Kalendern, um Überschneidungen mit deinen Schichten anzuzeigen und dich auf Wunsch am Vorabend zu erinnern. Die Termine werden nur auf dem Gerät ausgewertet, nicht verändert, nicht in der App gespeichert und nicht übertragen. Den Zugriff kannst du jederzeit in der App ausschalten oder in den Systemeinstellungen widerrufen.\n\nRechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (deine Einwilligung durch das Einschalten der Funktion und die Freigabe des Kalenderzugriffs).\n\n# 7. Sicherung, Import und Teilen\n\nEine Sicherung (JSON-Datei) entsteht nur auf deine Anweisung. Beim Teilen übergibt die App die Datei an das von dir gewählte Ziel (z. B. Dateien-App, E-Mail, Cloud-Speicher); ab dort gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Beim Import liest die App nur die Datei, die du selbst auswählst. Der Anbieter erhält diese Dateien nicht. Die Datei ist unverschlüsselt.\n\n# 8. Kauf über die App Stores\n\nDer Kauf der App wird ausschließlich über den Apple App Store bzw. Google Play abgewickelt. Dabei verarbeiten Apple bzw. Google deine Daten als eigenständig Verantwortliche nach ihren Datenschutzbestimmungen. Der Anbieter erhält keine personenbezogenen Kaufdaten.\n\n# 9. Keine Verarbeitung auf Servern des Anbieters\n\nAlle Funktionen laufen auf dem Gerät. Sollten künftig serverbasierte Funktionen hinzukommen, wird diese Datenschutzerklärung vorher angepasst und in der App angezeigt.\n\n# 10. Empfänger und Drittlandübermittlung\n\nEine Übermittlung an Dritte erfolgt nicht, außer an die von dir beim Teilen gewählten Ziele sowie an Apple bzw. Google im Rahmen des Kaufs. Eine Übermittlung in Drittländer durch den Anbieter findet nicht statt.\n\n# 11. Speicherdauer\n\nLokale Daten bleiben gespeichert, bis du sie löschst oder die App deinstallierst. E-Mail-Anfragen an den Anbieter werden gelöscht, sobald das Anliegen erledigt ist und keine gesetzlichen Aufbewahrungspflichten bestehen.\n\n# 12. Keine automatisierte Entscheidungsfindung\n\nEine automatisierte Entscheidungsfindung oder ein Profiling findet nicht statt.\n\n# 13. Minderjährige\n\nDie App richtet sich an Berufstätige. Sie ist nicht für Kinder unter 13 Jahren bestimmt; wissentlich werden keine personenbezogenen Daten von Kindern erhoben.\n\n# 14. Deine Rechte\n\nDu hast das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18) und Datenübertragbarkeit (Art. 20) sowie das Recht, erteilte Einwilligungen mit Wirkung für die Zukunft zu widerrufen. Soweit eine Verarbeitung auf berechtigten Interessen beruht, kannst du jederzeit Widerspruch einlegen (Art. 21 DSGVO). Eine E-Mail an kontakt@resinovo.de genügt. Da die App-Daten nur auf deinem Gerät liegen, kannst du Auskunft, Export und Löschung direkt in der App selbst vornehmen.\n\n# 15. Beschwerderecht\n\nDu hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig ist die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213 Düsseldorf.\n\n# 16. Änderungen dieser Datenschutzerklärung\n\nDiese Erklärung wird angepasst, wenn sich die Rechtslage, die Technik oder der Funktionsumfang der App ändert. Die jeweils aktuelle Fassung findest du in der App unter Einstellungen → Datenschutz.';
 
   @override
   String get infoImprintTitle => 'Impressum';
@@ -690,5 +690,87 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String infoSupportBody(String version) {
     return 'Bei Fragen oder Problemen erreichst du uns unter:\n\nE-Mail: kontakt@resinovo.de\nWebsite: resinovo.de\n\n# Hilfreich bei einer Anfrage\n\nApp-Version: $version\n\nBeschreibe, was du getan hast und was stattdessen passiert ist. Bitte sende keine Sicherungsdatei mit, wenn du die Daten darin nicht teilen möchtest.\n\n# Daten sichern\n\nEine Sicherung erstellst du jederzeit unter Einstellungen → Daten → Daten exportieren.';
+  }
+
+  @override
+  String get settingsSectionCalendar => 'Gerätekalender';
+
+  @override
+  String get calendarSyncToggle => 'Termine mit Schichten abgleichen';
+
+  @override
+  String get calendarSyncOn =>
+      'An – Termine während einer Schicht werden markiert.';
+
+  @override
+  String get calendarSyncOff => 'Aus – Rytmavo liest keine Termine.';
+
+  @override
+  String get calendarSyncDenied =>
+      'Kein Zugriff auf den Kalender. Erlaube ihn für Rytmavo in den Systemeinstellungen.';
+
+  @override
+  String get calendarSyncOpenSettings => 'Systemeinstellungen öffnen';
+
+  @override
+  String get calendarSyncCalendars => 'Kalender';
+
+  @override
+  String get calendarSyncAllCalendars => 'Alle Kalender';
+
+  @override
+  String calendarSyncSomeCalendars(int count, int total) {
+    return '$count von $total Kalendern';
+  }
+
+  @override
+  String get calendarSyncPickTitle => 'Kalender auswählen';
+
+  @override
+  String get calendarSyncPickApply => 'Übernehmen';
+
+  @override
+  String get calendarSyncNoCalendars =>
+      'Keine Kalender auf diesem Gerät gefunden.';
+
+  @override
+  String get calendarSyncReminder => 'Am Vorabend erinnern';
+
+  @override
+  String get calendarSyncReminderOn =>
+      'Mitteilung um 18:00 Uhr am Tag vor der Schicht.';
+
+  @override
+  String get calendarSyncReminderNeedsReminders =>
+      'Schalte dafür zuerst die Erinnerungen ein.';
+
+  @override
+  String get calendarSyncHint =>
+      'Rytmavo liest Termine nur auf diesem Gerät, ändert nichts daran und speichert sie nicht. Ganztägige Termine werden nicht geprüft.';
+
+  @override
+  String get conflictsTitle => 'Terminkonflikte';
+
+  @override
+  String conflictDuringShift(String time, String shiftName) {
+    return '$time · während $shiftName';
+  }
+
+  @override
+  String get conflictUntitled => 'Termin ohne Titel';
+
+  @override
+  String reminderConflictTitle(String shiftName) {
+    return 'Morgen: Termin während $shiftName';
+  }
+
+  @override
+  String reminderConflictBodyOne(String title, String time, String shiftTime) {
+    return '„$title“ ($time) überschneidet sich mit deiner Schicht ($shiftTime).';
+  }
+
+  @override
+  String reminderConflictBodyMany(int count, String shiftTime) {
+    return '$count Termine überschneiden sich mit deiner Schicht ($shiftTime).';
   }
 }

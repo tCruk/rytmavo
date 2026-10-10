@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:drift/drift.dart';
 
 import '../../../../core/database/app_database.dart';
@@ -11,6 +13,9 @@ abstract final class SettingsKeys {
   static const String language = 'language';
   static const String onboardingCompleted = 'onboarding_completed';
   static const String remindersEnabled = 'reminders_enabled';
+  static const String calendarConflictsEnabled = 'calendar_conflicts_enabled';
+  static const String conflictCalendarIds = 'conflict_calendar_ids';
+  static const String conflictRemindersEnabled = 'conflict_reminders_enabled';
 }
 
 final class DriftSettingsRepository implements SettingsRepository {
@@ -35,6 +40,13 @@ final class DriftSettingsRepository implements SettingsRepository {
       SettingsKeys.language: settings.language.name,
       SettingsKeys.onboardingCompleted: settings.onboardingCompleted.toString(),
       SettingsKeys.remindersEnabled: settings.remindersEnabled.toString(),
+      SettingsKeys.calendarConflictsEnabled: settings.calendarConflictsEnabled
+          .toString(),
+      SettingsKeys.conflictCalendarIds: jsonEncode(
+        settings.conflictCalendarIds,
+      ),
+      SettingsKeys.conflictRemindersEnabled: settings.conflictRemindersEnabled
+          .toString(),
     };
     await _db.batch((batch) {
       for (final entry in entries.entries) {
@@ -62,7 +74,26 @@ final class DriftSettingsRepository implements SettingsRepository {
       ),
       onboardingCompleted: map[SettingsKeys.onboardingCompleted] == 'true',
       remindersEnabled: map[SettingsKeys.remindersEnabled] == 'true',
+      calendarConflictsEnabled:
+          map[SettingsKeys.calendarConflictsEnabled] == 'true',
+      conflictCalendarIds: _stringList(map[SettingsKeys.conflictCalendarIds]),
+      conflictRemindersEnabled:
+          map[SettingsKeys.conflictRemindersEnabled] == 'true',
     );
+  }
+
+  /// A JSON string list; anything else reads as empty ("all calendars").
+  static List<String> _stringList(String? raw) {
+    if (raw == null) return const [];
+    try {
+      final decoded = jsonDecode(raw);
+      if (decoded is List) {
+        return List.unmodifiable(decoded.whereType<String>());
+      }
+    } on FormatException {
+      // Corrupt value: treat as "all calendars".
+    }
+    return const [];
   }
 
   /// Unknown stored values (e.g. from a newer app version) fall back to

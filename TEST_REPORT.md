@@ -201,6 +201,25 @@ Umgebung: wie zuvor.
 | `flutter test --timeout 30s` | 92 Tests, 92 bestanden |
 | Mitteilungs-Dialog auf Gerät | **nicht ausgeführt** – Nutzer meldet, dass die Abfrage nicht erscheint; Plattform/OS-Version erfragt |
 
+## Gerätekalender-Abgleich – 2026-10-10
+
+Umgebung: Linux x64 (Cloud-Container), Flutter 3.47.7, Dart 3.13.5. Kein
+Android-SDK, kein Xcode, kein Gerät.
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test` | 118 Tests, 118 bestanden (nach Rebase auf Uhr-Änderung) |
+| Kalenderzugriff und Terminlesen auf Gerät | **nicht ausgeführt** – keine Geräte; Plugin-Aufrufe sind hinter `DeviceCalendarGateway` gekapselt und in Tests durch eine Fake-Implementierung ersetzt |
+
+Neue Tests: `shift_conflict_detector_test.dart` (Überlappung, Kanten,
+Nachtschicht über Mitternacht, freie Tage, ganztägige Termine, Overrides,
+mehrtägige Termine), `conflict_reminder_planner_test.dart` (Vorabend 18:00,
+Gruppierung je Tag, vergangene verworfen), `calendar_conflicts_flow_test.dart`
+(Einschalten fragt Zugriff, Verweigerung, Kalenderauswahl, Heute, Monatsraster,
+Tagesblatt), Scheduler- und Settings-Repository-Erweiterungen.
+
 ### Offene Prüfungen
 
 - Golden-Tests für zentrale Screens (bewusst zurückgestellt: Goldens sind

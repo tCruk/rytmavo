@@ -34,6 +34,16 @@ class SettingsController extends AsyncNotifier<AppSettings> {
   Future<void> setRemindersEnabled({required bool enabled}) =>
       _update((s) => s.copyWith(remindersEnabled: enabled));
 
+  Future<void> setCalendarConflictsEnabled({required bool enabled}) =>
+      _update((s) => s.copyWith(calendarConflictsEnabled: enabled));
+
+  /// Empty [ids] means "all calendars".
+  Future<void> setConflictCalendarIds(List<String> ids) =>
+      _update((s) => s.copyWith(conflictCalendarIds: List.unmodifiable(ids)));
+
+  Future<void> setConflictRemindersEnabled({required bool enabled}) =>
+      _update((s) => s.copyWith(conflictRemindersEnabled: enabled));
+
   Future<void> _update(AppSettings Function(AppSettings) change) async {
     final current = state.value ?? AppSettings.defaults;
     final next = change(current);

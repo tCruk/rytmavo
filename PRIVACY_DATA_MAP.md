@@ -27,6 +27,7 @@ Hinweis: "Rytmavo" ist ein Arbeitsname (siehe `TRADEMARK_CLEARANCE.md`).
 | Erledigungen (eine je Gewohnheit und lokalem Kalendertag) | Verlauf, Statistik (7/30 Tage), Serien | Lokale SQLite-DB | Lokal (Statistikberechnung) | Keine, außer Backup-Export durch Nutzeraktion | App deinstallieren oder "Lokale Daten löschen" |
 | Einstellungen (Sprache DE/EN, Theme, Erinnerungsstatus, Onboarding-Status) | Anpassung der App | Lokale SQLite-DB bzw. lokaler App-Speicher im Sandbox-Verzeichnis | Lokal | Keine, außer Backup-Export durch Nutzeraktion | App deinstallieren oder "Lokale Daten löschen" |
 | Uhr-Übersicht (Schichten der nächsten 14 Tage: Datum, Name, Kürzel, Farbe, Zeiten) | Anzeige auf gekoppelter Apple Watch / Wear-OS-Uhr | iOS: WatchConnectivity-Kontext und App-Group-Speicher der Watch-App; Android: Wearable Data Layer und App-Speicher der Wear-App | Direkt zwischen Handy und eigener Uhr (Bluetooth/WLAN), kein Server | Nur an die gekoppelte Uhr des Nutzers | Watch-App deinstallieren; wird bei jeder Änderung überschrieben |
+| Termine aus dem Gerätekalender (Titel, Beginn, Ende; nur bei aktivierter Funktion) | Warnung bei Überschneidung mit einer Schicht, optional Mitteilung am Vorabend | Nicht gespeichert; nur flüchtig im Arbeitsspeicher, Kalenderauswahl (IDs) in den Einstellungen | Lokal auf dem Gerät | Keine; Kalender-IDs sind nicht im Backup | Funktion ausschalten oder Zugriff in den Systemeinstellungen widerrufen |
 | Backup-Dateien (versioniertes JSON) | Sicherung, Geräte-Umzug | Entsteht nur auf ausdrückliche Nutzeraktion; temporär im App-Cache, danach im vom Nutzer gewählten Ziel | Erzeugung lokal; Teilen über System-Teilen-Menü (share_plus); Import über Dateiauswahl (file_picker) | Nur an das vom Nutzer gewählte Ziel (z. B. Dateien, E-Mail, Cloud-Dienst des Nutzers) | Temporäre Datei durch App entfernen; Kopien beim Nutzer löscht der Nutzer selbst |
 
 Hinweise:
@@ -42,7 +43,7 @@ Hinweise:
 | `SCHEDULE_EXACT_ALARM` / `USE_EXACT_ALARM` | Android | Exakte Alarme | **Nur falls wirklich nötig.** Standard: nicht-exakte Alarme. Ohne Berechtigung deklarieren, solange keine exakte Zustellung gefordert ist |
 | Standort | – | – | Wird nicht verwendet |
 | Kontakte | – | – | Wird nicht verwendet |
-| Kalender | – | – | Wird nicht verwendet; Schichtplan wird nicht in Systemkalender geschrieben |
+| Kalender (opt-in) | iOS: `NSCalendarsFullAccessUsageDescription` / `NSCalendarsUsageDescription`; Android: `READ_CALENDAR` + `WRITE_CALENDAR` | Termine während einer Schicht erkennen und anzeigen | Abfrage erst beim Einschalten unter Einstellungen → Gerätekalender. Die App liest nur (Titel, Beginn, Ende, Kalender); sie schreibt nichts und speichert keine Termine. `WRITE_CALENDAR` ist nur deklariert, weil `device_calendar_plus` Vollzugriff als Lesen+Schreiben anfragt (eine Berechtigungsgruppe, ein Dialog). |
 | Health / Fitness | – | – | Wird nicht verwendet |
 | Kamera / Mikrofon / Fotos | – | – | Wird nicht verwendet |
 | Zugriff auf Dateien | Android / iOS | Backup-Import | Über System-Dateiauswahl (file_picker), keine pauschale Speicherberechtigung |

@@ -8,6 +8,8 @@ import '../../../../app/router/app_shell.dart';
 import '../../../../core/date/local_date.dart';
 import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../device_calendar/domain/entities/shift_conflict.dart';
+import '../../../device_calendar/presentation/calendar_conflict_providers.dart';
 import '../../../shifts/domain/entities/shift_setup.dart';
 import '../../../shifts/presentation/controllers/shift_providers.dart';
 import '../../../shifts/presentation/widgets/shift_visuals.dart';
@@ -94,11 +96,12 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                   child: PageView.builder(
                     controller: _pages,
                     onPageChanged: (page) => setState(() => _page = page),
-                    itemBuilder: (context, page) => MonthGrid(
+                    itemBuilder: (context, page) => _MonthPage(
                       month: today.firstDayOfMonth.addMonths(page - _todayPage),
                       today: today,
                       setup: value,
-                      onDayTap: (date) => _openDay(context, value, date),
+                      onDayTap: (date, conflicts) =>
+                          _openDay(context, value, date, conflicts),
                     ),
                   ),
                 ),
@@ -128,9 +131,15 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     BuildContext context,
     ShiftSetup setup,
     LocalDate date,
+    List<ShiftConflict> conflicts,
   ) async {
     final l10n = AppLocalizations.of(context);
-    final outcome = await showDaySheet(context, setup: setup, date: date);
+    final outcome = await showDaySheet(
+      context,
+      setup: setup,
+      date: date,
+      conflicts: conflicts,
+    );
     if (!context.mounted || outcome == null) return;
     final dateText = MaterialLocalizations.of(context)
         .formatMediumDate(date.toLocalDateTime());
@@ -139,6 +148,39 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
       DaySheetOutcome.restored => l10n.daySheetResetDone(dateText),
       DaySheetOutcome.failed => l10n.onboardingSaveError,
     });
+  }
+}
+
+/// One month of the pager. Watches the device calendar conflicts for
+/// exactly the month it shows, so swiping loads each month on demand.
+class _MonthPage extends ConsumerWidget {
+  const _MonthPage({
+    required this.month,
+    required this.today,
+    required this.setup,
+    required this.onDayTap,
+  });
+
+  final LocalDate month;
+  final LocalDate today;
+  final ShiftSetup setup;
+  final void Function(LocalDate date, List<ShiftConflict> conflicts) onDayTap;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final conflicts = ref.watch(
+      shiftConflictsProvider((from: month, days: month.lengthOfMonth)),
+    );
+    return MonthGrid(
+      month: month,
+      today: today,
+      setup: setup,
+      conflictDates: {for (final c in conflicts) c.date},
+      onDayTap: (date) => onDayTap(date, [
+        for (final c in conflicts)
+          if (c.date == date) c,
+      ]),
+    );
   }
 }
 

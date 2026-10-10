@@ -184,13 +184,14 @@ void main() {
     // Settings reflect it and the switch can turn it off again.
     await tester.tap(find.byTooltip('Einstellungen öffnen'));
     await settle(tester);
-    await tester.ensureVisible(find.byType(SwitchListTile));
+    final reminderSwitch = find.widgetWithText(SwitchListTile, 'Erinnerungen');
+    await tester.ensureVisible(reminderSwitch);
     await settle(tester);
     expect(
       find.text('An – du wirst an fällige Gewohnheiten erinnert.'),
       findsOneWidget,
     );
-    await tester.tap(find.byType(SwitchListTile));
+    await tester.tap(reminderSwitch);
     await settle(tester);
     expect(settingsRepo.current.remindersEnabled, isFalse);
   });

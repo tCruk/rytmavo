@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../features/device_calendar/presentation/calendar_conflict_providers.dart';
 import '../features/reminders/presentation/reminder_scheduler.dart';
 import '../features/settings/domain/entities/app_settings.dart';
 import '../features/settings/presentation/controllers/settings_controller.dart';
@@ -25,8 +26,10 @@ class _RytmavoAppState extends ConsumerState<RytmavoApp> {
     super.initState();
     // Re-plan the rolling reminder window whenever the app comes back,
     // so the window never runs dry while the app sits in the background.
+    // Device calendar events may have changed meanwhile, too.
     _lifecycle = AppLifecycleListener(
       onResume: () {
+        refreshDeviceCalendar(ref);
         ref.read(reminderSchedulerProvider).scheduleSync();
         // The watch picks today itself; resume only refreshes the window.
         ref.read(watchSyncProvider).scheduleSync();

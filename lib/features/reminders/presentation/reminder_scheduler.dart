@@ -5,7 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/di/providers.dart';
 import '../../../app/l10n/app_localizations_for.dart';
 import '../../../app/l10n/generated/app_localizations.dart';
+import '../../../core/date/local_date.dart';
+import '../../../core/date/local_time.dart';
+import '../../device_calendar/domain/services/shift_conflict_detector.dart';
+import '../../device_calendar/presentation/calendar_conflict_providers.dart';
 import '../../habits/presentation/controllers/habit_providers.dart';
+import '../../settings/domain/entities/app_settings.dart';
 import '../../settings/presentation/controllers/settings_controller.dart';
 import '../../shifts/domain/entities/shift_setup.dart';
 import '../../shifts/domain/entities/shift_type.dart';
@@ -73,13 +78,50 @@ final class ReminderScheduler {
     final setup = _ref.read(shiftSetupProvider).value;
     final plan = _ref.read(habitPlanProvider).value;
     if (setup == null || plan == null) return; // still loading
-    final reminders = ReminderPlanner.plan(
+    final now = _ref.read(clockProvider).now();
+    final habitReminders = ReminderPlanner.plan(
       setup: setup,
       plan: plan,
-      now: _ref.read(clockProvider).now(),
+      now: now,
     );
+    final conflictWarnings =
+        settings.calendarConflictsEnabled && settings.conflictRemindersEnabled
+        ? await _conflictWarnings(setup, settings, now)
+        : const <PlannedReminder>[];
+    final reminders = ReminderPlanner.capped([
+      ...habitReminders,
+      ...conflictWarnings,
+    ]);
     final l10n = appLocalizationsFor(settings.language);
     await gateway.replaceAll(reminders, (r) => _textFor(r, setup, l10n));
+  }
+
+  /// Reads the device calendar for the reminder window. A warning for day
+  /// D fires on D-1, so the window starts tomorrow.
+  Future<List<PlannedReminder>> _conflictWarnings(
+    ShiftSetup setup,
+    AppSettings settings,
+    DateTime now,
+  ) async {
+    final calendar = _ref.read(deviceCalendarGatewayProvider);
+    if (!await calendar.hasPermission()) return const [];
+    final from = LocalDate.fromDateTime(now).addDays(1);
+    const days = ReminderPlanner.windowDays;
+    final range = ShiftConflictDetector.eventRange(from, days);
+    final events = await calendar.events(
+      from: range.start,
+      to: range.end,
+      calendarIds: settings.conflictCalendarIds.toSet(),
+    );
+    return ReminderPlanner.planConflicts(
+      conflicts: ShiftConflictDetector.detect(
+        setup: setup,
+        events: events,
+        from: from,
+        days: days,
+      ),
+      now: now,
+    );
   }
 
   static ReminderText _textFor(
@@ -87,6 +129,28 @@ final class ReminderScheduler {
     ShiftSetup setup,
     AppLocalizations l10n,
   ) {
+    if (r.isConflictWarning) {
+      final first = r.conflicts.first;
+      final shiftTime = l10n.shiftTimeRange(
+        _hhmm(first.shiftStart),
+        _hhmm(first.shiftEnd),
+      );
+      return (
+        title: l10n.reminderConflictTitle(_shiftName(first.shift, l10n)),
+        body: r.conflicts.length == 1
+            ? l10n.reminderConflictBodyOne(
+                first.event.title.trim().isEmpty
+                    ? l10n.conflictUntitled
+                    : first.event.title,
+                l10n.shiftTimeRange(
+                  _hhmm(first.event.start),
+                  _hhmm(first.event.end),
+                ),
+                shiftTime,
+              )
+            : l10n.reminderConflictBodyMany(r.conflicts.length, shiftTime),
+      );
+    }
     final shift = r.shiftTypeId == null ? null : setup.typeById(r.shiftTypeId!);
     final shiftName = shift == null ? null : _shiftName(shift, l10n);
     return (
@@ -108,6 +172,9 @@ final class ReminderScheduler {
       ShiftKind.custom => shift.id,
     };
   }
+
+  static String _hhmm(DateTime at) =>
+      LocalTime(at.hour, at.minute).toIsoString();
 
   void dispose() {
     _debounce?.cancel();

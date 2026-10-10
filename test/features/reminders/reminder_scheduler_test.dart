@@ -4,6 +4,8 @@ import 'package:rytmavo/app/di/providers.dart';
 import 'package:rytmavo/core/date/clock.dart';
 import 'package:rytmavo/core/date/local_date.dart';
 import 'package:rytmavo/core/date/local_time.dart';
+import 'package:rytmavo/features/device_calendar/domain/entities/calendar_event.dart';
+import 'package:rytmavo/features/device_calendar/presentation/calendar_conflict_providers.dart';
 import 'package:rytmavo/features/habits/domain/entities/habit.dart';
 import 'package:rytmavo/features/habits/domain/entities/habit_rule.dart';
 import 'package:rytmavo/features/habits/presentation/controllers/habit_providers.dart';
@@ -18,6 +20,7 @@ import 'package:rytmavo/features/shifts/domain/entities/shift_type.dart';
 import 'package:rytmavo/features/shifts/domain/services/rotation_rules.dart';
 import 'package:rytmavo/features/shifts/presentation/controllers/shift_providers.dart';
 
+import '../../support/fake_device_calendar_gateway.dart';
 import '../../support/in_memory_habit_repository.dart';
 import '../../support/in_memory_settings_repository.dart';
 import '../../support/in_memory_shift_repository.dart';
@@ -53,6 +56,7 @@ void main() {
   const today = LocalDate(2026, 10, 10); // Saturday, slot 0 → early
   final clock = FixedClock(DateTime(2026, 10, 10, 6));
   late RecordingGateway gateway;
+  late FakeDeviceCalendarGateway calendar;
   late InMemorySettingsRepository settingsRepo;
   late InMemoryShiftRepository shiftRepo;
   late InMemoryHabitRepository habitRepo;
@@ -76,6 +80,7 @@ void main() {
 
   setUp(() {
     gateway = RecordingGateway();
+    calendar = FakeDeviceCalendarGateway();
     settingsRepo = InMemorySettingsRepository(
       const AppSettings(remindersEnabled: true, language: AppLanguage.de),
     );
@@ -95,6 +100,7 @@ void main() {
       overrides: [
         clockProvider.overrideWithValue(clock),
         notificationGatewayProvider.overrideWithValue(gateway),
+        deviceCalendarGatewayProvider.overrideWithValue(calendar),
         settingsRepositoryProvider.overrideWithValue(settingsRepo),
         shiftRepositoryProvider.overrideWithValue(shiftRepo),
         habitRepositoryProvider.overrideWithValue(habitRepo),
@@ -149,6 +155,54 @@ void main() {
     await pumpEventQueue();
     await container.read(reminderSchedulerProvider).sync();
     expect(gateway.scheduled!.map((r) => r.date).contains(today), isFalse);
+  });
+
+  test('appointment during tomorrow\'s shift is announced the evening '
+      'before', () async {
+    calendar
+      ..granted = true
+      ..eventList = [
+        CalendarEvent(
+          id: 'e',
+          calendarId: 'c',
+          title: 'Arzt',
+          start: DateTime(2026, 10, 11, 9),
+          end: DateTime(2026, 10, 11, 10),
+        ),
+      ];
+    await settingsRepo.save(
+      const AppSettings(
+        remindersEnabled: true,
+        language: AppLanguage.de,
+        calendarConflictsEnabled: true,
+        conflictRemindersEnabled: true,
+      ),
+    );
+    await warmUp();
+    final scheduled = gateway.scheduled!;
+    final i = scheduled.indexWhere((r) => r.isConflictWarning);
+    expect(scheduled[i].at, DateTime(2026, 10, 10, 18));
+    expect(scheduled[i].date, today.addDays(1));
+    expect(gateway.texts[i], (
+      title: 'Morgen: Termin während Früh',
+      body:
+          '„Arzt“ (09:00–10:00) überschneidet sich mit deiner Schicht '
+          '(06:00–14:00).',
+    ));
+  });
+
+  test('without the reminder option no calendar is read', () async {
+    calendar.granted = true;
+    await settingsRepo.save(
+      const AppSettings(
+        remindersEnabled: true,
+        language: AppLanguage.de,
+        calendarConflictsEnabled: true,
+      ),
+    );
+    await warmUp();
+    expect(gateway.scheduled!.any((r) => r.isConflictWarning), isFalse);
+    expect(calendar.queriedCalendarIds, isEmpty);
   });
 
   test('disabled reminders cancel everything', () async {

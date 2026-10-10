@@ -5,6 +5,16 @@ Versionierung SemVer. Noch unveröffentlicht.
 
 ## [Unreleased] – Branch `main`
 
+### Gerätekalender (2026-10-10)
+- Optionaler Abgleich mit dem Gerätekalender (Einstellungen → Gerätekalender):
+  Zugriff wird erst beim Einschalten erfragt, nur lesend über
+  `device_calendar_plus`, Kalender auswählbar.
+- Termine, die in die Arbeitszeit einer Schicht fallen (Nachtschicht inkl.
+  Folgemorgen), erscheinen als „Terminkonflikte“ auf Heute, als Symbol im
+  Monatskalender und im Tagesblatt. Ganztägige Termine werden ignoriert.
+- Optionale Mitteilung um 18:00 Uhr am Vorabend (setzt Erinnerungen voraus).
+- Datenschutzerklärung (DE/EN) um Abschnitt „Gerätekalender“ ergänzt.
+
 ### Phase 0 – Projektstart (2026-10-10)
 - Flutter 3.47.7 / Dart 3.13.5 Grundgerüst (`flutter create --empty`, Android + iOS).
 - Projektdokumente: `CLAUDE.md`, `README.md`, `ARCHITECTURE.md` (ADR-001 … ADR-008),
