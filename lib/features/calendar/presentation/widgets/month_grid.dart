@@ -18,6 +18,7 @@ class MonthGrid extends StatelessWidget {
     required this.setup,
     required this.onDayTap,
     this.conflictDates = const {},
+    this.eventDates = const {},
     super.key,
   });
 
@@ -40,6 +41,9 @@ class MonthGrid extends StatelessWidget {
 
   /// Days whose shift overlaps a device calendar event.
   final Set<LocalDate> conflictDates;
+
+  /// Days with at least one device calendar event.
+  final Set<LocalDate> eventDates;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +82,9 @@ class MonthGrid extends StatelessWidget {
                     date: gridStart.addDays(r * 7 + c),
                     isToday: gridStart.addDays(r * 7 + c) == today,
                     inMonth: gridStart.addDays(r * 7 + c).month == month.month,
+                    hasEvents: eventDates.contains(
+                      gridStart.addDays(r * 7 + c),
+                    ),
                     hasConflict: conflictDates.contains(
                       gridStart.addDays(r * 7 + c),
                     ),
@@ -97,6 +104,7 @@ class _DayCell extends StatelessWidget {
     required this.date,
     required this.isToday,
     required this.inMonth,
+    required this.hasEvents,
     required this.hasConflict,
     required this.setup,
     required this.onTap,
@@ -107,6 +115,7 @@ class _DayCell extends StatelessWidget {
 
   /// False for the muted days of the previous / next month.
   final bool inMonth;
+  final bool hasEvents;
   final bool hasConflict;
   final ShiftSetup setup;
   final ValueChanged<LocalDate> onTap;
@@ -126,6 +135,7 @@ class _DayCell extends StatelessWidget {
       label: [
         l10n.calendarDayA11y(dateText, shiftName),
         if (day.isOverridden) l10n.calendarChanged,
+        if (hasEvents) l10n.calendarHasEvents,
         if (hasConflict) l10n.conflictsTitle,
       ].join(', '),
       excludeSemantics: true,
@@ -137,23 +147,40 @@ class _DayCell extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: 22,
-                height: 22,
-                alignment: Alignment.center,
-                decoration: isToday
-                    ? BoxDecoration(
-                        color: theme.colorScheme.primary,
-                        shape: BoxShape.circle,
-                      )
-                    : null,
-                child: Text(
-                  '${date.day}',
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    color: isToday ? theme.colorScheme.onPrimary : null,
-                    fontWeight: isToday ? FontWeight.w700 : null,
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    width: 22,
+                    height: 22,
+                    alignment: Alignment.center,
+                    decoration: isToday
+                        ? BoxDecoration(
+                            color: theme.colorScheme.primary,
+                            shape: BoxShape.circle,
+                          )
+                        : null,
+                    child: Text(
+                      '${date.day}',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: isToday ? theme.colorScheme.onPrimary : null,
+                        fontWeight: isToday ? FontWeight.w700 : null,
+                      ),
+                    ),
                   ),
-                ),
+                  // Dot = appointments from the device calendar that day.
+                  if (hasEvents)
+                    Positioned(
+                      right: -4,
+                      top: 0,
+                      child: Icon(
+                        Icons.circle,
+                        key: const ValueKey('event-dot'),
+                        size: 6,
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
+                ],
               ),
               const SizedBox(height: AppSpacing.xxs),
               Stack(

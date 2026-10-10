@@ -8,6 +8,7 @@ import '../../../../app/router/app_shell.dart';
 import '../../../../core/date/local_date.dart';
 import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../device_calendar/domain/entities/calendar_event.dart';
 import '../../../device_calendar/domain/entities/shift_conflict.dart';
 import '../../../device_calendar/presentation/calendar_conflict_providers.dart';
 import '../../../shifts/domain/entities/shift_setup.dart';
@@ -100,8 +101,8 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                       month: today.firstDayOfMonth.addMonths(page - _todayPage),
                       today: today,
                       setup: value,
-                      onDayTap: (date, conflicts) =>
-                          _openDay(context, value, date, conflicts),
+                      onDayTap: (date, events, conflicts) =>
+                          _openDay(context, value, date, events, conflicts),
                     ),
                   ),
                 ),
@@ -131,6 +132,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     BuildContext context,
     ShiftSetup setup,
     LocalDate date,
+    List<CalendarEvent> events,
     List<ShiftConflict> conflicts,
   ) async {
     final l10n = AppLocalizations.of(context);
@@ -138,6 +140,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
       context,
       setup: setup,
       date: date,
+      events: events,
       conflicts: conflicts,
     );
     if (!context.mounted || outcome == null) return;
@@ -164,19 +167,25 @@ class _MonthPage extends ConsumerWidget {
   final LocalDate month;
   final LocalDate today;
   final ShiftSetup setup;
-  final void Function(LocalDate date, List<ShiftConflict> conflicts) onDayTap;
+  final void Function(
+    LocalDate date,
+    List<CalendarEvent> events,
+    List<ShiftConflict> conflicts,
+  )
+  onDayTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final conflicts = ref.watch(
-      shiftConflictsProvider((from: month, days: month.lengthOfMonth)),
-    );
+    final span = (from: month, days: month.lengthOfMonth);
+    final conflicts = ref.watch(shiftConflictsProvider(span));
+    final eventsByDay = ref.watch(calendarEventsByDayProvider(span));
     return MonthGrid(
       month: month,
       today: today,
       setup: setup,
       conflictDates: {for (final c in conflicts) c.date},
-      onDayTap: (date) => onDayTap(date, [
+      eventDates: eventsByDay.keys.toSet(),
+      onDayTap: (date) => onDayTap(date, eventsByDay[date] ?? const [], [
         for (final c in conflicts)
           if (c.date == date) c,
       ]),

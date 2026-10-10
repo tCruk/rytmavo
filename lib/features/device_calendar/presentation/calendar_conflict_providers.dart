@@ -10,6 +10,7 @@ import '../domain/entities/calendar_event.dart';
 import '../domain/entities/device_calendar_info.dart';
 import '../domain/entities/shift_conflict.dart';
 import '../domain/gateways/device_calendar_gateway.dart';
+import '../domain/services/calendar_event_days.dart';
 import '../domain/services/shift_conflict_detector.dart';
 
 final deviceCalendarGatewayProvider = Provider<DeviceCalendarGateway>(
@@ -99,3 +100,12 @@ void refreshDeviceCalendar(WidgetRef ref) {
     ..invalidate(calendarPermissionProvider)
     ..invalidate(calendarEventsProvider);
 }
+
+/// Device events per day in [DaySpan], for the calendar view. Empty while
+/// the feature is off, access is missing or events are still loading.
+final calendarEventsByDayProvider = Provider.autoDispose
+    .family<Map<LocalDate, List<CalendarEvent>>, DaySpan>((ref, span) {
+      final events = ref.watch(calendarEventsProvider(span)).value;
+      if (events == null || events.isEmpty) return const {};
+      return CalendarEventDays.group(events, from: span.from, days: span.days);
+    });

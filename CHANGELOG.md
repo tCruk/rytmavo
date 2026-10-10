@@ -13,6 +13,9 @@ Versionierung SemVer. Noch unveröffentlicht.
   Folgemorgen), erscheinen als „Terminkonflikte“ auf Heute, als Symbol im
   Monatskalender und im Tagesblatt. Ganztägige Termine werden ignoriert.
 - Optionale Mitteilung um 18:00 Uhr am Vorabend (setzt Erinnerungen voraus).
+- Alle Termine des Handykalenders (auch ganztägige) erscheinen als Punkt im
+  Monatsraster und als Liste im Tagesblatt; Konflikte sind dort markiert.
+  Schalter heißt jetzt „Kalendertermine anzeigen“.
 - Datenschutzerklärung (DE/EN) um Abschnitt „Gerätekalender“ ergänzt.
 
 ### Phase 0 – Projektstart (2026-10-10)

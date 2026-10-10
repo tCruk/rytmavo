@@ -220,6 +220,18 @@ Gruppierung je Tag, vergangene verworfen), `calendar_conflicts_flow_test.dart`
 (Einschalten fragt Zugriff, Verweigerung, Kalenderauswahl, Heute, Monatsraster,
 Tagesblatt), Scheduler- und Settings-Repository-Erweiterungen.
 
+## Kalendertermine in der Kalenderansicht – 2026-10-10
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test` | 125 Tests, 125 bestanden |
+
+Neu: `calendar_event_days_test.dart` (Tageszuordnung über Mitternacht,
+Ende genau um Mitternacht, ganztägig mit exklusivem Ende, Jahreswechsel),
+Flow-Test für Punkte im Monatsraster und Terminliste im Tagesblatt.
+
 ### Offene Prüfungen
 
 - Golden-Tests für zentrale Screens (bewusst zurückgestellt: Goldens sind

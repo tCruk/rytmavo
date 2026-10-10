@@ -52,6 +52,15 @@ void main() {
     end: DateTime(2026, 10, 10, 22),
   );
 
+  final vacation = CalendarEvent(
+    id: 'e4',
+    calendarId: 'family',
+    title: 'Urlaub',
+    start: DateTime(2026, 10, 15),
+    end: DateTime(2026, 10, 17),
+    isAllDay: true,
+  );
+
   setUp(() {
     shiftRepo = InMemoryShiftRepository(
       types: ShiftType.defaults,
@@ -70,7 +79,7 @@ void main() {
         DeviceCalendarInfo(id: 'private', name: 'Privat'),
         DeviceCalendarInfo(id: 'family', name: 'Familie'),
       ],
-      eventList: [dentist, parents, evening],
+      eventList: [dentist, parents, evening, vacation],
     );
   });
   tearDown(() async {
@@ -120,6 +129,13 @@ void main() {
     await settle(tester);
   }
 
+  /// Calendar cells live in a horizontal PageView; ensureVisible would
+  /// scroll the pager, so they are tapped in place.
+  Future<void> tapDay(WidgetTester tester, String pattern) async {
+    await tester.tap(find.bySemanticsLabel(RegExp(pattern)));
+    await settle(tester);
+  }
+
   testWidgets('off by default: nothing is read and nothing is shown', (
     tester,
   ) async {
@@ -142,7 +158,7 @@ void main() {
     await tap(tester, find.byTooltip('Einstellungen öffnen'));
     await tap(
       tester,
-      find.widgetWithText(SwitchListTile, 'Termine mit Schichten abgleichen'),
+      find.widgetWithText(SwitchListTile, 'Kalendertermine anzeigen'),
     );
     expect(calendar.requestCalls, 1);
     expect(settingsRepo.current.calendarConflictsEnabled, isTrue);
@@ -166,7 +182,7 @@ void main() {
     await tap(tester, find.byTooltip('Einstellungen öffnen'));
     await tap(
       tester,
-      find.widgetWithText(SwitchListTile, 'Termine mit Schichten abgleichen'),
+      find.widgetWithText(SwitchListTile, 'Kalendertermine anzeigen'),
     );
     expect(settingsRepo.current.calendarConflictsEnabled, isFalse);
     expect(
@@ -212,15 +228,41 @@ void main() {
     await start(tester);
     await tap(tester, find.byIcon(Icons.calendar_month_outlined).first);
     expect(find.byIcon(Icons.event_busy), findsNWidgets(2));
+    // Dots on the 10th, 12th, 15th and 16th (all-day, end exclusive).
+    expect(find.byKey(const ValueKey('event-dot')), findsNWidgets(4));
     expect(
-      find.bySemanticsLabel(RegExp(r'12\..*Spät, Terminkonflikte')),
+      find.bySemanticsLabel(RegExp(r'12\..*Spät, Termine, Terminkonflikte')),
       findsOneWidget,
     );
-    await tap(
-      tester,
-      find.bySemanticsLabel(RegExp(r'12\..*Spät, Terminkonflikte')),
-    );
+    await tapDay(tester, r'12\..*Spät, Termine, Terminkonflikte');
+    expect(find.text('Termine'), findsWidgets);
     expect(find.text('Elternabend'), findsOneWidget);
     expect(find.text('Zahnarzt'), findsNothing);
+  });
+
+  testWidgets('day sheet lists every appointment, conflicts flagged', (
+    tester,
+  ) async {
+    settingsRepo = InMemorySettingsRepository(
+      const AppSettings(
+        onboardingCompleted: true,
+        calendarConflictsEnabled: true,
+      ),
+    );
+    calendar.granted = true;
+    await start(tester);
+    await tap(tester, find.byIcon(Icons.calendar_month_outlined).first);
+    await tapDay(tester, r'(^|\D)10\..*Früh, Termine');
+    expect(find.text('Zahnarzt'), findsOneWidget);
+    expect(find.text('Kino'), findsOneWidget);
+    // Only the dentist overlaps the early shift.
+    expect(find.byIcon(Icons.event_busy_outlined), findsOneWidget);
+    expect(find.byIcon(Icons.event_outlined), findsOneWidget);
+    await tester.tapAt(const Offset(10, 10));
+    await settle(tester);
+
+    await tapDay(tester, r'(^|\D)15\..*, Termine');
+    expect(find.text('Urlaub'), findsOneWidget);
+    expect(find.text('Ganztägig'), findsOneWidget);
   });
 }
