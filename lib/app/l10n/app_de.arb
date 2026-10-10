@@ -65,6 +65,33 @@
   "settingsSupport": "Support",
   "settingsVersion": "Version",
   "settingsComingSoon": "In einer späteren Phase verfügbar.",
+  "settingsExportSubtitle": "Alle Daten als unverschlüsselte JSON-Datei teilen oder sichern.",
+  "settingsImportSubtitle": "Sicherung wiederherstellen. Ersetzt alle aktuellen Daten.",
+  "settingsDeleteDataSubtitle": "Entfernt alle Schichten, Gewohnheiten und Einstellungen von diesem Gerät.",
+  "backupExportFailed": "Export fehlgeschlagen. Bitte versuche es erneut.",
+  "backupImportTitle": "Sicherung importieren?",
+  "backupImportMessage": "Die Sicherung vom {date} enthält {habits} Gewohnheiten und {shiftTypes} Schichtarten. Alle aktuellen Daten werden ersetzt.",
+  "@backupImportMessage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "habits": {
+        "type": "int"
+      },
+      "shiftTypes": {
+        "type": "int"
+      }
+    }
+  },
+  "backupImportConfirm": "Importieren",
+  "backupImportDone": "Sicherung wiederhergestellt.",
+  "backupImportInvalid": "Die Datei ist keine gültige Rytmavo-Sicherung.",
+  "backupImportFailed": "Import fehlgeschlagen. Deine Daten wurden nicht verändert.",
+  "backupDeleteTitle": "Alle lokalen Daten löschen?",
+  "backupDeleteMessage": "Schichten, Gewohnheiten, Erledigungen und Einstellungen werden unwiderruflich gelöscht. Exportiere vorher eine Sicherung, wenn du die Daten behalten möchtest.",
+  "backupDeleteDone": "Alle lokalen Daten wurden gelöscht.",
+  "backupDeleteFailed": "Löschen fehlgeschlagen.",
   "a11yShiftBadge": "Schicht: {shiftName}",
   "@a11yShiftBadge": {
     "placeholders": {

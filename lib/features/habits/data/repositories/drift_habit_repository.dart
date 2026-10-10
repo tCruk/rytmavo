@@ -17,6 +17,12 @@ final class DriftHabitRepository implements HabitRepository {
 
   final AppDatabase _db;
 
+  /// All completions as entities (for backup export).
+  Future<List<HabitCompletion>> loadCompletions() async {
+    final rows = await _db.select(_db.habitCompletions).get();
+    return rows.map(_completionFromRow).nonNulls.toList();
+  }
+
   @override
   Future<HabitPlan> load() async {
     final habits = await _db.select(_db.habits).get();

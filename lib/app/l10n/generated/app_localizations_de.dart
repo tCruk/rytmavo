@@ -209,6 +209,57 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsComingSoon => 'In einer späteren Phase verfügbar.';
 
   @override
+  String get settingsExportSubtitle =>
+      'Alle Daten als unverschlüsselte JSON-Datei teilen oder sichern.';
+
+  @override
+  String get settingsImportSubtitle =>
+      'Sicherung wiederherstellen. Ersetzt alle aktuellen Daten.';
+
+  @override
+  String get settingsDeleteDataSubtitle =>
+      'Entfernt alle Schichten, Gewohnheiten und Einstellungen von diesem Gerät.';
+
+  @override
+  String get backupExportFailed =>
+      'Export fehlgeschlagen. Bitte versuche es erneut.';
+
+  @override
+  String get backupImportTitle => 'Sicherung importieren?';
+
+  @override
+  String backupImportMessage(String date, int habits, int shiftTypes) {
+    return 'Die Sicherung vom $date enthält $habits Gewohnheiten und $shiftTypes Schichtarten. Alle aktuellen Daten werden ersetzt.';
+  }
+
+  @override
+  String get backupImportConfirm => 'Importieren';
+
+  @override
+  String get backupImportDone => 'Sicherung wiederhergestellt.';
+
+  @override
+  String get backupImportInvalid =>
+      'Die Datei ist keine gültige Rytmavo-Sicherung.';
+
+  @override
+  String get backupImportFailed =>
+      'Import fehlgeschlagen. Deine Daten wurden nicht verändert.';
+
+  @override
+  String get backupDeleteTitle => 'Alle lokalen Daten löschen?';
+
+  @override
+  String get backupDeleteMessage =>
+      'Schichten, Gewohnheiten, Erledigungen und Einstellungen werden unwiderruflich gelöscht. Exportiere vorher eine Sicherung, wenn du die Daten behalten möchtest.';
+
+  @override
+  String get backupDeleteDone => 'Alle lokalen Daten wurden gelöscht.';
+
+  @override
+  String get backupDeleteFailed => 'Löschen fehlgeschlagen.';
+
+  @override
   String a11yShiftBadge(String shiftName) {
     return 'Schicht: $shiftName';
   }

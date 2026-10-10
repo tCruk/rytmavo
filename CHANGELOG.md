@@ -62,6 +62,19 @@ Versionierung SemVer. Noch unveröffentlicht.
 - Tests: Fälligkeit und Statistik, drift-Repository, Widget-Flows
   (Gewohnheit anlegen → abhaken → rückgängig; Auswertung).
 
+### Phase 5 – Backup (2026-10-10)
+- Domain: `BackupDocument` (Schema v1: Schichtarten, Rotationen,
+  Überschreibungen, Gewohnheiten, Regeln, Erledigungen, Einstellungen),
+  `BackupCodec` (JSON, strikte Validierung inkl. Referenzprüfung und
+  Schema-Version), Ports `BackupRepository` und `BackupFileGateway`.
+- Data: `DriftBackupRepository` (Export über die Feature-Repositories, Import
+  ersetzt alle Daten in einer Transaktion, `deleteAll`),
+  `PlatformBackupFileGateway` (share_plus, file_picker, temporäre Datei im
+  App-Cache wird nach dem Teilen gelöscht).
+- Einstellungen → Daten: Exportieren (Teilen-Menü), Importieren (Datei-Auswahl,
+  Vorschau mit Datum/Anzahl, Bestätigung), Lokale Daten löschen (Bestätigung).
+  Jede Aktion endet mit einer Rückmeldung; ungültige Dateien werden erklärt.
+
 ### Phase 4 – Erinnerungen (2026-10-10)
 - Domain: `PlannedReminder` (stabile IDs je Habit und Tag), `ReminderPlanner`
   (rollendes Fenster 14 Tage, max. 60, nur fällige, nicht erledigte Tage,

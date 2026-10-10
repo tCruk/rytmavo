@@ -19,6 +19,12 @@ final class DriftShiftRepository implements ShiftRepository {
   final AppDatabase _db;
   final Clock _clock;
 
+  /// All overrides as entities (for backup export).
+  Future<List<ShiftOverride>> loadOverrides() async {
+    final rows = await _db.select(_db.shiftOverrides).get();
+    return rows.map(_overrideFromRow).nonNulls.toList();
+  }
+
   @override
   Future<ShiftSetup> load() async {
     final types = await _db.select(_db.shiftTypes).get();

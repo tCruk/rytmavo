@@ -65,6 +65,33 @@
   "settingsSupport": "Support",
   "settingsVersion": "Version",
   "settingsComingSoon": "Available in a later phase.",
+  "settingsExportSubtitle": "Share or save all data as an unencrypted JSON file.",
+  "settingsImportSubtitle": "Restore a backup. Replaces all current data.",
+  "settingsDeleteDataSubtitle": "Removes all shifts, habits and settings from this device.",
+  "backupExportFailed": "Export failed. Please try again.",
+  "backupImportTitle": "Import backup?",
+  "backupImportMessage": "The backup from {date} contains {habits} habits and {shiftTypes} shift types. All current data will be replaced.",
+  "@backupImportMessage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "habits": {
+        "type": "int"
+      },
+      "shiftTypes": {
+        "type": "int"
+      }
+    }
+  },
+  "backupImportConfirm": "Import",
+  "backupImportDone": "Backup restored.",
+  "backupImportInvalid": "This file is not a valid Rytmavo backup.",
+  "backupImportFailed": "Import failed. Your data was not changed.",
+  "backupDeleteTitle": "Delete all local data?",
+  "backupDeleteMessage": "Shifts, habits, completions and settings will be deleted permanently. Export a backup first if you want to keep them.",
+  "backupDeleteDone": "All local data has been deleted.",
+  "backupDeleteFailed": "Deleting failed.",
   "a11yShiftBadge": "Shift: {shiftName}",
   "@a11yShiftBadge": {
     "placeholders": {

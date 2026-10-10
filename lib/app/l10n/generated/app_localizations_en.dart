@@ -209,6 +209,54 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsComingSoon => 'Available in a later phase.';
 
   @override
+  String get settingsExportSubtitle =>
+      'Share or save all data as an unencrypted JSON file.';
+
+  @override
+  String get settingsImportSubtitle =>
+      'Restore a backup. Replaces all current data.';
+
+  @override
+  String get settingsDeleteDataSubtitle =>
+      'Removes all shifts, habits and settings from this device.';
+
+  @override
+  String get backupExportFailed => 'Export failed. Please try again.';
+
+  @override
+  String get backupImportTitle => 'Import backup?';
+
+  @override
+  String backupImportMessage(String date, int habits, int shiftTypes) {
+    return 'The backup from $date contains $habits habits and $shiftTypes shift types. All current data will be replaced.';
+  }
+
+  @override
+  String get backupImportConfirm => 'Import';
+
+  @override
+  String get backupImportDone => 'Backup restored.';
+
+  @override
+  String get backupImportInvalid => 'This file is not a valid Rytmavo backup.';
+
+  @override
+  String get backupImportFailed => 'Import failed. Your data was not changed.';
+
+  @override
+  String get backupDeleteTitle => 'Delete all local data?';
+
+  @override
+  String get backupDeleteMessage =>
+      'Shifts, habits, completions and settings will be deleted permanently. Export a backup first if you want to keep them.';
+
+  @override
+  String get backupDeleteDone => 'All local data has been deleted.';
+
+  @override
+  String get backupDeleteFailed => 'Deleting failed.';
+
+  @override
   String a11yShiftBadge(String shiftName) {
     return 'Shift: $shiftName';
   }

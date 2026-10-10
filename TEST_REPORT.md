@@ -131,6 +131,26 @@ Umgebung: wie zuvor.
   Zeitwähler auf der Regel gespeichert, Hinweis bei global ausgeschalteten
   Erinnerungen, Schalter in den Einstellungen.
 
+## Phase 5 – 2026-10-10
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test --timeout 30s` | 87 Tests, 87 bestanden |
+| Teilen-Menü / Dateiauswahl (share_plus, file_picker) | **nicht ausgeführt** – Plattform-Plugins, kein Gerät; auf Android und iOS manuell prüfen |
+
+### Neue Tests
+
+- `test/features/backup/backup_codec_test.dart` (7): Round-Trip aller
+  Tabellen, stabiler Header, Ablehnung von Nicht-JSON, Nicht-Objekt, neuerer
+  Schema-Version, hängenden Verweisen und falschen Feldtypen; leere Datei
+  ergibt leeres Dokument mit Standard-Einstellungen.
+- `test/features/backup/drift_backup_repository_test.dart` (3): Import →
+  Export identisch und von den Feature-Repositories sichtbar, Import ersetzt
+  statt zu mischen, `deleteAll` leert alle Tabellen und setzt Einstellungen
+  zurück.
+
 ### Offene Prüfungen
 
 - Golden-Tests für zentrale Screens (geplant für Phase 6, Feinschliff).

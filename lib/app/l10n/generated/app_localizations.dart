@@ -488,6 +488,90 @@ abstract class AppLocalizations {
   /// **'In einer späteren Phase verfügbar.'**
   String get settingsComingSoon;
 
+  /// No description provided for @settingsExportSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Daten als unverschlüsselte JSON-Datei teilen oder sichern.'**
+  String get settingsExportSubtitle;
+
+  /// No description provided for @settingsImportSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Sicherung wiederherstellen. Ersetzt alle aktuellen Daten.'**
+  String get settingsImportSubtitle;
+
+  /// No description provided for @settingsDeleteDataSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Entfernt alle Schichten, Gewohnheiten und Einstellungen von diesem Gerät.'**
+  String get settingsDeleteDataSubtitle;
+
+  /// No description provided for @backupExportFailed.
+  ///
+  /// In de, this message translates to:
+  /// **'Export fehlgeschlagen. Bitte versuche es erneut.'**
+  String get backupExportFailed;
+
+  /// No description provided for @backupImportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Sicherung importieren?'**
+  String get backupImportTitle;
+
+  /// No description provided for @backupImportMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Sicherung vom {date} enthält {habits} Gewohnheiten und {shiftTypes} Schichtarten. Alle aktuellen Daten werden ersetzt.'**
+  String backupImportMessage(String date, int habits, int shiftTypes);
+
+  /// No description provided for @backupImportConfirm.
+  ///
+  /// In de, this message translates to:
+  /// **'Importieren'**
+  String get backupImportConfirm;
+
+  /// No description provided for @backupImportDone.
+  ///
+  /// In de, this message translates to:
+  /// **'Sicherung wiederhergestellt.'**
+  String get backupImportDone;
+
+  /// No description provided for @backupImportInvalid.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Datei ist keine gültige Rytmavo-Sicherung.'**
+  String get backupImportInvalid;
+
+  /// No description provided for @backupImportFailed.
+  ///
+  /// In de, this message translates to:
+  /// **'Import fehlgeschlagen. Deine Daten wurden nicht verändert.'**
+  String get backupImportFailed;
+
+  /// No description provided for @backupDeleteTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle lokalen Daten löschen?'**
+  String get backupDeleteTitle;
+
+  /// No description provided for @backupDeleteMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Schichten, Gewohnheiten, Erledigungen und Einstellungen werden unwiderruflich gelöscht. Exportiere vorher eine Sicherung, wenn du die Daten behalten möchtest.'**
+  String get backupDeleteMessage;
+
+  /// No description provided for @backupDeleteDone.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle lokalen Daten wurden gelöscht.'**
+  String get backupDeleteDone;
+
+  /// No description provided for @backupDeleteFailed.
+  ///
+  /// In de, this message translates to:
+  /// **'Löschen fehlgeschlagen.'**
+  String get backupDeleteFailed;
+
   /// No description provided for @a11yShiftBadge.
   ///
   /// In de, this message translates to:

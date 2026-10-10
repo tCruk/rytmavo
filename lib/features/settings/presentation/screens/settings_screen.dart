@@ -4,8 +4,12 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n/generated/app_localizations.dart';
 import '../../../../app/router/app_routes.dart';
+import '../../../../core/result/failure.dart';
+import '../../../../core/result/result.dart';
 import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../backup/domain/entities/backup_document.dart';
+import '../../../backup/presentation/backup_actions.dart';
 import '../../../reminders/presentation/reminder_scheduler.dart';
 import '../../../shifts/presentation/controllers/shift_providers.dart';
 import '../../domain/entities/app_settings.dart';
@@ -78,25 +82,7 @@ class SettingsScreen extends ConsumerWidget {
               RySectionHeader(l10n.settingsSectionReminders),
               const _RemindersCard(),
               RySectionHeader(l10n.settingsSectionData),
-              RyCard(
-                padding: EdgeInsets.zero,
-                child: Column(
-                  children: [
-                    _PendingTile(
-                      icon: Icons.upload_outlined,
-                      title: l10n.settingsExport,
-                    ),
-                    _PendingTile(
-                      icon: Icons.download_outlined,
-                      title: l10n.settingsImport,
-                    ),
-                    _PendingTile(
-                      icon: Icons.delete_outline,
-                      title: l10n.settingsDeleteData,
-                    ),
-                  ],
-                ),
-              ),
+              const _DataCard(),
               RySectionHeader(l10n.settingsSectionAbout),
               RyCard(
                 padding: EdgeInsets.zero,
@@ -285,6 +271,134 @@ class _RemindersCardState extends ConsumerState<_RemindersCard> {
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Export, import and wipe. Import and delete confirm first; every outcome
+/// ends in a snackbar so the user always learns what happened.
+class _DataCard extends ConsumerStatefulWidget {
+  const _DataCard();
+
+  @override
+  ConsumerState<_DataCard> createState() => _DataCardState();
+}
+
+class _DataCardState extends ConsumerState<_DataCard> {
+  bool _busy = false;
+
+  Future<void> _run(Future<void> Function() action) async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    try {
+      await action();
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _export() => _run(() async {
+    final l10n = AppLocalizations.of(context);
+    final result = await ref.read(backupActionsProvider).exportAndShare();
+    if (!mounted) return;
+    if (result is Error) showRySnackBar(context, l10n.backupExportFailed);
+  });
+
+  Future<void> _import() => _run(() async {
+    final l10n = AppLocalizations.of(context);
+    final actions = ref.read(backupActionsProvider);
+    final picked = await actions.pickAndValidate();
+    if (!mounted) return;
+    final BackupDocument doc;
+    switch (picked) {
+      case Error(:final failure):
+        showRySnackBar(
+          context,
+          failure is ValidationFailure
+              ? l10n.backupImportInvalid
+              : l10n.backupImportFailed,
+        );
+        return;
+      case Success(value: null):
+        return;
+      case Success(:final value):
+        doc = value!;
+    }
+    final confirmed = await showRyConfirmDialog(
+      context,
+      title: l10n.backupImportTitle,
+      message: l10n.backupImportMessage(
+        MaterialLocalizations.of(context)
+            .formatShortDate(doc.exportedAt.toLocal()),
+        doc.habits.length,
+        doc.shiftTypes.length,
+      ),
+      confirmLabel: l10n.backupImportConfirm,
+      cancelLabel: l10n.commonCancel,
+      destructive: true,
+    );
+    if (!confirmed || !mounted) return;
+    final result = await actions.import(doc);
+    if (!mounted) return;
+    showRySnackBar(
+      context,
+      result is Success ? l10n.backupImportDone : l10n.backupImportFailed,
+    );
+  });
+
+  Future<void> _delete() => _run(() async {
+    final l10n = AppLocalizations.of(context);
+    final confirmed = await showRyConfirmDialog(
+      context,
+      title: l10n.backupDeleteTitle,
+      message: l10n.backupDeleteMessage,
+      confirmLabel: l10n.commonDelete,
+      cancelLabel: l10n.commonCancel,
+      destructive: true,
+    );
+    if (!confirmed || !mounted) return;
+    final result = await ref.read(backupActionsProvider).deleteAll();
+    if (!mounted) return;
+    showRySnackBar(
+      context,
+      result is Success ? l10n.backupDeleteDone : l10n.backupDeleteFailed,
+    );
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final scheme = Theme.of(context).colorScheme;
+    return RyCard(
+      padding: EdgeInsets.zero,
+      child: Column(
+        children: [
+          ListTile(
+            enabled: !_busy,
+            leading: const Icon(Icons.upload_outlined),
+            title: Text(l10n.settingsExport),
+            subtitle: Text(l10n.settingsExportSubtitle),
+            onTap: _export,
+          ),
+          ListTile(
+            enabled: !_busy,
+            leading: const Icon(Icons.download_outlined),
+            title: Text(l10n.settingsImport),
+            subtitle: Text(l10n.settingsImportSubtitle),
+            onTap: _import,
+          ),
+          ListTile(
+            enabled: !_busy,
+            leading: Icon(Icons.delete_outline, color: scheme.error),
+            title: Text(
+              l10n.settingsDeleteData,
+              style: TextStyle(color: scheme.error),
+            ),
+            subtitle: Text(l10n.settingsDeleteDataSubtitle),
+            onTap: _delete,
           ),
         ],
       ),

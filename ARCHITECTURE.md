@@ -187,6 +187,25 @@ Zonenänderung beim nächsten Resume korrigiert wird.
 Gewohnheiten nicht nötig; exakte Alarme erfordern seit Android 14 eine
 Sonderfreigabe.
 
-## 10. Offene Architekturpunkte
+## 10. Backup (Phase 5)
 
-- Phase 5: Backup-Schema v1 (JSON, `schemaVersion`), Import-Validierung.
+`BackupDocument` ist der vollständige Datenbestand als Wertobjekt;
+`BackupCodec` serialisiert ihn nach JSON (`app: "rytmavo"`,
+`schemaVersion: 1`, `exportedAt` UTC) und validiert beim Lesen jeden
+Datensatz: Typen, Datums-/Zeitformate, eindeutige IDs, Verweise von
+Rotationen, Überschreibungen, Regeln und Erledigungen auf vorhandene
+Schichtarten bzw. Gewohnheiten. Fehler kommen als `ValidationFailure`
+(mit Feld) zurück; eine Datei mit höherer `schemaVersion` wird abgelehnt,
+fehlende Abschnitte gelten als leer. `DriftBackupRepository.importDocument`
+löscht und schreibt innerhalb **einer** Transaktion, sodass ein Fehler den
+alten Bestand unberührt lässt; die Feature-Streams (ADR-010) aktualisieren
+die Oberfläche danach von selbst. `BackupFileGateway` kapselt Teilen-Menü
+und Dateiauswahl (`PlatformBackupFileGateway`), damit `BackupActions` ohne
+Plattform testbar bleibt.
+
+### ADR-013 Import ersetzt, statt zu mischen
+Ein Merge müsste Konflikte zwischen versionierten Regeln lösen, die der
+Nutzer nicht nachvollziehen kann. Ersetzen ist für „Gerätewechsel“ und
+„Wiederherstellen“ die erwartete Semantik; die App warnt vor dem Import.
+
+## 11. Offene Architekturpunkte
