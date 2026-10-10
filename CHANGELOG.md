@@ -148,7 +148,7 @@ Versionierung SemVer. Noch unveröffentlicht.
 - Tests: Planer, Scheduler mit aufzeichnendem Gateway (DE/EN-Texte,
   Erledigung entfernt Erinnerung, Aus = alles abbrechen), Widget-Flow.
 
-### Uhr-Anzeige: Apple Watch und Wear OS (2026-10-10, Branch `claude/project-thread-5siseb`)
+### Uhr-Anzeige: Apple Watch und Wear OS (2026-10-10)
 - Flutter: `features/watch` mit `WatchSnapshotBuilder` (14 Tage, lokalisierte
   Namen, JSON v1) und `WatchSync` (entprellt, nur bei Änderungen) über den
   MethodChannel `com.rytmavo/watch`.

@@ -215,7 +215,7 @@ Umgebung: wie zuvor.
 |---|---|
 | `dart format --output=none --set-exit-if-changed .` | Exit 0 |
 | `flutter analyze` | „No issues found!“ |
-| `flutter test --timeout 30s` | 98 Tests, 98 bestanden |
+| `flutter test --timeout 30s` | 100 Tests, 100 bestanden (nach Rebase auf main) |
 
 - `test/features/watch/watch_snapshot_builder_test.dart` (neu, 5): 14-Tage-
   Fenster über den Jahreswechsel, Namen/Farbe/Zeiten inkl. Nachtschicht,
