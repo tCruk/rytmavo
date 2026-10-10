@@ -80,17 +80,17 @@ dart run build_runner build --delete-conflicting-outputs   # nach Schema-Änderu
 ## 6. Git-Workflow
 
 - Es gibt nur den Branch `main` (Entscheidung des Auftraggebers vom
-  2026-10-10). Entwicklung und Commits erfolgen direkt auf `main`; jeder
-  Commit muss die Qualitätsgates bestehen.
-- Größere, riskante Umbauten dürfen auf einem kurzlebigen `feature/<thema>`
-  vorbereitet und per Pull Request nach `main` gebracht werden.
+  2026-10-10: „mache alles in main“). Entwicklung und Commits erfolgen direkt
+  auf `main`, keine Feature-Branches und keine Pull Requests ohne Auftrag.
+  Vor jedem Push `origin/main` holen und darauf aufsetzen (mehrere Threads
+  pushen parallel); jeder Commit muss die Qualitätsgates bestehen.
+- `main` muss jederzeit vollständig und korrekt sein: Doku, Tests und
+  Übersetzungen gehören in denselben Commit wie die Änderung.
 - Commit nach jeder abgeschlossenen Phase bzw. jedem in sich geschlossenen
   Arbeitspaket; Conventional-Commits-Präfixe (`feat:`, `fix:`, `test:`, `docs:`,
   `chore:`, `refactor:`).
 - Keine Force-Pushes auf geschützte Branches, kein History-Rewrite auf fremden
   Branches.
-- Pull Requests (falls genutzt) mit Beschreibung, Testergebnissen und Review;
-  **Merge nur nach ausdrücklicher Zustimmung des Auftraggebers.**
 - Nie committen: Secrets, `key.properties`, Keystores, Provisioning Profiles,
   `.env`, lokale IDE-Konfiguration, Build-Ausgaben.
 
