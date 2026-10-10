@@ -1087,6 +1087,72 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'{value} %'**
   String statsPercent(int value);
+
+  /// No description provided for @reminderBodyPlain.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute fällig.'**
+  String get reminderBodyPlain;
+
+  /// No description provided for @reminderBodyWithShift.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute fällig ({shiftName}).'**
+  String reminderBodyWithShift(String shiftName);
+
+  /// No description provided for @settingsRemindersToggle.
+  ///
+  /// In de, this message translates to:
+  /// **'Erinnerungen'**
+  String get settingsRemindersToggle;
+
+  /// No description provided for @settingsRemindersOn.
+  ///
+  /// In de, this message translates to:
+  /// **'An – du wirst an fällige Gewohnheiten erinnert.'**
+  String get settingsRemindersOn;
+
+  /// No description provided for @settingsRemindersDenied.
+  ///
+  /// In de, this message translates to:
+  /// **'Berechtigung verweigert. Aktiviere Mitteilungen für Rytmavo in den Systemeinstellungen.'**
+  String get settingsRemindersDenied;
+
+  /// No description provided for @settingsRemindersHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Erinnerungen werden pro Gewohnheit eingestellt. Android stellt sie nicht sekundengenau zu, um Akku zu sparen.'**
+  String get settingsRemindersHint;
+
+  /// No description provided for @habitReminder.
+  ///
+  /// In de, this message translates to:
+  /// **'Erinnerung'**
+  String get habitReminder;
+
+  /// No description provided for @habitReminderOff.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Erinnerung'**
+  String get habitReminderOff;
+
+  /// No description provided for @habitReminderAt.
+  ///
+  /// In de, this message translates to:
+  /// **'Erinnern um'**
+  String get habitReminderAt;
+
+  /// No description provided for @habitReminderPerShift.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeit je Schicht'**
+  String get habitReminderPerShift;
+
+  /// No description provided for @habitReminderGlobalOff.
+  ///
+  /// In de, this message translates to:
+  /// **'Erinnerungen sind in den Einstellungen ausgeschaltet.'**
+  String get habitReminderGlobalOff;
 }
 
 class _AppLocalizationsDelegate

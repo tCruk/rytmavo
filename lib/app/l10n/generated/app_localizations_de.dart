@@ -576,4 +576,43 @@ class AppLocalizationsDe extends AppLocalizations {
   String statsPercent(int value) {
     return '$value %';
   }
+
+  @override
+  String get reminderBodyPlain => 'Heute fällig.';
+
+  @override
+  String reminderBodyWithShift(String shiftName) {
+    return 'Heute fällig ($shiftName).';
+  }
+
+  @override
+  String get settingsRemindersToggle => 'Erinnerungen';
+
+  @override
+  String get settingsRemindersOn =>
+      'An – du wirst an fällige Gewohnheiten erinnert.';
+
+  @override
+  String get settingsRemindersDenied =>
+      'Berechtigung verweigert. Aktiviere Mitteilungen für Rytmavo in den Systemeinstellungen.';
+
+  @override
+  String get settingsRemindersHint =>
+      'Erinnerungen werden pro Gewohnheit eingestellt. Android stellt sie nicht sekundengenau zu, um Akku zu sparen.';
+
+  @override
+  String get habitReminder => 'Erinnerung';
+
+  @override
+  String get habitReminderOff => 'Keine Erinnerung';
+
+  @override
+  String get habitReminderAt => 'Erinnern um';
+
+  @override
+  String get habitReminderPerShift => 'Zeit je Schicht';
+
+  @override
+  String get habitReminderGlobalOff =>
+      'Erinnerungen sind in den Einstellungen ausgeschaltet.';
 }

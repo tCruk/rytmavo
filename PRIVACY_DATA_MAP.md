@@ -37,7 +37,7 @@ Hinweise:
 | Berechtigung | Plattform | Zweck | Anmerkung |
 |---|---|---|---|
 | Benachrichtigungen (opt-in) | iOS: Systemabfrage; Android 13+: `POST_NOTIFICATIONS` | Lokale Erinnerungen | Abfrage erst, wenn der Nutzer Erinnerungen aktiviert |
-| `RECEIVE_BOOT_COMPLETED` | Android | Erinnerungen nach Neustart neu planen | Wird von flutter_local_notifications benötigt, im Manifest prüfen |
+| `RECEIVE_BOOT_COMPLETED` | Android | Erinnerungen nach Neustart neu planen | Im Manifest deklariert (Phase 4) |
 | `SCHEDULE_EXACT_ALARM` / `USE_EXACT_ALARM` | Android | Exakte Alarme | **Nur falls wirklich nötig.** Standard: nicht-exakte Alarme. Ohne Berechtigung deklarieren, solange keine exakte Zustellung gefordert ist |
 | Standort | – | – | Wird nicht verwendet |
 | Kontakte | – | – | Wird nicht verwendet |

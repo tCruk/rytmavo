@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/di/providers.dart';
+import '../../../../core/date/local_time.dart';
 import '../../../../core/result/failure.dart';
 import '../../../../core/result/result.dart';
 import '../../../shifts/presentation/controllers/shift_providers.dart';
@@ -20,6 +21,7 @@ final class HabitDraft {
     required this.colorValue,
     required this.targetShiftTypeIds,
     required this.weekdays,
+    required this.reminders,
     this.saving = false,
     this.nameError = false,
   });
@@ -35,6 +37,9 @@ final class HabitDraft {
 
   /// `null` = any weekday.
   final Set<int>? weekdays;
+
+  /// Reminder time per shift type id, or [HabitRule.anyShiftReminderKey].
+  final Map<String, LocalTime> reminders;
   final bool saving;
   final bool nameError;
 
@@ -50,6 +55,7 @@ final class HabitDraft {
     Set<String>? targetShiftTypeIds,
     Set<int>? weekdays,
     bool clearWeekdays = false,
+    Map<String, LocalTime>? reminders,
     bool? saving,
     bool? nameError,
   }) {
@@ -61,6 +67,7 @@ final class HabitDraft {
       colorValue: colorValue ?? this.colorValue,
       targetShiftTypeIds: targetShiftTypeIds ?? this.targetShiftTypeIds,
       weekdays: clearWeekdays ? null : weekdays ?? this.weekdays,
+      reminders: reminders ?? this.reminders,
       saving: saving ?? this.saving,
       nameError: nameError ?? this.nameError,
     );
@@ -89,7 +96,19 @@ class HabitFormController extends Notifier<HabitDraft> {
       colorValue: habit?.colorValue ?? HabitColors.defaultValue,
       targetShiftTypeIds: rule?.targetShiftTypeIds ?? const {},
       weekdays: rule?.weekdays,
+      reminders: rule?.reminders ?? const {},
     );
+  }
+
+  /// Sets or clears (`null`) the reminder for [key] (shift id or wildcard).
+  void setReminder(String key, LocalTime? time) {
+    final next = {...state.reminders};
+    if (time == null) {
+      next.remove(key);
+    } else {
+      next[key] = time;
+    }
+    state = state.copyWith(reminders: next);
   }
 
   void setName(String value) =>
@@ -123,6 +142,19 @@ class HabitFormController extends Notifier<HabitDraft> {
 
   /// Validates and persists. A changed rule becomes a new version valid
   /// from today; an unchanged rule is left alone.
+  /// Drops reminder entries that no longer match the due rule, so a habit
+  /// switched from "every day" to specific shifts keeps only those.
+  Map<String, LocalTime>? _effectiveReminders() {
+    final kept = <String, LocalTime>{
+      for (final e in state.reminders.entries)
+        if (state.everyShift
+            ? e.key == HabitRule.anyShiftReminderKey
+            : state.targetShiftTypeIds.contains(e.key))
+          e.key: e.value,
+    };
+    return kept.isEmpty ? null : kept;
+  }
+
   Future<Result<void>> save() async {
     final name = state.name.trim();
     if (name.isEmpty) {
@@ -162,7 +194,7 @@ class HabitFormController extends Notifier<HabitDraft> {
       validFrom: current == null ? habit.createdOn : today,
       targetShiftTypeIds: state.targetShiftTypeIds,
       weekdays: state.weekdays,
-      reminders: current?.reminders,
+      reminders: _effectiveReminders(),
     );
     final rule = current != null && current.sameTermsAs(draftRule)
         ? current

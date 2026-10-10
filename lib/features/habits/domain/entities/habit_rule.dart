@@ -31,7 +31,23 @@ final class HabitRule {
   /// Reminder time per shift type id (Phase 4), or `null`.
   final Map<String, LocalTime>? reminders;
 
+  /// Key in [reminders] for "any day, whatever the shift".
+  static const String anyShiftReminderKey = '*';
+
   bool get appliesToEveryShift => targetShiftTypeIds.isEmpty;
+
+  bool get hasReminders => reminders != null && reminders!.isNotEmpty;
+
+  /// Reminder time for a day with [shiftTypeId]: the shift-specific entry
+  /// wins, then the wildcard entry.
+  LocalTime? reminderFor(String? shiftTypeId) {
+    final map = reminders;
+    if (map == null) return null;
+    if (shiftTypeId != null && map[shiftTypeId] != null) {
+      return map[shiftTypeId];
+    }
+    return map[anyShiftReminderKey];
+  }
 
   /// Whether the rule makes the habit due on a day with [shiftTypeId]
   /// (`null` = no shift resolved) and ISO [weekday].

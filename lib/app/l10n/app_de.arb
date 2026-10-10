@@ -325,5 +325,23 @@
         "type": "int"
       }
     }
-  }
+  },
+  "reminderBodyPlain": "Heute fällig.",
+  "reminderBodyWithShift": "Heute fällig ({shiftName}).",
+  "@reminderBodyWithShift": {
+    "placeholders": {
+      "shiftName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsRemindersToggle": "Erinnerungen",
+  "settingsRemindersOn": "An – du wirst an fällige Gewohnheiten erinnert.",
+  "settingsRemindersDenied": "Berechtigung verweigert. Aktiviere Mitteilungen für Rytmavo in den Systemeinstellungen.",
+  "settingsRemindersHint": "Erinnerungen werden pro Gewohnheit eingestellt. Android stellt sie nicht sekundengenau zu, um Akku zu sparen.",
+  "habitReminder": "Erinnerung",
+  "habitReminderOff": "Keine Erinnerung",
+  "habitReminderAt": "Erinnern um",
+  "habitReminderPerShift": "Zeit je Schicht",
+  "habitReminderGlobalOff": "Erinnerungen sind in den Einstellungen ausgeschaltet."
 }

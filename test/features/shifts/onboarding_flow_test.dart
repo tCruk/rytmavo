@@ -5,6 +5,8 @@ import 'package:rytmavo/app/app.dart';
 import 'package:rytmavo/app/di/providers.dart';
 import 'package:rytmavo/core/date/clock.dart';
 import 'package:rytmavo/core/date/local_date.dart';
+import 'package:rytmavo/features/reminders/domain/gateways/notification_gateway.dart';
+import 'package:rytmavo/features/reminders/presentation/reminder_scheduler.dart';
 import 'package:rytmavo/features/shifts/domain/entities/rotation_pattern.dart';
 import 'package:rytmavo/features/shifts/domain/entities/rotation_preset.dart';
 import 'package:rytmavo/features/shifts/domain/entities/shift_type.dart';
@@ -37,6 +39,9 @@ void main() {
       settingsRepositoryProvider.overrideWithValue(settingsRepo),
       shiftRepositoryProvider.overrideWithValue(shiftRepo),
       habitRepositoryProvider.overrideWithValue(habitRepo),
+      notificationGatewayProvider.overrideWithValue(
+        const NoopNotificationGateway(),
+      ),
       clockProvider.overrideWithValue(clock),
     ],
     child: const RytmavoApp(),

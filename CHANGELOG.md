@@ -61,3 +61,22 @@ Versionierung SemVer. Noch unveröffentlicht.
   erledigt/fällig, aktuelle und beste Serie.
 - Tests: Fälligkeit und Statistik, drift-Repository, Widget-Flows
   (Gewohnheit anlegen → abhaken → rückgängig; Auswertung).
+
+### Phase 4 – Erinnerungen (2026-10-10)
+- Domain: `PlannedReminder` (stabile IDs je Habit und Tag), `ReminderPlanner`
+  (rollendes Fenster 14 Tage, max. 60, nur fällige, nicht erledigte Tage,
+  Zeit je Schicht oder Platzhalter `*`), `NotificationGateway`-Port.
+- Data: `LocalNotificationGateway` über `flutter_local_notifications`
+  (nicht-exakte Android-Alarme, iOS Time-Sensitive, Instant als UTC-TZDateTime
+  ohne Zeitzonen-Plugin).
+- `ReminderScheduler`: Neuplanung (entprellt) bei Änderung von Schichten,
+  Gewohnheiten, Erledigungen und Einstellungen, beim Start und beim
+  Zurückkehren in die App; bei ausgeschalteten Erinnerungen werden alle
+  entfernt.
+- Gewohnheitsformular: Erinnerungszeit (jeden Tag) bzw. je Zielschicht.
+- Einstellungen: Erinnerungs-Schalter mit Systemberechtigung; verweigerte
+  Berechtigung wird erklärt.
+- Android: `POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`, Boot-Receiver,
+  Core-Library-Desugaring. iOS: `UNUserNotificationCenter`-Delegate.
+- Tests: Planer, Scheduler mit aufzeichnendem Gateway (DE/EN-Texte,
+  Erledigung entfernt Erinnerung, Aus = alles abbrechen), Widget-Flow.

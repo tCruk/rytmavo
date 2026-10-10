@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rytmavo/app/app.dart';
 import 'package:rytmavo/app/di/providers.dart';
+import 'package:rytmavo/features/reminders/domain/gateways/notification_gateway.dart';
+import 'package:rytmavo/features/reminders/presentation/reminder_scheduler.dart';
 import 'package:rytmavo/features/settings/domain/entities/app_settings.dart';
 
 import '../support/in_memory_habit_repository.dart';
@@ -30,6 +32,9 @@ void main() {
       settingsRepositoryProvider.overrideWithValue(settingsRepo),
       shiftRepositoryProvider.overrideWithValue(shiftRepo),
       habitRepositoryProvider.overrideWithValue(habitRepo),
+      notificationGatewayProvider.overrideWithValue(
+        const NoopNotificationGateway(),
+      ),
     ],
     child: const RytmavoApp(),
   );

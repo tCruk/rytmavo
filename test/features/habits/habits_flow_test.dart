@@ -5,6 +5,9 @@ import 'package:rytmavo/app/app.dart';
 import 'package:rytmavo/app/di/providers.dart';
 import 'package:rytmavo/core/date/clock.dart';
 import 'package:rytmavo/core/date/local_date.dart';
+import 'package:rytmavo/core/date/local_time.dart';
+import 'package:rytmavo/features/reminders/domain/gateways/notification_gateway.dart';
+import 'package:rytmavo/features/reminders/presentation/reminder_scheduler.dart';
 import 'package:rytmavo/features/shifts/domain/entities/rotation_pattern.dart';
 import 'package:rytmavo/features/shifts/domain/entities/rotation_preset.dart';
 import 'package:rytmavo/features/shifts/domain/entities/shift_type.dart';
@@ -48,6 +51,9 @@ void main() {
       settingsRepositoryProvider.overrideWithValue(settingsRepo),
       shiftRepositoryProvider.overrideWithValue(shiftRepo),
       habitRepositoryProvider.overrideWithValue(habitRepo),
+      notificationGatewayProvider.overrideWithValue(
+        const NoopNotificationGateway(),
+      ),
       clockProvider.overrideWithValue(clock),
     ],
     child: const RytmavoApp(),
@@ -144,5 +150,45 @@ void main() {
     // Created today → exactly one due day, completed.
     expect(find.text('1 von 1'), findsWidgets);
     expect(find.bySemanticsLabel('100 %'), findsWidgets);
+  });
+
+  testWidgets('reminder time is stored on the rule; settings switch', (
+    tester,
+  ) async {
+    await start(tester);
+    await tester.tap(find.text('Gewohnheiten'));
+    await settle(tester);
+    await tapText(tester, 'Gewohnheit anlegen');
+    await tester.enterText(find.byType(TextField).first, 'Dehnen');
+
+    // Open the time picker for the wildcard reminder and confirm 09:00.
+    await tapText(tester, 'Keine Erinnerung');
+    expect(find.text('Erinnern um'), findsWidgets);
+    await tester.tap(find.text('OK'));
+    await settle(tester);
+    expect(find.text('Keine Erinnerung'), findsNothing);
+    expect(
+      find.text('Erinnerungen sind in den Einstellungen ausgeschaltet.'),
+      findsOneWidget,
+    );
+    await tapText(tester, 'Speichern');
+
+    final rule = habitRepo.current.currentRule(
+      habitRepo.current.habits.single.id,
+    );
+    expect(rule?.reminders?['*'], const LocalTime(9, 0));
+
+    // Turn reminders on in settings (noop gateway grants permission).
+    await tester.tap(find.byTooltip('Einstellungen öffnen'));
+    await settle(tester);
+    await tester.ensureVisible(find.byType(SwitchListTile));
+    await settle(tester);
+    await tester.tap(find.byType(SwitchListTile));
+    await settle(tester);
+    expect(settingsRepo.current.remindersEnabled, isTrue);
+    expect(
+      find.text('An – du wirst an fällige Gewohnheiten erinnert.'),
+      findsOneWidget,
+    );
   });
 }

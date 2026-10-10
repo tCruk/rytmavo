@@ -1,6 +1,6 @@
 # Rytmavo – Architektur
 
-Stand: 2026-10-10 (Phase 3). Dieses Dokument beschreibt Schichten, Datenfluss,
+Stand: 2026-10-10 (Phase 4). Dieses Dokument beschreibt Schichten, Datenfluss,
 Datenmodell und die Architekturentscheidungen (ADRs).
 
 ## 1. Schichten
@@ -163,8 +163,30 @@ erzeugen keine Version. Erledigungen sind `(habitId, date)`-eindeutig.
 Statistik zählt nur fällige Tage; `rate` ist `null` statt 0 %, wenn nichts
 fällig war.
 
-## 9. Offene Architekturpunkte
+## 9. Erinnerungen (Phase 4)
 
-- Phase 4: Reminder-Scheduler (Rolling Window, Rescheduling nach Neustart,
-  nicht-exakte Alarme), Zeitzonen-/DST-Strategie.
+`ReminderPlanner.plan(setup, plan, now)` ist rein und liefert für die
+nächsten 14 Tage je fälliger, nicht erledigter Gewohnheit mit Erinnerungszeit
+einen `PlannedReminder` (sortiert, max. 60, iOS-Limit 64). Die Zeit kommt aus
+`HabitRule.reminders` (`{shiftTypeId: HH:mm}`, Platzhalter `*`). Der
+`ReminderScheduler` (Riverpod) hört auf Schichten, Habits und Einstellungen,
+entprellt 400 ms und ersetzt alle ausstehenden Benachrichtigungen über das
+`NotificationGateway`; zusätzlich bei App-Start und `onResume`. Ausgeschaltet
+= `cancelAll()`. Die Notification-Texte werden über
+`lookupAppLocalizations` in der App-Sprache erzeugt.
+
+### ADR-011 Zeitpunkt als Instant statt IANA-Zone
+Der Planer berechnet den lokalen `DateTime` mit den Zeitzonenregeln des
+Geräts (inkl. Sommerzeit) und übergibt ihn als `TZDateTime.from(at, UTC)`.
+So entfällt ein Zeitzonen-Plugin; das Fenster ist kurz genug, dass eine
+Zonenänderung beim nächsten Resume korrigiert wird.
+
+### ADR-012 Nicht-exakte Alarme
+`AndroidScheduleMode.inexactAllowWhileIdle`, keine
+`SCHEDULE_EXACT_ALARM`-Berechtigung. Minutengenaue Zustellung ist für
+Gewohnheiten nicht nötig; exakte Alarme erfordern seit Android 14 eine
+Sonderfreigabe.
+
+## 10. Offene Architekturpunkte
+
 - Phase 5: Backup-Schema v1 (JSON, `schemaVersion`), Import-Validierung.

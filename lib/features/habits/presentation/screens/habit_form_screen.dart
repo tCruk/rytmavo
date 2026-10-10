@@ -3,11 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n/generated/app_localizations.dart';
+import '../../../../core/date/local_time.dart';
 import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../settings/domain/entities/app_settings.dart';
+import '../../../settings/presentation/controllers/settings_controller.dart';
 import '../../../shifts/domain/entities/shift_type.dart';
 import '../../../shifts/presentation/controllers/shift_providers.dart';
 import '../../../shifts/presentation/widgets/shift_visuals.dart';
+import '../../domain/entities/habit_rule.dart';
 import '../controllers/habit_form_controller.dart';
 import '../widgets/habit_visuals.dart';
 
@@ -49,6 +53,27 @@ class _HabitFormScreenState extends ConsumerState<HabitFormScreen> {
     final controller = ref.read(provider.notifier);
     final shiftTypes =
         ref.watch(shiftSetupProvider).value?.activeTypes ?? ShiftType.defaults;
+    final remindersEnabled =
+        (ref.watch(settingsControllerProvider).value ?? AppSettings.defaults)
+            .remindersEnabled;
+
+    Future<void> pickReminder(String key) async {
+      final current = draft.reminders[key] ?? const LocalTime(9, 0);
+      final picked = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay(hour: current.hour, minute: current.minute),
+        helpText: l10n.habitReminderAt,
+      );
+      if (picked == null) return;
+      controller.setReminder(key, LocalTime(picked.hour, picked.minute));
+    }
+
+    final reminderKeys = draft.everyShift
+        ? const [HabitRule.anyShiftReminderKey]
+        : [
+            for (final t in shiftTypes)
+              if (draft.targetShiftTypeIds.contains(t.id)) t.id,
+          ];
 
     Future<void> save() async {
       final result = await controller.save();
@@ -203,6 +228,45 @@ class _HabitFormScreenState extends ConsumerState<HabitFormScreen> {
                     ),
                 ],
               ),
+              RySectionHeader(l10n.habitReminder),
+              RyCard(
+                padding: EdgeInsets.zero,
+                child: Column(
+                  children: [
+                    if (!draft.everyShift)
+                      ListTile(
+                        dense: true,
+                        title: Text(l10n.habitReminderPerShift),
+                      ),
+                    for (final key in reminderKeys)
+                      _ReminderRow(
+                        label: key == HabitRule.anyShiftReminderKey
+                            ? l10n.habitReminderAt
+                            : shiftTypes
+                                  .firstWhere((t) => t.id == key)
+                                  .displayName(l10n),
+                        time: draft.reminders[key],
+                        onPick: () => pickReminder(key),
+                        onClear: () => controller.setReminder(key, null),
+                      ),
+                    if (!remindersEnabled && draft.reminders.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                          AppSpacing.lg,
+                          0,
+                          AppSpacing.lg,
+                          AppSpacing.md,
+                        ),
+                        child: Text(
+                          l10n.habitReminderGlobalOff,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: theme.colorScheme.error,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
               if (draft.isEdit) ...[
                 const SizedBox(height: AppSpacing.md),
                 Text(
@@ -273,6 +337,41 @@ class _PickTile extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// One reminder time: tap to pick, trailing button to clear.
+class _ReminderRow extends StatelessWidget {
+  const _ReminderRow({
+    required this.label,
+    required this.time,
+    required this.onPick,
+    required this.onClear,
+  });
+
+  final String label;
+  final LocalTime? time;
+  final VoidCallback onPick;
+  final VoidCallback onClear;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return ListTile(
+      leading: const Icon(Icons.notifications_outlined),
+      title: Text(label),
+      subtitle: Text(
+        time == null ? l10n.habitReminderOff : formatLocalTime(context, time!),
+      ),
+      trailing: time == null
+          ? const Icon(Icons.chevron_right)
+          : IconButton(
+              tooltip: l10n.commonDelete,
+              icon: const Icon(Icons.close),
+              onPressed: onClear,
+            ),
+      onTap: onPick,
     );
   }
 }

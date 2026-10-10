@@ -171,5 +171,16 @@
   "statsBestStreak": "Best streak",
   "statsStreakDays": "{count, plural, =1{1 day} other{{count} days}}",
   "statsByShift": "By shift",
-  "statsPercent": "{value}%"
+  "statsPercent": "{value}%",
+  "reminderBodyPlain": "Due today.",
+  "reminderBodyWithShift": "Due today ({shiftName}).",
+  "settingsRemindersToggle": "Reminders",
+  "settingsRemindersOn": "On – you'll be reminded of due habits.",
+  "settingsRemindersDenied": "Permission denied. Enable notifications for Rytmavo in the system settings.",
+  "settingsRemindersHint": "Reminders are set per habit. Android may deliver them a few minutes late to save battery.",
+  "habitReminder": "Reminder",
+  "habitReminderOff": "No reminder",
+  "habitReminderAt": "Remind at",
+  "habitReminderPerShift": "Time per shift",
+  "habitReminderGlobalOff": "Reminders are turned off in Settings."
 }

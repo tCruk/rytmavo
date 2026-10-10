@@ -574,4 +574,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String statsPercent(int value) {
     return '$value%';
   }
+
+  @override
+  String get reminderBodyPlain => 'Due today.';
+
+  @override
+  String reminderBodyWithShift(String shiftName) {
+    return 'Due today ($shiftName).';
+  }
+
+  @override
+  String get settingsRemindersToggle => 'Reminders';
+
+  @override
+  String get settingsRemindersOn => 'On – you\'ll be reminded of due habits.';
+
+  @override
+  String get settingsRemindersDenied =>
+      'Permission denied. Enable notifications for Rytmavo in the system settings.';
+
+  @override
+  String get settingsRemindersHint =>
+      'Reminders are set per habit. Android may deliver them a few minutes late to save battery.';
+
+  @override
+  String get habitReminder => 'Reminder';
+
+  @override
+  String get habitReminderOff => 'No reminder';
+
+  @override
+  String get habitReminderAt => 'Remind at';
+
+  @override
+  String get habitReminderPerShift => 'Time per shift';
+
+  @override
+  String get habitReminderGlobalOff => 'Reminders are turned off in Settings.';
 }

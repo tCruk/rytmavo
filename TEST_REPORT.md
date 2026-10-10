@@ -108,6 +108,29 @@ Umgebung: wie zuvor.
   (leerer Name abgelehnt, Schichten Früh+Nacht), Heute abhaken, Rückgängig;
   Auswertung zeigt 1 von 1 und 100 %.
 
+## Phase 4 – 2026-10-10
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test --timeout 30s` | 77 Tests, 77 bestanden |
+| Zustellung echter Benachrichtigungen (Android/iOS) | **nicht ausgeführt** – kein Gerät; Gradle-/Manifest-/AppDelegate-Änderungen sind beim ersten lokalen Build zu verifizieren |
+
+### Neue Tests
+
+- `test/features/reminders/reminder_planner_test.dart` (4): Platzhalter-
+  Erinnerung je fälligem Tag (Vergangenes ausgelassen), schichtspezifische
+  Zeit vor Platzhalter, freie Tage und nicht fällige Schichten übersprungen,
+  erledigte Tage ausgelassen, stabile 31-Bit-IDs, Deckelung auf 60 mit
+  frühesten zuerst.
+- `test/features/reminders/reminder_scheduler_test.dart` (4): Planung mit
+  deutschem Text, Erledigung entfernt Erinnerung, Aus → `cancelAll`,
+  englischer Text bei Sprache EN.
+- `test/features/habits/habits_flow_test.dart` (+1): Erinnerungszeit über
+  Zeitwähler auf der Regel gespeichert, Hinweis bei global ausgeschalteten
+  Erinnerungen, Schalter in den Einstellungen.
+
 ### Offene Prüfungen
 
 - Golden-Tests für zentrale Screens (geplant für Phase 6, Feinschliff).

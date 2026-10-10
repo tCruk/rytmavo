@@ -6,6 +6,7 @@ import '../../../../app/l10n/generated/app_localizations.dart';
 import '../../../../app/router/app_routes.dart';
 import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../reminders/presentation/reminder_scheduler.dart';
 import '../../../shifts/presentation/controllers/shift_providers.dart';
 import '../../domain/entities/app_settings.dart';
 import '../controllers/settings_controller.dart';
@@ -75,14 +76,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ),
               RySectionHeader(l10n.settingsSectionReminders),
-              RyCard(
-                padding: EdgeInsets.zero,
-                child: ListTile(
-                  leading: const Icon(Icons.notifications_outlined),
-                  title: Text(l10n.settingsRemindersStatus),
-                  subtitle: Text(l10n.settingsRemindersOff),
-                ),
-              ),
+              const _RemindersCard(),
               RySectionHeader(l10n.settingsSectionData),
               RyCard(
                 padding: EdgeInsets.zero,
@@ -218,6 +212,82 @@ class _PendingTile extends StatelessWidget {
       leading: Icon(icon),
       title: Text(title),
       subtitle: Text(l10n.settingsComingSoon),
+    );
+  }
+}
+
+/// Global reminder switch. Turning it on asks the OS for permission; when
+/// denied the switch stays off and explains where to enable it.
+class _RemindersCard extends ConsumerStatefulWidget {
+  const _RemindersCard();
+
+  @override
+  ConsumerState<_RemindersCard> createState() => _RemindersCardState();
+}
+
+class _RemindersCardState extends ConsumerState<_RemindersCard> {
+  bool _denied = false;
+
+  Future<void> _toggle(bool enable) async {
+    final controller = ref.read(settingsControllerProvider.notifier);
+    if (!enable) {
+      setState(() => _denied = false);
+      await controller.setRemindersEnabled(enabled: false);
+      return;
+    }
+    final granted = await ref
+        .read(notificationGatewayProvider)
+        .requestPermission();
+    if (!mounted) return;
+    setState(() => _denied = !granted);
+    if (granted) await controller.setRemindersEnabled(enabled: true);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final enabled =
+        (ref.watch(settingsControllerProvider).value ?? AppSettings.defaults)
+            .remindersEnabled;
+    return RyCard(
+      padding: EdgeInsets.zero,
+      child: Column(
+        children: [
+          SwitchListTile(
+            secondary: const Icon(Icons.notifications_outlined),
+            title: Text(l10n.settingsRemindersToggle),
+            subtitle: Text(
+              _denied
+                  ? l10n.settingsRemindersDenied
+                  : enabled
+                  ? l10n.settingsRemindersOn
+                  : l10n.settingsRemindersOff,
+              style: _denied
+                  ? theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.colorScheme.error,
+                    )
+                  : null,
+            ),
+            value: enabled,
+            onChanged: _toggle,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.lg,
+              0,
+              AppSpacing.lg,
+              AppSpacing.md,
+            ),
+            child: Text(
+              l10n.settingsRemindersHint,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
