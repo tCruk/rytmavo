@@ -206,9 +206,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsVersion => 'Version';
 
   @override
-  String get settingsComingSoon => 'Available in a later phase.';
-
-  @override
   String get settingsExportSubtitle =>
       'Share or save all data as an unencrypted JSON file.';
 
@@ -659,4 +656,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get habitReminderGlobalOff => 'Reminders are turned off in Settings.';
+
+  @override
+  String get settingsVersionUnknown => 'Unknown';
+
+  @override
+  String get infoPrivacyTitle => 'Privacy';
+
+  @override
+  String get infoPrivacyBody =>
+      'Rytmavo processes your data only on this device. There is no server, no user account, no advertising and no analytics service.\n\n# What is stored\n\nShift types, rotation patterns, day overrides, habits, completions and your settings. Everything lives in a local database inside the app\'s protected storage.\n\n# What the app does not do\n\nNo data is sent to third parties. The app does not access contacts, location or photos and contains no tracking libraries.\n\n# Reminders\n\nReminders are scheduled locally through the device\'s notification system. The app asks once for notification permission.\n\n# Backups\n\nA backup is created only when you ask for it. The file is unencrypted and handed to the destination you choose in the share sheet. On import, only the file you select is read.\n\n# Deleting\n\nUnder Settings → Data you can delete all local data at any time. Uninstalling the app removes all data as well.\n\n# Controller\n\n[CONTROLLER – to be completed by the operator]';
+
+  @override
+  String get infoImprintTitle => 'Imprint';
+
+  @override
+  String get infoImprintBody =>
+      '[IMPRINT – to be completed by the operator]\n\nName and address of the provider, contact (e-mail), VAT ID and commercial register where applicable.\n\n“Rytmavo” is a provisional working name.';
+
+  @override
+  String get infoSupportTitle => 'Support';
+
+  @override
+  String infoSupportBody(String version) {
+    return 'For questions or problems, reach us at:\n\n[SUPPORT CONTACT – to be completed by the operator]\n\n# Helpful in a request\n\nApp version: $version\n\nDescribe what you did and what happened instead. Please do not attach a backup file unless you want to share the data in it.\n\n# Back up your data\n\nYou can create a backup any time under Settings → Data → Export data.';
+  }
 }

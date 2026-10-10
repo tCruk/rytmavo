@@ -482,12 +482,6 @@ abstract class AppLocalizations {
   /// **'Version'**
   String get settingsVersion;
 
-  /// No description provided for @settingsComingSoon.
-  ///
-  /// In de, this message translates to:
-  /// **'In einer späteren Phase verfügbar.'**
-  String get settingsComingSoon;
-
   /// No description provided for @settingsExportSubtitle.
   ///
   /// In de, this message translates to:
@@ -1237,6 +1231,48 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Erinnerungen sind in den Einstellungen ausgeschaltet.'**
   String get habitReminderGlobalOff;
+
+  /// No description provided for @settingsVersionUnknown.
+  ///
+  /// In de, this message translates to:
+  /// **'Unbekannt'**
+  String get settingsVersionUnknown;
+
+  /// No description provided for @infoPrivacyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Datenschutz'**
+  String get infoPrivacyTitle;
+
+  /// No description provided for @infoPrivacyBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Rytmavo verarbeitet deine Daten ausschließlich auf diesem Gerät. Es gibt keinen Server, kein Benutzerkonto, keine Werbung und keine Analyse-Dienste.\n\n# Welche Daten gespeichert werden\n\nSchichtarten, Rotationsmuster, Tagesänderungen, Gewohnheiten, Erledigungen und deine Einstellungen. Alles liegt in einer lokalen Datenbank im geschützten Speicherbereich der App.\n\n# Was die App nicht tut\n\nKeine Daten werden an Dritte übertragen. Die App greift nicht auf Kontakte, Standort oder Fotos zu und enthält keine Tracking-Bibliotheken.\n\n# Erinnerungen\n\nErinnerungen werden lokal über das Benachrichtigungssystem des Geräts geplant. Dafür fragt die App einmalig nach der Berechtigung für Mitteilungen.\n\n# Sicherungen\n\nEine Sicherung entsteht nur auf deine Anweisung. Die Datei ist unverschlüsselt und wird an das Ziel übergeben, das du im Teilen-Menü wählst. Beim Import wird nur die von dir ausgewählte Datei gelesen.\n\n# Löschen\n\nUnter Einstellungen → Daten kannst du alle lokalen Daten jederzeit löschen. Das Deinstallieren der App entfernt ebenfalls alle Daten.\n\n# Verantwortlich\n\n[VERANTWORTLICHE STELLE – vom Betreiber zu ergänzen]'**
+  String get infoPrivacyBody;
+
+  /// No description provided for @infoImprintTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Impressum'**
+  String get infoImprintTitle;
+
+  /// No description provided for @infoImprintBody.
+  ///
+  /// In de, this message translates to:
+  /// **'[IMPRESSUM – vom Betreiber zu ergänzen]\n\nName und Anschrift des Anbieters, Kontaktmöglichkeit (E-Mail), gegebenenfalls Umsatzsteuer-ID und Handelsregister.\n\n„Rytmavo“ ist ein vorläufiger Arbeitsname.'**
+  String get infoImprintBody;
+
+  /// No description provided for @infoSupportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Support'**
+  String get infoSupportTitle;
+
+  /// No description provided for @infoSupportBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Bei Fragen oder Problemen erreichst du uns unter:\n\n[SUPPORT-KONTAKT – vom Betreiber zu ergänzen]\n\n# Hilfreich bei einer Anfrage\n\nApp-Version: {version}\n\nBeschreibe, was du getan hast und was stattdessen passiert ist. Bitte sende keine Sicherungsdatei mit, wenn du die Daten darin nicht teilen möchtest.\n\n# Daten sichern\n\nEine Sicherung erstellst du jederzeit unter Einstellungen → Daten → Daten exportieren.'**
+  String infoSupportBody(String version);
 }
 
 class _AppLocalizationsDelegate

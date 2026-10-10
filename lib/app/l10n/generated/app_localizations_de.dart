@@ -206,9 +206,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsVersion => 'Version';
 
   @override
-  String get settingsComingSoon => 'In einer späteren Phase verfügbar.';
-
-  @override
   String get settingsExportSubtitle =>
       'Alle Daten als unverschlüsselte JSON-Datei teilen oder sichern.';
 
@@ -666,4 +663,29 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get habitReminderGlobalOff =>
       'Erinnerungen sind in den Einstellungen ausgeschaltet.';
+
+  @override
+  String get settingsVersionUnknown => 'Unbekannt';
+
+  @override
+  String get infoPrivacyTitle => 'Datenschutz';
+
+  @override
+  String get infoPrivacyBody =>
+      'Rytmavo verarbeitet deine Daten ausschließlich auf diesem Gerät. Es gibt keinen Server, kein Benutzerkonto, keine Werbung und keine Analyse-Dienste.\n\n# Welche Daten gespeichert werden\n\nSchichtarten, Rotationsmuster, Tagesänderungen, Gewohnheiten, Erledigungen und deine Einstellungen. Alles liegt in einer lokalen Datenbank im geschützten Speicherbereich der App.\n\n# Was die App nicht tut\n\nKeine Daten werden an Dritte übertragen. Die App greift nicht auf Kontakte, Standort oder Fotos zu und enthält keine Tracking-Bibliotheken.\n\n# Erinnerungen\n\nErinnerungen werden lokal über das Benachrichtigungssystem des Geräts geplant. Dafür fragt die App einmalig nach der Berechtigung für Mitteilungen.\n\n# Sicherungen\n\nEine Sicherung entsteht nur auf deine Anweisung. Die Datei ist unverschlüsselt und wird an das Ziel übergeben, das du im Teilen-Menü wählst. Beim Import wird nur die von dir ausgewählte Datei gelesen.\n\n# Löschen\n\nUnter Einstellungen → Daten kannst du alle lokalen Daten jederzeit löschen. Das Deinstallieren der App entfernt ebenfalls alle Daten.\n\n# Verantwortlich\n\n[VERANTWORTLICHE STELLE – vom Betreiber zu ergänzen]';
+
+  @override
+  String get infoImprintTitle => 'Impressum';
+
+  @override
+  String get infoImprintBody =>
+      '[IMPRESSUM – vom Betreiber zu ergänzen]\n\nName und Anschrift des Anbieters, Kontaktmöglichkeit (E-Mail), gegebenenfalls Umsatzsteuer-ID und Handelsregister.\n\n„Rytmavo“ ist ein vorläufiger Arbeitsname.';
+
+  @override
+  String get infoSupportTitle => 'Support';
+
+  @override
+  String infoSupportBody(String version) {
+    return 'Bei Fragen oder Problemen erreichst du uns unter:\n\n[SUPPORT-KONTAKT – vom Betreiber zu ergänzen]\n\n# Hilfreich bei einer Anfrage\n\nApp-Version: $version\n\nBeschreibe, was du getan hast und was stattdessen passiert ist. Bitte sende keine Sicherungsdatei mit, wenn du die Daten darin nicht teilen möchtest.\n\n# Daten sichern\n\nEine Sicherung erstellst du jederzeit unter Einstellungen → Daten → Daten exportieren.';
+  }
 }

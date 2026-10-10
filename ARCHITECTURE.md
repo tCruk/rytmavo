@@ -208,4 +208,23 @@ Ein Merge müsste Konflikte zwischen versionierten Regeln lösen, die der
 Nutzer nicht nachvollziehen kann. Ersetzen ist für „Gerätewechsel“ und
 „Wiederherstellen“ die erwartete Semantik; die App warnt vor dem Import.
 
-## 11. Offene Architekturpunkte
+## 11. Über die App (Phase 6)
+
+Datenschutz, Impressum und Support sind reine Textseiten (`InfoScreen`,
+Route `/settings/info/:kind`). Die Texte liegen als ARB-Strings vor
+(Absätze durch Leerzeilen, Zwischenüberschriften mit `# `), damit sie wie
+alle anderen Strings übersetzt und per `gen-l10n` typgeprüft werden.
+Betreiberdaten sind als `[… – vom Betreiber zu ergänzen]` markiert und
+müssen vor einem Release ersetzt werden (siehe `RELEASE_CHECKLIST.md`).
+
+## 12. Offene Architekturpunkte
+
+- Golden-Tests für zentrale Screens, sobald Referenzbilder aus einem
+  reproduzierbaren CI-Lauf vorliegen.
+- Migrationstests ab der ersten Schema-Erhöhung (derzeit Schema v1).
+- Backup-Verschlüsselung (optional, passwortbasiert) – bewusst nicht in v1.
+- Eigene Schichtarten anlegen/bearbeiten (derzeit nur die vier Standardtypen
+  mit anpassbaren Zeiten).
+- Zeitzonenwechsel bei Erinnerungen: Neuplanung beim Resume reicht für das
+  14-Tage-Fenster; bei längerer Inaktivität sind Zeiten bis zum nächsten
+  App-Start verschoben.

@@ -14,6 +14,7 @@ import '../../../reminders/presentation/reminder_scheduler.dart';
 import '../../../shifts/presentation/controllers/shift_providers.dart';
 import '../../domain/entities/app_settings.dart';
 import '../controllers/settings_controller.dart';
+import 'info_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -84,29 +85,7 @@ class SettingsScreen extends ConsumerWidget {
               RySectionHeader(l10n.settingsSectionData),
               const _DataCard(),
               RySectionHeader(l10n.settingsSectionAbout),
-              RyCard(
-                padding: EdgeInsets.zero,
-                child: Column(
-                  children: [
-                    _PendingTile(
-                      icon: Icons.privacy_tip_outlined,
-                      title: l10n.settingsPrivacy,
-                    ),
-                    _PendingTile(
-                      icon: Icons.article_outlined,
-                      title: l10n.settingsImprint,
-                    ),
-                    _PendingTile(
-                      icon: Icons.support_outlined,
-                      title: l10n.settingsSupport,
-                    ),
-                    _PendingTile(
-                      icon: Icons.info_outline,
-                      title: l10n.settingsVersion,
-                    ),
-                  ],
-                ),
-              ),
+              const _AboutCard(),
             ],
           ),
         ),
@@ -181,24 +160,6 @@ class _ChoiceTile<T> extends StatelessWidget {
       ),
     );
     if (picked != null && picked != value) onChanged(picked);
-  }
-}
-
-class _PendingTile extends StatelessWidget {
-  const _PendingTile({required this.icon, required this.title});
-
-  final IconData icon;
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return ListTile(
-      enabled: false,
-      leading: Icon(icon),
-      title: Text(title),
-      subtitle: Text(l10n.settingsComingSoon),
-    );
   }
 }
 
@@ -399,6 +360,53 @@ class _DataCardState extends ConsumerState<_DataCard> {
             ),
             subtitle: Text(l10n.settingsDeleteDataSubtitle),
             onTap: _delete,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Legal pages and the version row.
+class _AboutCard extends ConsumerWidget {
+  const _AboutCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final version = ref.watch(appVersionProvider).value;
+    void open(InfoKind kind) =>
+        context.push(AppRoutes.settingsInfoPath(kind.segment));
+    return RyCard(
+      padding: EdgeInsets.zero,
+      child: Column(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.privacy_tip_outlined),
+            title: Text(l10n.settingsPrivacy),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => open(InfoKind.privacy),
+          ),
+          ListTile(
+            leading: const Icon(Icons.article_outlined),
+            title: Text(l10n.settingsImprint),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => open(InfoKind.imprint),
+          ),
+          ListTile(
+            leading: const Icon(Icons.support_outlined),
+            title: Text(l10n.settingsSupport),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => open(InfoKind.support),
+          ),
+          ListTile(
+            leading: const Icon(Icons.info_outline),
+            title: Text(l10n.settingsVersion),
+            subtitle: Text(
+              version == null || version.isEmpty
+                  ? l10n.settingsVersionUnknown
+                  : version,
+            ),
           ),
         ],
       ),

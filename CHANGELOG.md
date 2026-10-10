@@ -62,6 +62,13 @@ Versionierung SemVer. Noch unveröffentlicht.
 - Tests: Fälligkeit und Statistik, drift-Repository, Widget-Flows
   (Gewohnheit anlegen → abhaken → rückgängig; Auswertung).
 
+### Phase 6 – Feinschliff (2026-10-10)
+- Einstellungen → Über die App: Datenschutzhinweis, Impressum und Support als
+  eigene Seiten (`InfoScreen`, Texte DE/EN in den ARB-Dateien, Betreiberdaten
+  als markierte Platzhalter), Versionszeile aus `package_info_plus`.
+- Letzte „In einer späteren Phase“-Platzhalter entfernt.
+- Tests: Über-Seiten und Version, Darstellung bei 200 % Textskalierung.
+
 ### Phase 5 – Backup (2026-10-10)
 - Domain: `BackupDocument` (Schema v1: Schichtarten, Rotationen,
   Überschreibungen, Gewohnheiten, Regeln, Erledigungen, Einstellungen),

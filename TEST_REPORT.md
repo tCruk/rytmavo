@@ -151,8 +151,25 @@ Umgebung: wie zuvor.
   statt zu mischen, `deleteAll` leert alle Tabellen und setzt Einstellungen
   zurück.
 
+## Phase 6 – 2026-10-10
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test --timeout 30s` | 89 Tests, 89 bestanden |
+| `flutter build apk` / `flutter build ios` | **nicht ausgeführt** – kein Android SDK / Xcode in der Entwicklungsumgebung; erster lokaler Build durch den Auftraggeber |
+
+### Neue Tests
+
+- `test/app/app_test.dart` (+2): Über-Seiten (Datenschutz, Support mit
+  Versionszeile) öffnen und schließen; Heute- und Einstellungsseite bei 200 %
+  Textskalierung ohne Ausnahme (Overflow) gerendert.
+
 ### Offene Prüfungen
 
-- Golden-Tests für zentrale Screens (geplant für Phase 6, Feinschliff).
+- Golden-Tests für zentrale Screens (bewusst zurückgestellt: Goldens sind
+  plattform- und schriftabhängig und würden ohne CI-Referenzbilder sofort
+  rot; sinnvoll erst nach dem ersten Gerätebuild).
 - Migrationstests (ab erster Schema-Erhöhung).
 - Textskalierung 200 % und Screenreader auf realen Geräten.

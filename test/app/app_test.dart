@@ -113,6 +113,56 @@ void main() {
     expect(settingsRepo.current.themeMode, AppThemeMode.dark);
   });
 
+  testWidgets('settings: about pages open and show the version row', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1200, 3600);
+    tester.view.devicePixelRatio = 2;
+    addTearDown(tester.view.reset);
+    await start(tester);
+    await tester.tap(find.byTooltip('Einstellungen öffnen'));
+    await settle(tester);
+
+    await tester.ensureVisible(find.text('Datenschutz'));
+    await tester.tap(find.text('Datenschutz'));
+    await settle(tester);
+    expect(
+      find.textContaining('ausschließlich auf diesem Gerät'),
+      findsOneWidget,
+    );
+
+    await tester.tap(find.byType(BackButton));
+    await settle(tester);
+    await tester.ensureVisible(find.text('Support'));
+    await tester.tap(find.text('Support'));
+    await settle(tester);
+    expect(find.textContaining('App-Version'), findsOneWidget);
+
+    await tester.tap(find.byType(BackButton));
+    await settle(tester);
+    expect(find.text('Version'), findsOneWidget);
+    expect(find.text('Unbekannt'), findsOneWidget);
+  });
+
+  testWidgets(
+    'renders Today and Settings at 200 % text scale without overflow',
+    (tester) async {
+      tester.view.physicalSize = const Size(1080, 2400);
+      tester.view.devicePixelRatio = 3;
+      addTearDown(tester.view.reset);
+      tester.platformDispatcher.textScaleFactorTestValue = 2.0;
+      addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+
+      await start(tester);
+      expect(find.text('Noch kein Schichtplan'), findsOneWidget);
+
+      await tester.tap(find.byTooltip('Einstellungen öffnen'));
+      await settle(tester);
+      expect(find.text('Einstellungen'), findsWidgets);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('navigation bar touch targets are at least 48 px', (
     tester,
   ) async {
