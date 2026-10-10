@@ -126,10 +126,7 @@ void main() {
     await tester.ensureVisible(find.text('Datenschutz'));
     await tester.tap(find.text('Datenschutz'));
     await settle(tester);
-    expect(
-      find.textContaining('ausschließlich auf diesem Gerät'),
-      findsOneWidget,
-    );
+    expect(find.textContaining('vollständig offline'), findsOneWidget);
 
     await tester.tap(find.byType(BackButton));
     await settle(tester);

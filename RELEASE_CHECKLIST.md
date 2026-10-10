@@ -7,9 +7,9 @@ Stand: 2026-10-10 | Version: [VERSION – festzulegen] | Release-Verantwortliche
 ## A. Absolute Blocker
 
 - [ ] Markenrecherche abgeschlossen, dokumentiert und vom Auftraggeber freigegeben (`TRADEMARK_CLEARANCE.md`, Abschnitt 7). Status dort nicht mehr "OFFEN".
-- [ ] Impressum mit echten Betreiberdaten vorhanden: [IMPRESSUM – vom Auftraggeber zu ergänzen].
+- [ ] Impressum mit echten Betreiberdaten vorhanden: Impressum (Tim Kremers / Resinovo, Erkelenz) in der App unter Einstellungen → Impressum; Quelle resinovo.de/impressum.
 - [ ] Datenschutzerklärung DE/EN mit echten Betreiberdaten veröffentlicht und rechtlich geprüft (`PRIVACY_DATA_MAP.md`).
-- [ ] Support-Kontakt festgelegt und erreichbar: [SUPPORT-KONTAKT – vom Auftraggeber zu ergänzen].
+- [ ] Support-Kontakt festgelegt und erreichbar: kontakt@resinovo.de.
 - [ ] Keine kritischen Fehler offen, kein bekannter Datenverlust (Datenbank, Backup, Import, Migration).
 - [ ] Tests zu Rotationslogik (Muster, Ankerdatum, Überschreibungen, Sommer-/Winterzeit, Jahreswechsel, Nachtschicht über Mitternacht) grün.
 - [ ] Tests zu Statistik und Serien (7/30 Tage, Serienberechnung, eine Erledigung je Gewohnheit und Kalendertag) grün.

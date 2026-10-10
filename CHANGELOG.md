@@ -3,7 +3,7 @@
 Alle nennenswerten Änderungen. Format angelehnt an Keep a Changelog;
 Versionierung SemVer. Noch unveröffentlicht.
 
-## [Unreleased] – Branch `develop/initial-app`
+## [Unreleased] – Branch `main`
 
 ### Phase 0 – Projektstart (2026-10-10)
 - Flutter 3.47.7 / Dart 3.13.5 Grundgerüst (`flutter create --empty`, Android + iOS).
@@ -61,6 +61,19 @@ Versionierung SemVer. Noch unveröffentlicht.
   erledigt/fällig, aktuelle und beste Serie.
 - Tests: Fälligkeit und Statistik, drift-Repository, Widget-Flows
   (Gewohnheit anlegen → abhaken → rückgängig; Auswertung).
+
+### Review-Runde 4 (2026-10-10)
+- PR #1 nach `main` gemerged; ab jetzt wird nur noch `main` genutzt
+  (`develop/initial-app` gelöscht, CLAUDE.md angepasst).
+- Kalender: Monate per Wischen wechseln, immer sechs Zeilen, Tage der
+  Nachbarmonate gedimmt sichtbar, Pfeile und „Zu heute“ bleiben.
+- Mitteilungen: fehlgeschlagene Plugin-Initialisierung wird nicht mehr für
+  die Sitzung gemerkt (nächste Anfrage versucht es erneut), eigenes
+  monochromes Statusleisten-Icon statt Launcher-Icon, iOS-Anfrage mit
+  Badge.
+- Impressum und Datenschutzerklärung mit den Angaben von resinovo.de
+  (Tim Kremers / Resinovo), für Rytmavo angepasst (kein Abo, keine Kamera,
+  Erinnerungen und Backup ergänzt). Support-Kontakt kontakt@resinovo.de.
 
 ### Review-Runde 3 (2026-10-10)
 - Fix: Änderungen (Schichtmodell, Gewohnheiten, Erledigungen, Import)

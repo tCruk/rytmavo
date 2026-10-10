@@ -192,6 +192,15 @@ Umgebung: wie zuvor.
   zeigt sofort das neue Modell; Gewohnheit anlegen und umbenennen, Liste
   aktualisiert sich. Der Test deckte die ID-Kollision bei stehender Uhr auf.
 
+## Review-Runde 4 – 2026-10-10
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test --timeout 30s` | 92 Tests, 92 bestanden |
+| Mitteilungs-Dialog auf Gerät | **nicht ausgeführt** – Nutzer meldet, dass die Abfrage nicht erscheint; Plattform/OS-Version erfragt |
+
 ### Offene Prüfungen
 
 - Golden-Tests für zentrale Screens (bewusst zurückgestellt: Goldens sind

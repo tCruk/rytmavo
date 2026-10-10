@@ -28,24 +28,34 @@ final class LocalNotificationGateway implements NotificationGateway {
       (defaultTargetPlatform == TargetPlatform.android ||
           defaultTargetPlatform == TargetPlatform.iOS);
 
-  Future<bool> _ensureInitialized() {
-    if (!_supported) return Future.value(false);
-    return _initialized ??= _plugin
-        .initialize(
-          settings: const InitializationSettings(
-            android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-            iOS: DarwinInitializationSettings(
-              requestAlertPermission: false,
-              requestBadgePermission: false,
-              requestSoundPermission: false,
-            ),
+  /// Initialises the plugin once. A failed attempt is not cached, so the
+  /// next permission request tries again instead of silently returning
+  /// "denied" for the rest of the session.
+  Future<bool> _ensureInitialized() async {
+    if (!_supported) return false;
+    final pending = _initialized ??= _initialize();
+    final ok = await pending;
+    if (!ok) _initialized = null;
+    return ok;
+  }
+
+  Future<bool> _initialize() async {
+    try {
+      final ok = await _plugin.initialize(
+        settings: const InitializationSettings(
+          android: AndroidInitializationSettings('@drawable/ic_notification'),
+          iOS: DarwinInitializationSettings(
+            requestAlertPermission: false,
+            requestBadgePermission: false,
+            requestSoundPermission: false,
           ),
-        )
-        .then((ok) => ok ?? false)
-        .catchError((Object e) {
-          if (kDebugMode) debugPrint('notifications init failed: $e');
-          return false;
-        });
+        ),
+      );
+      return ok ?? false;
+    } on Object catch (e) {
+      debugPrint('notifications init failed: $e');
+      return false;
+    }
   }
 
   @override
@@ -64,13 +74,19 @@ final class LocalNotificationGateway implements NotificationGateway {
               .resolvePlatformSpecificImplementation<
                 IOSFlutterLocalNotificationsPlugin
               >();
-          return await ios?.requestPermissions(alert: true, sound: true) ??
+          // iOS shows the system dialog only once; afterwards this returns
+          // the stored decision without a prompt.
+          return await ios?.requestPermissions(
+                alert: true,
+                sound: true,
+                badge: true,
+              ) ??
               false;
         default:
           return false;
       }
     } on Object catch (e) {
-      if (kDebugMode) debugPrint('permission request failed: $e');
+      debugPrint('permission request failed: $e');
       return false;
     }
   }
@@ -125,6 +141,7 @@ final class LocalNotificationGateway implements NotificationGateway {
               importance: Importance.high,
               priority: Priority.high,
               category: AndroidNotificationCategory.reminder,
+              icon: '@drawable/ic_notification',
             ),
             iOS: DarwinNotificationDetails(
               interruptionLevel: InterruptionLevel.timeSensitive,

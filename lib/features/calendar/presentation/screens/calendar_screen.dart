@@ -24,13 +24,32 @@ class CalendarScreen extends ConsumerStatefulWidget {
 }
 
 class _CalendarScreenState extends ConsumerState<CalendarScreen> {
-  LocalDate? _visibleMonth;
+  /// Page index of the current month; pages before it are earlier months.
+  static const int _todayPage = 1200;
+
+  final PageController _pages = PageController(initialPage: _todayPage);
+  int _page = _todayPage;
+
+  @override
+  void dispose() {
+    _pages.dispose();
+    super.dispose();
+  }
+
+  void _goTo(int page) => _pages.animateToPage(
+    page,
+    duration: AppMotion.durationFor(
+      AppMotion.normal,
+      reducedMotion: MediaQuery.disableAnimationsOf(context),
+    ),
+    curve: AppMotion.standard,
+  );
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final today = ref.watch(todayProvider);
-    final month = _visibleMonth ?? today.firstDayOfMonth;
+    final month = today.firstDayOfMonth.addMonths(_page - _todayPage);
     final setupAsync = ref.watch(shiftSetupProvider);
 
     return RyPage(
@@ -39,7 +58,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
         IconButton(
           tooltip: l10n.calendarJumpToToday,
           icon: const Icon(Icons.today_outlined),
-          onPressed: () => setState(() => _visibleMonth = null),
+          onPressed: () => _goTo(_todayPage),
         ),
         if (setupAsync.value?.hasRotation ?? false) const EditShiftsAction(),
         const SettingsAction(),
@@ -65,16 +84,23 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
               children: [
                 _MonthHeader(
                   month: month,
-                  onPrevious: () =>
-                      setState(() => _visibleMonth = month.addMonths(-1)),
-                  onNext: () =>
-                      setState(() => _visibleMonth = month.addMonths(1)),
+                  onPrevious: () => _goTo(_page - 1),
+                  onNext: () => _goTo(_page + 1),
                 ),
-                MonthGrid(
-                  month: month,
-                  today: today,
-                  setup: value,
-                  onDayTap: (date) => _openDay(context, value, date),
+                // Swipe left/right to change the month, like the system
+                // calendar. Six rows keep the height stable while paging.
+                SizedBox(
+                  height: MonthGrid.heightFor(context),
+                  child: PageView.builder(
+                    controller: _pages,
+                    onPageChanged: (page) => setState(() => _page = page),
+                    itemBuilder: (context, page) => MonthGrid(
+                      month: today.firstDayOfMonth.addMonths(page - _todayPage),
+                      today: today,
+                      setup: value,
+                      onDayTap: (date) => _openDay(context, value, date),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
                 _Legend(setup: value),

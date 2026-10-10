@@ -102,8 +102,8 @@ Nicht durch die App, aber ggf. in der Datenschutzerklärung zu erwähnen:
 - [ ] Entscheidung zur Verschlüsselung der Backup-Datei (Standard: unverschlüsselt, mit Hinweis).
 - [ ] Rechtliche Einordnung der Schicht- und Gewohnheitsdaten (mögliche Gesundheitsnähe).
 - [ ] Datenschutzerklärung DE/EN mit **echten Betreiberdaten** erstellen und rechtlich prüfen lassen.
-- [ ] Impressum mit echten Betreiberdaten: [IMPRESSUM – vom Auftraggeber zu ergänzen].
-- [ ] Support-Kontakt festlegen: [SUPPORT-KONTAKT – vom Auftraggeber zu ergänzen].
+- [ ] Impressum mit echten Betreiberdaten: Impressum (Tim Kremers / Resinovo, Erkelenz) in der App unter Einstellungen → Impressum; Quelle resinovo.de/impressum.
+- [ ] Support-Kontakt festlegen: kontakt@resinovo.de.
 - [ ] URL der Datenschutzerklärung für beide Stores: [URL – vom Auftraggeber zu ergänzen].
 - [ ] Apple App Privacy und Google Data Safety erst nach Abschluss der Punkte oben ausfüllen.
 - [ ] Datenkarte bei jeder Änderung von Abhängigkeiten oder Funktionen aktualisieren.

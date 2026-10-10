@@ -7,8 +7,10 @@ import '../../../shifts/domain/entities/shift_setup.dart';
 import '../../../shifts/domain/entities/shift_type.dart';
 import '../../../shifts/presentation/widgets/shift_visuals.dart';
 
-/// Seven-column month grid, weeks starting on Monday. Days outside the
-/// month are left blank. Each cell is ≥ 48 dp and carries full semantics.
+/// Seven-column month grid, weeks starting on Monday, always six rows so
+/// paging between months never jumps. Days of the neighbouring months fill
+/// the first and last row in a muted style, as on the system calendar.
+/// Each cell is ≥ 48 dp and carries full semantics.
 class MonthGrid extends StatelessWidget {
   const MonthGrid({
     required this.month,
@@ -24,14 +26,24 @@ class MonthGrid extends StatelessWidget {
   final ShiftSetup setup;
   final ValueChanged<LocalDate> onDayTap;
 
+  static const int _rows = 6;
+  static const double _cellHeight = AppSpacing.touchTarget + 12;
+
+  /// Total height of the grid (weekday header plus six rows), so a pager
+  /// can size itself without laying the grid out first.
+  static double heightFor(BuildContext context) {
+    final header = Theme.of(context).textTheme.labelMedium?.fontSize ?? 12;
+    final scale = MediaQuery.textScalerOf(context).scale(header);
+    return scale * 1.4 + AppSpacing.xs + _rows * _cellHeight;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final material = MaterialLocalizations.of(context);
     final first = month.firstDayOfMonth;
     final leadingBlanks = first.weekday - 1; // Monday = 0
-    final cells = leadingBlanks + first.lengthOfMonth;
-    final rows = (cells / 7).ceil();
+    final gridStart = first.addDays(-leadingBlanks);
 
     return Column(
       children: [
@@ -53,21 +65,18 @@ class MonthGrid extends StatelessWidget {
               ),
           ],
         ),
-        for (var r = 0; r < rows; r++)
+        for (var r = 0; r < _rows; r++)
           Row(
             children: [
               for (var c = 0; c < 7; c++)
                 Expanded(
-                  child: switch (r * 7 + c - leadingBlanks) {
-                    final i when i < 0 || i >= first.lengthOfMonth =>
-                      const SizedBox(height: AppSpacing.touchTarget + 12),
-                    final i => _DayCell(
-                      date: first.addDays(i),
-                      isToday: first.addDays(i) == today,
-                      setup: setup,
-                      onTap: onDayTap,
-                    ),
-                  },
+                  child: _DayCell(
+                    date: gridStart.addDays(r * 7 + c),
+                    isToday: gridStart.addDays(r * 7 + c) == today,
+                    inMonth: gridStart.addDays(r * 7 + c).month == month.month,
+                    setup: setup,
+                    onTap: onDayTap,
+                  ),
                 ),
             ],
           ),
@@ -80,12 +89,16 @@ class _DayCell extends StatelessWidget {
   const _DayCell({
     required this.date,
     required this.isToday,
+    required this.inMonth,
     required this.setup,
     required this.onTap,
   });
 
   final LocalDate date;
   final bool isToday;
+
+  /// False for the muted days of the previous / next month.
+  final bool inMonth;
   final ShiftSetup setup;
   final ValueChanged<LocalDate> onTap;
 
@@ -98,7 +111,7 @@ class _DayCell extends StatelessWidget {
     final dateText = MaterialLocalizations.of(context)
         .formatMediumDate(date.toLocalDateTime());
 
-    return Semantics(
+    final cell = Semantics(
       button: true,
       selected: isToday,
       label: day.isOverridden
@@ -109,7 +122,7 @@ class _DayCell extends StatelessWidget {
         onTap: () => onTap(date),
         borderRadius: AppRadius.smAll,
         child: SizedBox(
-          height: AppSpacing.touchTarget + 12,
+          height: MonthGrid._cellHeight,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -156,6 +169,7 @@ class _DayCell extends StatelessWidget {
         ),
       ),
     );
+    return inMonth ? cell : Opacity(opacity: 0.38, child: cell);
   }
 }
 
