@@ -773,4 +773,214 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventAllDay => 'All day';
+
+  @override
+  String get holidayNewYear => 'New Year\'s Day';
+
+  @override
+  String get holidayEpiphany => 'Epiphany';
+
+  @override
+  String get holidayWomensDay => 'International Women\'s Day';
+
+  @override
+  String get holidayGoodFriday => 'Good Friday';
+
+  @override
+  String get holidayEasterSunday => 'Easter Sunday';
+
+  @override
+  String get holidayEasterMonday => 'Easter Monday';
+
+  @override
+  String get holidayLabourDay => 'Labour Day';
+
+  @override
+  String get holidayLiberationDay => 'Liberation Day';
+
+  @override
+  String get holidayAscension => 'Ascension Day';
+
+  @override
+  String get holidayWhitSunday => 'Whit Sunday';
+
+  @override
+  String get holidayWhitMonday => 'Whit Monday';
+
+  @override
+  String get holidayCorpusChristi => 'Corpus Christi';
+
+  @override
+  String get holidayAssumption => 'Assumption Day';
+
+  @override
+  String get holidayChildrensDay => 'World Children\'s Day';
+
+  @override
+  String get holidayGermanUnity => 'German Unity Day';
+
+  @override
+  String get holidayReformation => 'Reformation Day';
+
+  @override
+  String get holidayAllSaints => 'All Saints\' Day';
+
+  @override
+  String get holidayRepentance => 'Day of Repentance and Prayer';
+
+  @override
+  String get holidayChristmas => 'Christmas Day';
+
+  @override
+  String get holidayBoxingDay => 'Boxing Day';
+
+  @override
+  String get schoolHolidayWinter => 'Winter holidays';
+
+  @override
+  String get schoolHolidayMidYear => 'Mid-year break';
+
+  @override
+  String get schoolHolidayCarnival => 'Carnival holidays';
+
+  @override
+  String get schoolHolidaySpring => 'Spring holidays';
+
+  @override
+  String get schoolHolidayEaster => 'Easter holidays';
+
+  @override
+  String get schoolHolidayWhitsun => 'Whitsun holidays';
+
+  @override
+  String get schoolHolidaySummer => 'Summer holidays';
+
+  @override
+  String get schoolHolidayAutumn => 'Autumn holidays';
+
+  @override
+  String get schoolHolidayChristmas => 'Christmas holidays';
+
+  @override
+  String get schoolHolidayDayOff => 'No school';
+
+  @override
+  String get stateBw => 'Baden-Württemberg';
+
+  @override
+  String get stateBy => 'Bavaria';
+
+  @override
+  String get stateBe => 'Berlin';
+
+  @override
+  String get stateBb => 'Brandenburg';
+
+  @override
+  String get stateHb => 'Bremen';
+
+  @override
+  String get stateHh => 'Hamburg';
+
+  @override
+  String get stateHe => 'Hesse';
+
+  @override
+  String get stateMv => 'Mecklenburg-Western Pomerania';
+
+  @override
+  String get stateNi => 'Lower Saxony';
+
+  @override
+  String get stateNw => 'North Rhine-Westphalia';
+
+  @override
+  String get stateRp => 'Rhineland-Palatinate';
+
+  @override
+  String get stateSl => 'Saarland';
+
+  @override
+  String get stateSn => 'Saxony';
+
+  @override
+  String get stateSt => 'Saxony-Anhalt';
+
+  @override
+  String get stateSh => 'Schleswig-Holstein';
+
+  @override
+  String get stateTh => 'Thuringia';
+
+  @override
+  String get holidaysTitle => 'Holidays';
+
+  @override
+  String get holidaysNationwideOnly => 'Nationwide public holidays only';
+
+  @override
+  String get holidaysIntro =>
+      'Nationwide public holidays such as New Year, Easter or 3 October are always marked. Choose your state to add its regional holidays and, if you like, school holidays.';
+
+  @override
+  String get holidaysStateLabel => 'Federal state';
+
+  @override
+  String get holidaysSchoolToggle => 'Mark school holidays';
+
+  @override
+  String get holidaysSchoolToggleBody =>
+      'Holidays of general schools as a coloured band below the days.';
+
+  @override
+  String get holidaysSchoolNeedsState => 'Choose a state first.';
+
+  @override
+  String get holidaysDaysOffToggle => 'Off on public holidays';
+
+  @override
+  String get holidaysDaysOffBody =>
+      'Public holidays replace shifts from your rhythm with \"Off\". If you do have to work, change that day in the calendar.';
+
+  @override
+  String get holidaysSave => 'Save';
+
+  @override
+  String get holidaysSaved => 'Holidays saved';
+
+  @override
+  String holidaysSchoolDataUntil(String date) {
+    return 'School holidays known until $date.';
+  }
+
+  @override
+  String get holidaysSource =>
+      'Public holidays are calculated by the app. School holidays come from the OpenHolidays project (openholidaysapi.org, data licence ODbL 1.0) and are extended with app updates. No guarantee of accuracy. Holidays of individual municipalities (e.g. Assumption Day in parts of Bavaria) are not included.';
+
+  @override
+  String get holidaysPromptTitle => 'Mark public and school holidays?';
+
+  @override
+  String get holidaysPromptBody =>
+      'Choose your state and the calendar also shows regional public holidays and school holidays.';
+
+  @override
+  String get holidaysPromptAction => 'Choose';
+
+  @override
+  String get holidaysPromptDismiss => 'Not now';
+
+  @override
+  String get calendarHoliday => 'Public holiday';
+
+  @override
+  String get calendarSchoolHoliday => 'School holidays';
+
+  @override
+  String get calendarHolidayOff => 'Public holiday, off';
+
+  @override
+  String holidayOffFrom(String shiftName) {
+    return 'Off for the holiday · rhythm says $shiftName';
+  }
 }

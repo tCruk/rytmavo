@@ -1,3 +1,5 @@
+import '../../../holidays/domain/entities/german_state.dart';
+
 enum AppThemeMode { system, light, dark }
 
 /// `system` follows the device locale; otherwise a fixed UI language.
@@ -13,6 +15,10 @@ final class AppSettings {
     this.calendarConflictsEnabled = false,
     this.conflictCalendarIds = const [],
     this.conflictRemindersEnabled = false,
+    this.holidayState,
+    this.showSchoolHolidays = false,
+    this.holidaysAreDaysOff = false,
+    this.holidaySetupDone = false,
   });
 
   final AppThemeMode themeMode;
@@ -35,6 +41,20 @@ final class AppSettings {
   /// Only effective while [remindersEnabled] is on.
   final bool conflictRemindersEnabled;
 
+  /// State whose public (and school) holidays are marked; `null` marks
+  /// only the nationwide public holidays.
+  final GermanState? holidayState;
+
+  /// Mark the school holidays of [holidayState] in the calendar.
+  final bool showSchoolHolidays;
+
+  /// Public holidays replace work shifts of the rotation with a day off.
+  final bool holidaysAreDaysOff;
+
+  /// The user answered the holiday questions once; until then the
+  /// calendar asks.
+  final bool holidaySetupDone;
+
   static const AppSettings defaults = AppSettings();
 
   AppSettings copyWith({
@@ -45,6 +65,11 @@ final class AppSettings {
     bool? calendarConflictsEnabled,
     List<String>? conflictCalendarIds,
     bool? conflictRemindersEnabled,
+    GermanState? holidayState,
+    bool clearHolidayState = false,
+    bool? showSchoolHolidays,
+    bool? holidaysAreDaysOff,
+    bool? holidaySetupDone,
   }) {
     return AppSettings(
       themeMode: themeMode ?? this.themeMode,
@@ -56,6 +81,12 @@ final class AppSettings {
       conflictCalendarIds: conflictCalendarIds ?? this.conflictCalendarIds,
       conflictRemindersEnabled:
           conflictRemindersEnabled ?? this.conflictRemindersEnabled,
+      holidayState: clearHolidayState
+          ? null
+          : holidayState ?? this.holidayState,
+      showSchoolHolidays: showSchoolHolidays ?? this.showSchoolHolidays,
+      holidaysAreDaysOff: holidaysAreDaysOff ?? this.holidaysAreDaysOff,
+      holidaySetupDone: holidaySetupDone ?? this.holidaySetupDone,
     );
   }
 
@@ -68,7 +99,11 @@ final class AppSettings {
       other.remindersEnabled == remindersEnabled &&
       other.calendarConflictsEnabled == calendarConflictsEnabled &&
       _sameIds(other.conflictCalendarIds, conflictCalendarIds) &&
-      other.conflictRemindersEnabled == conflictRemindersEnabled;
+      other.conflictRemindersEnabled == conflictRemindersEnabled &&
+      other.holidayState == holidayState &&
+      other.showSchoolHolidays == showSchoolHolidays &&
+      other.holidaysAreDaysOff == holidaysAreDaysOff &&
+      other.holidaySetupDone == holidaySetupDone;
 
   @override
   int get hashCode => Object.hash(
@@ -79,6 +114,10 @@ final class AppSettings {
     calendarConflictsEnabled,
     Object.hashAll(conflictCalendarIds),
     conflictRemindersEnabled,
+    holidayState,
+    showSchoolHolidays,
+    holidaysAreDaysOff,
+    holidaySetupDone,
   );
 
   static bool _sameIds(List<String> a, List<String> b) {

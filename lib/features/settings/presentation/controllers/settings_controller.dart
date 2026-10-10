@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/di/providers.dart';
+import '../../../holidays/domain/entities/german_state.dart';
 import '../../domain/entities/app_settings.dart';
 
 /// Holds the current [AppSettings] and persists changes.
@@ -43,6 +44,26 @@ class SettingsController extends AsyncNotifier<AppSettings> {
 
   Future<void> setConflictRemindersEnabled({required bool enabled}) =>
       _update((s) => s.copyWith(conflictRemindersEnabled: enabled));
+
+  /// Saves the answers of the holiday questions and marks them answered.
+  /// [state] `null` means nationwide holidays only.
+  Future<void> setHolidayPreferences({
+    required GermanState? state,
+    required bool showSchoolHolidays,
+    required bool holidaysAreDaysOff,
+  }) => _update(
+    (s) => s.copyWith(
+      holidayState: state,
+      clearHolidayState: state == null,
+      showSchoolHolidays: state != null && showSchoolHolidays,
+      holidaysAreDaysOff: holidaysAreDaysOff,
+      holidaySetupDone: true,
+    ),
+  );
+
+  /// Hides the calendar's holiday question without changing anything.
+  Future<void> dismissHolidaySetup() =>
+      _update((s) => s.copyWith(holidaySetupDone: true));
 
   Future<void> _update(AppSettings Function(AppSettings) change) async {
     final current = state.value ?? AppSettings.defaults;

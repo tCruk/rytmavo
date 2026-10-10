@@ -1429,6 +1429,408 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Ganztägig'**
   String get eventAllDay;
+
+  /// No description provided for @holidayNewYear.
+  ///
+  /// In de, this message translates to:
+  /// **'Neujahr'**
+  String get holidayNewYear;
+
+  /// No description provided for @holidayEpiphany.
+  ///
+  /// In de, this message translates to:
+  /// **'Heilige Drei Könige'**
+  String get holidayEpiphany;
+
+  /// No description provided for @holidayWomensDay.
+  ///
+  /// In de, this message translates to:
+  /// **'Internationaler Frauentag'**
+  String get holidayWomensDay;
+
+  /// No description provided for @holidayGoodFriday.
+  ///
+  /// In de, this message translates to:
+  /// **'Karfreitag'**
+  String get holidayGoodFriday;
+
+  /// No description provided for @holidayEasterSunday.
+  ///
+  /// In de, this message translates to:
+  /// **'Ostersonntag'**
+  String get holidayEasterSunday;
+
+  /// No description provided for @holidayEasterMonday.
+  ///
+  /// In de, this message translates to:
+  /// **'Ostermontag'**
+  String get holidayEasterMonday;
+
+  /// No description provided for @holidayLabourDay.
+  ///
+  /// In de, this message translates to:
+  /// **'Tag der Arbeit'**
+  String get holidayLabourDay;
+
+  /// No description provided for @holidayLiberationDay.
+  ///
+  /// In de, this message translates to:
+  /// **'Tag der Befreiung'**
+  String get holidayLiberationDay;
+
+  /// No description provided for @holidayAscension.
+  ///
+  /// In de, this message translates to:
+  /// **'Christi Himmelfahrt'**
+  String get holidayAscension;
+
+  /// No description provided for @holidayWhitSunday.
+  ///
+  /// In de, this message translates to:
+  /// **'Pfingstsonntag'**
+  String get holidayWhitSunday;
+
+  /// No description provided for @holidayWhitMonday.
+  ///
+  /// In de, this message translates to:
+  /// **'Pfingstmontag'**
+  String get holidayWhitMonday;
+
+  /// No description provided for @holidayCorpusChristi.
+  ///
+  /// In de, this message translates to:
+  /// **'Fronleichnam'**
+  String get holidayCorpusChristi;
+
+  /// No description provided for @holidayAssumption.
+  ///
+  /// In de, this message translates to:
+  /// **'Mariä Himmelfahrt'**
+  String get holidayAssumption;
+
+  /// No description provided for @holidayChildrensDay.
+  ///
+  /// In de, this message translates to:
+  /// **'Weltkindertag'**
+  String get holidayChildrensDay;
+
+  /// No description provided for @holidayGermanUnity.
+  ///
+  /// In de, this message translates to:
+  /// **'Tag der Deutschen Einheit'**
+  String get holidayGermanUnity;
+
+  /// No description provided for @holidayReformation.
+  ///
+  /// In de, this message translates to:
+  /// **'Reformationstag'**
+  String get holidayReformation;
+
+  /// No description provided for @holidayAllSaints.
+  ///
+  /// In de, this message translates to:
+  /// **'Allerheiligen'**
+  String get holidayAllSaints;
+
+  /// No description provided for @holidayRepentance.
+  ///
+  /// In de, this message translates to:
+  /// **'Buß- und Bettag'**
+  String get holidayRepentance;
+
+  /// No description provided for @holidayChristmas.
+  ///
+  /// In de, this message translates to:
+  /// **'1. Weihnachtstag'**
+  String get holidayChristmas;
+
+  /// No description provided for @holidayBoxingDay.
+  ///
+  /// In de, this message translates to:
+  /// **'2. Weihnachtstag'**
+  String get holidayBoxingDay;
+
+  /// No description provided for @schoolHolidayWinter.
+  ///
+  /// In de, this message translates to:
+  /// **'Winterferien'**
+  String get schoolHolidayWinter;
+
+  /// No description provided for @schoolHolidayMidYear.
+  ///
+  /// In de, this message translates to:
+  /// **'Halbjahresferien'**
+  String get schoolHolidayMidYear;
+
+  /// No description provided for @schoolHolidayCarnival.
+  ///
+  /// In de, this message translates to:
+  /// **'Fastnachtsferien'**
+  String get schoolHolidayCarnival;
+
+  /// No description provided for @schoolHolidaySpring.
+  ///
+  /// In de, this message translates to:
+  /// **'Frühjahrsferien'**
+  String get schoolHolidaySpring;
+
+  /// No description provided for @schoolHolidayEaster.
+  ///
+  /// In de, this message translates to:
+  /// **'Osterferien'**
+  String get schoolHolidayEaster;
+
+  /// No description provided for @schoolHolidayWhitsun.
+  ///
+  /// In de, this message translates to:
+  /// **'Pfingstferien'**
+  String get schoolHolidayWhitsun;
+
+  /// No description provided for @schoolHolidaySummer.
+  ///
+  /// In de, this message translates to:
+  /// **'Sommerferien'**
+  String get schoolHolidaySummer;
+
+  /// No description provided for @schoolHolidayAutumn.
+  ///
+  /// In de, this message translates to:
+  /// **'Herbstferien'**
+  String get schoolHolidayAutumn;
+
+  /// No description provided for @schoolHolidayChristmas.
+  ///
+  /// In de, this message translates to:
+  /// **'Weihnachtsferien'**
+  String get schoolHolidayChristmas;
+
+  /// No description provided for @schoolHolidayDayOff.
+  ///
+  /// In de, this message translates to:
+  /// **'Schulfreier Tag'**
+  String get schoolHolidayDayOff;
+
+  /// No description provided for @stateBw.
+  ///
+  /// In de, this message translates to:
+  /// **'Baden-Württemberg'**
+  String get stateBw;
+
+  /// No description provided for @stateBy.
+  ///
+  /// In de, this message translates to:
+  /// **'Bayern'**
+  String get stateBy;
+
+  /// No description provided for @stateBe.
+  ///
+  /// In de, this message translates to:
+  /// **'Berlin'**
+  String get stateBe;
+
+  /// No description provided for @stateBb.
+  ///
+  /// In de, this message translates to:
+  /// **'Brandenburg'**
+  String get stateBb;
+
+  /// No description provided for @stateHb.
+  ///
+  /// In de, this message translates to:
+  /// **'Bremen'**
+  String get stateHb;
+
+  /// No description provided for @stateHh.
+  ///
+  /// In de, this message translates to:
+  /// **'Hamburg'**
+  String get stateHh;
+
+  /// No description provided for @stateHe.
+  ///
+  /// In de, this message translates to:
+  /// **'Hessen'**
+  String get stateHe;
+
+  /// No description provided for @stateMv.
+  ///
+  /// In de, this message translates to:
+  /// **'Mecklenburg-Vorpommern'**
+  String get stateMv;
+
+  /// No description provided for @stateNi.
+  ///
+  /// In de, this message translates to:
+  /// **'Niedersachsen'**
+  String get stateNi;
+
+  /// No description provided for @stateNw.
+  ///
+  /// In de, this message translates to:
+  /// **'Nordrhein-Westfalen'**
+  String get stateNw;
+
+  /// No description provided for @stateRp.
+  ///
+  /// In de, this message translates to:
+  /// **'Rheinland-Pfalz'**
+  String get stateRp;
+
+  /// No description provided for @stateSl.
+  ///
+  /// In de, this message translates to:
+  /// **'Saarland'**
+  String get stateSl;
+
+  /// No description provided for @stateSn.
+  ///
+  /// In de, this message translates to:
+  /// **'Sachsen'**
+  String get stateSn;
+
+  /// No description provided for @stateSt.
+  ///
+  /// In de, this message translates to:
+  /// **'Sachsen-Anhalt'**
+  String get stateSt;
+
+  /// No description provided for @stateSh.
+  ///
+  /// In de, this message translates to:
+  /// **'Schleswig-Holstein'**
+  String get stateSh;
+
+  /// No description provided for @stateTh.
+  ///
+  /// In de, this message translates to:
+  /// **'Thüringen'**
+  String get stateTh;
+
+  /// No description provided for @holidaysTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Feiertage & Ferien'**
+  String get holidaysTitle;
+
+  /// No description provided for @holidaysNationwideOnly.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur bundesweite Feiertage'**
+  String get holidaysNationwideOnly;
+
+  /// No description provided for @holidaysIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Bundesweite Feiertage wie Neujahr, Ostern oder der 3. Oktober sind immer markiert. Mit deinem Bundesland kommen regionale Feiertage und auf Wunsch die Schulferien dazu.'**
+  String get holidaysIntro;
+
+  /// No description provided for @holidaysStateLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Bundesland'**
+  String get holidaysStateLabel;
+
+  /// No description provided for @holidaysSchoolToggle.
+  ///
+  /// In de, this message translates to:
+  /// **'Schulferien markieren'**
+  String get holidaysSchoolToggle;
+
+  /// No description provided for @holidaysSchoolToggleBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Ferien der allgemeinbildenden Schulen als farbiges Band unter den Tagen.'**
+  String get holidaysSchoolToggleBody;
+
+  /// No description provided for @holidaysSchoolNeedsState.
+  ///
+  /// In de, this message translates to:
+  /// **'Dafür zuerst ein Bundesland wählen.'**
+  String get holidaysSchoolNeedsState;
+
+  /// No description provided for @holidaysDaysOffToggle.
+  ///
+  /// In de, this message translates to:
+  /// **'An Feiertagen frei'**
+  String get holidaysDaysOffToggle;
+
+  /// No description provided for @holidaysDaysOffBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Gesetzliche Feiertage ersetzen Schichten aus deinem Rhythmus durch „Frei“. Musst du doch arbeiten, änderst du den Tag im Kalender.'**
+  String get holidaysDaysOffBody;
+
+  /// No description provided for @holidaysSave.
+  ///
+  /// In de, this message translates to:
+  /// **'Speichern'**
+  String get holidaysSave;
+
+  /// No description provided for @holidaysSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Feiertage & Ferien gespeichert'**
+  String get holidaysSaved;
+
+  /// No description provided for @holidaysSchoolDataUntil.
+  ///
+  /// In de, this message translates to:
+  /// **'Schulferien bekannt bis {date}.'**
+  String holidaysSchoolDataUntil(String date);
+
+  /// No description provided for @holidaysSource.
+  ///
+  /// In de, this message translates to:
+  /// **'Feiertage berechnet die App selbst. Schulferien stammen aus dem OpenHolidays-Projekt (openholidaysapi.org, Datenlizenz ODbL 1.0) und werden mit App-Updates ergänzt. Angaben ohne Gewähr. Feiertage einzelner Gemeinden (z. B. Mariä Himmelfahrt in Teilen Bayerns) sind nicht enthalten.'**
+  String get holidaysSource;
+
+  /// No description provided for @holidaysPromptTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Feiertage und Ferien markieren?'**
+  String get holidaysPromptTitle;
+
+  /// No description provided for @holidaysPromptBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wähle dein Bundesland, dann zeigt der Kalender auch regionale Feiertage und Schulferien.'**
+  String get holidaysPromptBody;
+
+  /// No description provided for @holidaysPromptAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Auswählen'**
+  String get holidaysPromptAction;
+
+  /// No description provided for @holidaysPromptDismiss.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht jetzt'**
+  String get holidaysPromptDismiss;
+
+  /// No description provided for @calendarHoliday.
+  ///
+  /// In de, this message translates to:
+  /// **'Feiertag'**
+  String get calendarHoliday;
+
+  /// No description provided for @calendarSchoolHoliday.
+  ///
+  /// In de, this message translates to:
+  /// **'Schulferien'**
+  String get calendarSchoolHoliday;
+
+  /// No description provided for @calendarHolidayOff.
+  ///
+  /// In de, this message translates to:
+  /// **'Feiertag, frei'**
+  String get calendarHolidayOff;
+
+  /// No description provided for @holidayOffFrom.
+  ///
+  /// In de, this message translates to:
+  /// **'Feiertag frei · laut Rhythmus {shiftName}'**
+  String holidayOffFrom(String shiftName);
 }
 
 class _AppLocalizationsDelegate

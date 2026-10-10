@@ -1,0 +1,83 @@
+2026-01-30 2026-01-30 DE-HH - - Halbjahrespause
+2026-01-31 2026-02-06 DE-ST - - Winterferien
+2026-02-02 2026-02-03 DE-HB - - Halbjahresferien
+2026-02-02 2026-02-07 DE-BB - - Winterferien
+2026-02-02 2026-02-03 DE-NI - - Halbjahresferien
+2026-02-02 2026-02-07 DE-BE - - Winterferien
+2026-02-09 2026-02-20 DE-MV DE-MV-ABS - Winterferien
+2026-02-09 2026-02-21 DE-SN - - Winterferien
+2026-02-16 2026-02-20 DE-BY - - Frühjahrsferien
+2026-02-16 2026-02-20 DE-SL - - Fastnachtsferien
+2026-02-16 2026-02-21 DE-TH - - Winterferien
+2026-03-02 2026-03-13 DE-HH - - Frühjahrsferien
+2026-03-23 2026-04-07 DE-NI - - Osterferien
+2026-03-23 2026-04-07 DE-HB - - Osterferien
+2026-03-26 2026-04-10 DE-SH - - Osterferien
+2026-03-30 2026-04-10 DE-BY - - Osterferien
+2026-03-30 2026-04-08 DE-MV DE-MV-ABS - Osterferien
+2026-03-30 2026-04-10 DE-BE - - Osterferien
+2026-03-30 2026-04-04 DE-ST - - Osterferien
+2026-03-30 2026-04-11 DE-NW - - Osterferien
+2026-03-30 2026-04-11 DE-BW - - Osterferien
+2026-03-30 2026-04-10 DE-HE - - Osterferien
+2026-03-30 2026-04-10 DE-BB - - Osterferien
+2026-03-30 2026-04-10 DE-RP - - Osterferien
+2026-04-03 2026-04-10 DE-SN - - Osterferien
+2026-04-07 2026-04-17 DE-SL - - Osterferien
+2026-04-07 2026-04-17 DE-TH - - Osterferien
+2026-05-11 2026-05-15 DE-HH - - Pfingstferien
+2026-05-15 2026-05-15 DE-SH - - Himmelfahrt
+2026-05-15 2026-05-15 DE-HB - - Tag nach Himmelfahrt
+2026-05-15 2026-05-15 DE-MV DE-MV-ABS - Zusätzlicher Ferientag
+2026-05-15 2026-05-15 DE-NI - - Tag nach Himmelfahrt
+2026-05-15 2026-05-15 DE-SN - - Unterrichtsfreier Tag
+2026-05-15 2026-05-15 DE-TH - - Schulfreier Tag
+2026-05-15 2026-05-15 DE-BE - - Unterrichtsfreier Tag
+2026-05-15 2026-05-15 DE-BB - - Variabler Ferientag
+2026-05-22 2026-05-26 DE-MV DE-MV-ABS - Pfingstferien
+2026-05-26 2026-05-26 DE-NI - - Pfingstferien
+2026-05-26 2026-06-05 DE-BY - - Pfingstferien
+2026-05-26 2026-05-26 DE-BB - - Pfingstferien
+2026-05-26 2026-06-05 DE-BW - - Pfingstferien
+2026-05-26 2026-05-26 DE-HB - - Pfingstferien
+2026-05-26 2026-05-26 DE-NW - - Pfingstferien
+2026-05-26 2026-05-26 DE-BE - - Pfingstferien
+2026-05-26 2026-05-29 DE-ST - - Pfingstferien
+2026-06-29 2026-08-07 DE-SL - - Sommerferien
+2026-06-29 2026-08-07 DE-HE - - Sommerferien
+2026-06-29 2026-08-07 DE-RP - - Sommerferien
+2026-07-02 2026-08-12 DE-NI - - Sommerferien
+2026-07-02 2026-08-12 DE-HB - - Sommerferien
+2026-07-04 2026-08-14 DE-TH - - Sommerferien
+2026-07-04 2026-08-15 DE-SH - - Sommerferien
+2026-07-04 2026-08-14 DE-ST - - Sommerferien
+2026-07-04 2026-08-14 DE-SN - - Sommerferien
+2026-07-04 2026-08-08 DE-SH - Exception Sommerferien
+2026-07-09 2026-08-22 DE-BE - - Sommerferien
+2026-07-09 2026-08-22 DE-BB - - Sommerferien
+2026-07-09 2026-08-19 DE-HH - - Sommerferien
+2026-07-13 2026-08-22 DE-MV DE-MV-ABS - Sommerferien
+2026-07-20 2026-09-01 DE-NW - - Sommerferien
+2026-07-30 2026-09-12 DE-BW - - Sommerferien
+2026-08-03 2026-09-14 DE-BY - - Sommerferien
+2026-10-05 2026-10-17 DE-HE - - Herbstferien
+2026-10-05 2026-10-24 DE-SH - Exception Herbstferien
+2026-10-05 2026-10-16 DE-RP - - Herbstferien
+2026-10-05 2026-10-16 DE-SL - - Herbstferien
+2026-10-12 2026-10-24 DE-SN - - Herbstferien
+2026-10-12 2026-10-24 DE-SH - - Herbstferien
+2026-10-12 2026-10-24 DE-NI - - Herbstferien
+2026-10-12 2026-10-24 DE-TH - - Herbstferien
+2026-10-12 2026-10-24 DE-HB - - Herbstferien
+2026-10-15 2026-10-24 DE-MV DE-MV-ABS - Herbstferien
+2026-10-17 2026-10-31 DE-NW - - Herbstferien
+2026-10-19 2026-10-31 DE-BE - - Herbstferien
+2026-10-19 2026-10-30 DE-BB - - Herbstferien
+2026-10-19 2026-10-30 DE-HH - - Herbstferien
+2026-10-19 2026-10-30 DE-ST - - Herbstferien
+2026-10-26 2026-10-30 DE-BW - - Herbstferien
+2026-10-31 2026-10-31 DE-BW - - Reformationsfest
+2026-11-02 2026-11-06 DE-BY - - Herbstferien
+2026-11-18 2026-11-18 DE-BY - - Buß- und Bettag
+2026-11-26 2026-11-26 DE-MV DE-MV-ABS - Zusätzlicher Ferientag
+2026-11-27 2026-11-27 DE-MV DE-MV-ABS - Zusätzlicher Ferientag

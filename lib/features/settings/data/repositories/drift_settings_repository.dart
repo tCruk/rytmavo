@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 
 import '../../../../core/database/app_database.dart';
+import '../../../holidays/domain/entities/german_state.dart';
 import '../../domain/entities/app_settings.dart';
 import '../../domain/repositories/settings_repository.dart';
 
@@ -16,6 +17,10 @@ abstract final class SettingsKeys {
   static const String calendarConflictsEnabled = 'calendar_conflicts_enabled';
   static const String conflictCalendarIds = 'conflict_calendar_ids';
   static const String conflictRemindersEnabled = 'conflict_reminders_enabled';
+  static const String holidayState = 'holiday_state';
+  static const String showSchoolHolidays = 'show_school_holidays';
+  static const String holidaysAreDaysOff = 'holidays_are_days_off';
+  static const String holidaySetupDone = 'holiday_setup_done';
 }
 
 final class DriftSettingsRepository implements SettingsRepository {
@@ -47,6 +52,11 @@ final class DriftSettingsRepository implements SettingsRepository {
       ),
       SettingsKeys.conflictRemindersEnabled: settings.conflictRemindersEnabled
           .toString(),
+      // Empty string: nationwide holidays only.
+      SettingsKeys.holidayState: settings.holidayState?.code ?? '',
+      SettingsKeys.showSchoolHolidays: settings.showSchoolHolidays.toString(),
+      SettingsKeys.holidaysAreDaysOff: settings.holidaysAreDaysOff.toString(),
+      SettingsKeys.holidaySetupDone: settings.holidaySetupDone.toString(),
     };
     await _db.batch((batch) {
       for (final entry in entries.entries) {
@@ -79,6 +89,10 @@ final class DriftSettingsRepository implements SettingsRepository {
       conflictCalendarIds: _stringList(map[SettingsKeys.conflictCalendarIds]),
       conflictRemindersEnabled:
           map[SettingsKeys.conflictRemindersEnabled] == 'true',
+      holidayState: GermanState.fromCode(map[SettingsKeys.holidayState]),
+      showSchoolHolidays: map[SettingsKeys.showSchoolHolidays] == 'true',
+      holidaysAreDaysOff: map[SettingsKeys.holidaysAreDaysOff] == 'true',
+      holidaySetupDone: map[SettingsKeys.holidaySetupDone] == 'true',
     );
   }
 

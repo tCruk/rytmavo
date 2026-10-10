@@ -212,4 +212,51 @@ void main() {
       expect(p.positionOf(today), 3);
     });
   });
+
+  group('public holidays as days off', () {
+    // anchor + 0/1 early, +2/3 late, +4/5 night, +6/7 off.
+    final holiday = anchor.addDays(1);
+    final offDay = anchor.addDays(6);
+    bool isHoliday(LocalDate d) => d == holiday || d == offDay;
+
+    test('a work shift becomes the day-off type', () {
+      final s = setup().withDaysOff(isHoliday);
+      final day = s.dayOn(holiday);
+      expect(day.shift?.id, 'off');
+      expect(day.source, ShiftSource.holiday);
+      expect(day.isHolidayOff, isTrue);
+      expect(day.rotationShift?.id, 'early');
+      expect(s.defaultShiftOn(holiday)?.id, 'off');
+      // Other days keep the rhythm.
+      expect(s.dayOn(anchor).source, ShiftSource.rotation);
+    });
+
+    test('a rotation day off stays a plain rotation day', () {
+      final day = setup().withDaysOff(isHoliday).dayOn(offDay);
+      expect(day.shift?.id, 'off');
+      expect(day.source, ShiftSource.rotation);
+    });
+
+    test('an override still wins on a holiday', () {
+      final s = setup(
+        overrides: [ShiftOverride(date: holiday, shiftTypeId: 'early')],
+      ).withDaysOff(isHoliday);
+      final day = s.dayOn(holiday);
+      expect(day.shift?.id, 'early');
+      expect(day.isOverridden, isTrue);
+      expect(s.defaultShiftOn(holiday)?.id, 'off');
+      expect(s.overrideCount, 1);
+    });
+
+    test('without a rule nothing changes', () {
+      final s = setup().withDaysOff(null);
+      expect(s.dayOn(holiday).shift?.id, 'early');
+      expect(s.defaultShiftOn(holiday)?.id, 'early');
+    });
+
+    test('next work day skips holidays that became free', () {
+      final s = setup().withDaysOff(isHoliday);
+      expect(s.nextWorkDayAfter(anchor)?.date, anchor.addDays(2));
+    });
+  });
 }

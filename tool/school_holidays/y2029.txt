@@ -1,0 +1,200 @@
+2028-12-18 2028-12-29 DE-HH - - Weihnachtsferien
+2028-12-20 2029-01-02 DE-SL - - Weihnachtsferien
+2028-12-21 2029-01-05 DE-SH - - Weihnachtsferien
+2028-12-21 2029-01-08 DE-RP - - Weihnachtsferien
+2028-12-21 2029-01-02 DE-ST - - Weihnachtsferien
+2028-12-21 2029-01-02 DE-MV DE-MV-BBS - Weihnachtsferien
+2028-12-21 2029-01-05 DE-NW - - Weihnachtsferien
+2028-12-22 2029-01-02 DE-BB - - Weihnachtsferien
+2028-12-22 2029-01-02 DE-MV DE-MV-ABS - Weihnachtsferien
+2028-12-22 2029-01-02 DE-BE - - Weihnachtsferien
+2028-12-23 2029-01-03 DE-SN - - Weihnachtsferien
+2028-12-23 2029-01-05 DE-BY - - Weihnachtsferien
+2028-12-23 2029-01-05 DE-TH - - Weihnachtsferien
+2028-12-23 2029-01-05 DE-BW - - Weihnachtsferien
+2028-12-27 2029-01-06 DE-NI - - Weihnachtsferien
+2028-12-27 2029-01-06 DE-HB - - Weihnachtsferien
+2028-12-27 2029-01-12 DE-HE - - Weihnachtsferien
+2029-01-29 2029-02-03 DE-BE - - Winterferien
+2029-01-29 2029-02-03 DE-BB - - Winterferien
+2029-02-01 2029-02-02 DE-NI - - Halbjahresferien
+2029-02-01 2029-02-02 DE-HB - - Halbjahresferien
+2029-02-02 2029-02-02 DE-HH - - Halbjahrespause
+2029-02-05 2029-02-16 DE-MV DE-MV-ABS - Winterferien
+2029-02-05 2029-02-16 DE-SN - - Winterferien
+2029-02-05 2029-02-10 DE-ST - - Winterferien
+2029-02-05 2029-02-10 DE-MV DE-MV-BBS - Winterferien
+2029-02-12 2029-02-16 DE-SL - - Fastnachtsferien
+2029-02-12 2029-02-17 DE-TH - - Winterferien
+2029-02-12 2029-02-16 DE-BY - - Frühjahrsferien
+2029-03-05 2029-03-16 DE-HH - - Frühjahrsferien
+2029-03-09 2029-03-09 DE-BE - - Unterrichtsfreier Tag
+2029-03-09 2029-03-09 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2029-03-19 2029-04-03 DE-NI - - Osterferien
+2029-03-19 2029-04-03 DE-HB - - Osterferien
+2029-03-23 2029-04-06 DE-SH - - Osterferien
+2029-03-26 2029-04-06 DE-BB - - Osterferien
+2029-03-26 2029-04-06 DE-BE - - Osterferien
+2029-03-26 2029-04-06 DE-SL - - Osterferien
+2029-03-26 2029-04-07 DE-TH - - Osterferien
+2029-03-26 2029-04-07 DE-NW - - Osterferien
+2029-03-26 2029-04-07 DE-BW - - Osterferien
+2029-03-26 2029-03-31 DE-ST - - Osterferien
+2029-03-26 2029-04-06 DE-RP - - Osterferien
+2029-03-26 2029-04-06 DE-BY - - Osterferien
+2029-03-28 2029-04-06 DE-MV DE-MV-ABS,DE-MV-BBS - Osterferien
+2029-03-29 2029-04-06 DE-SN - - Osterferien
+2029-03-29 2029-04-13 DE-HE - - Osterferien
+2029-04-30 2029-04-30 DE-HB - - Tag vor dem 1. Mai
+2029-04-30 2029-04-30 DE-NI - - Tag vor dem 1. Mai
+2029-04-30 2029-04-30 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2029-04-30 2029-04-30 DE-BE - - Unterrichtsfreier Tag
+2029-04-30 2029-04-30 DE-ST - - Ferientag
+2029-04-30 2029-04-30 DE-BB - - Variabler Ferientag
+2029-05-11 2029-05-11 DE-BE - - Unterrichtsfreier Tag
+2029-05-11 2029-05-11 DE-NI - - Tag nach Himmelfahrt
+2029-05-11 2029-05-25 DE-ST - - Pfingstferien
+2029-05-11 2029-05-11 DE-TH - - Schulfreier Tag
+2029-05-11 2029-05-11 DE-SH - - Himmelfahrt
+2029-05-11 2029-05-11 DE-SN - - Unterrichtsfreier Tag
+2029-05-11 2029-05-11 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2029-05-11 2029-05-11 DE-HB - - Tag nach Himmelfahrt
+2029-05-11 2029-05-18 DE-HH - - Pfingstferien
+2029-05-11 2029-05-11 DE-BB - - Variabler Ferientag
+2029-05-18 2029-05-22 DE-MV DE-MV-ABS - Pfingstferien
+2029-05-19 2029-05-22 DE-SN - - Pfingstferien
+2029-05-22 2029-05-22 DE-BB - - Pfingstferien
+2029-05-22 2029-05-22 DE-MV DE-MV-BBS - Zusätzlicher Ferientag
+2029-05-22 2029-05-22 DE-NI - - Pfingstferien
+2029-05-22 2029-05-22 DE-NW - - Pfingstferien
+2029-05-22 2029-05-25 DE-SL - - Pfingstferien
+2029-05-22 2029-05-25 DE-BE - - Pfingstferien
+2029-05-22 2029-06-01 DE-BY - - Pfingstferien
+2029-05-22 2029-06-01 DE-BW - - Pfingstferien
+2029-05-22 2029-05-22 DE-HB - - Pfingstferien
+2029-06-18 2029-07-28 DE-MV DE-MV-ABS - Sommerferien
+2029-06-23 2029-07-27 DE-SH - Exception Sommerferien
+2029-06-23 2029-08-03 DE-SH - - Sommerferien
+2029-06-28 2029-08-11 DE-BB - - Sommerferien
+2029-07-01 2029-08-11 DE-BE - - Sommerferien
+2029-07-02 2029-08-10 DE-HH - - Sommerferien
+2029-07-02 2029-08-14 DE-NW - - Sommerferien
+2029-07-16 2029-08-24 DE-HE - - Sommerferien
+2029-07-16 2029-08-24 DE-RP - - Sommerferien
+2029-07-16 2029-08-24 DE-SL - - Sommerferien
+2029-07-16 2029-09-01 DE-MV DE-MV-BBS - Sommerferien
+2029-07-19 2029-08-29 DE-NI - - Sommerferien
+2029-07-19 2029-08-29 DE-HB - - Sommerferien
+2029-07-21 2029-08-31 DE-TH - - Sommerferien
+2029-07-21 2029-08-31 DE-SN - - Sommerferien
+2029-07-21 2029-08-31 DE-ST - - Sommerferien
+2029-07-26 2029-09-08 DE-BW - - Sommerferien
+2029-07-30 2029-09-10 DE-BY - - Sommerferien
+2029-09-28 2029-10-19 DE-SH - Exception Herbstferien
+2029-10-01 2029-10-12 DE-BE - - Herbstferien
+2029-10-01 2029-10-12 DE-BB - - Herbstferien
+2029-10-01 2029-10-12 DE-HH - - Herbstferien
+2029-10-04 2029-10-05 DE-NI - - Tage nach dem 3. Oktober
+2029-10-04 2029-10-05 DE-HB - - Tage nach dem 3. Oktober
+2029-10-05 2029-10-05 DE-MV DE-MV-BBS - Zusätzlicher Ferientag
+2029-10-08 2029-10-19 DE-SH - - Herbstferien
+2029-10-15 2029-10-27 DE-NW - - Herbstferien
+2029-10-15 2029-10-26 DE-HE - - Herbstferien
+2029-10-22 2029-11-03 DE-TH - - Herbstferien
+2029-10-22 2029-11-02 DE-HB - - Herbstferien
+2029-10-22 2029-11-02 DE-SL - - Herbstferien
+2029-10-22 2029-10-27 DE-MV DE-MV-ABS,DE-MV-BBS - Herbstferien
+2029-10-22 2029-11-02 DE-RP - - Herbstferien
+2029-10-22 2029-11-02 DE-SN - - Herbstferien
+2029-10-22 2029-11-02 DE-NI - - Herbstferien
+2029-10-29 2029-11-02 DE-ST - - Herbstferien
+2029-10-29 2029-11-02 DE-BY - - Herbstferien
+2029-10-29 2029-10-29 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2029-10-29 2029-11-02 DE-BW - - Herbstferien
+2029-10-30 2029-10-30 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2029-11-21 2029-11-21 DE-BY - - Buß- und Bettag
+2029-12-20 2030-01-04 DE-NW - - Weihnachtsferien
+2029-12-21 2030-01-04 DE-MV DE-MV-ABS,DE-MV-BBS - Weihnachtsferien
+2029-12-21 2030-01-04 DE-BE - - Weihnachtsferien
+2029-12-21 2030-01-04 DE-SL - - Weihnachtsferien
+2029-12-21 2030-01-05 DE-NI - - Weihnachtsferien
+2029-12-21 2030-01-05 DE-ST - - Weihnachtsferien
+2029-12-21 2030-01-04 DE-BB - - Weihnachtsferien
+2029-12-21 2030-01-05 DE-HB - - Weihnachtsferien
+2029-12-21 2030-01-04 DE-HH - - Weihnachtsferien
+2029-12-21 2030-01-08 DE-SH - - Weihnachtsferien
+2029-12-22 2030-01-04 DE-TH - - Weihnachtsferien
+2029-12-22 2030-01-05 DE-BW - - Weihnachtsferien
+2029-12-22 2030-01-04 DE-SN - - Weihnachtsferien
+2029-12-24 2030-01-09 DE-RP - - Weihnachtsferien
+2029-12-24 2030-01-04 DE-BY - - Weihnachtsferien
+2029-12-24 2030-01-11 DE-HE - - Weihnachtsferien
+2030-01-31 2030-02-01 DE-NI - - Halbjahresferien
+2030-01-31 2030-02-01 DE-HB - - Halbjahresferien
+2030-02-01 2030-02-01 DE-HH - - Halbjahrespause
+2030-02-04 2030-02-09 DE-BE - - Winterferien
+2030-02-04 2030-02-09 DE-BB - - Winterferien
+2030-02-04 2030-02-08 DE-ST - - Winterferien
+2030-02-04 2030-02-15 DE-MV DE-MV-ABS - Winterferien
+2030-02-04 2030-02-09 DE-MV DE-MV-BBS - Winterferien
+2030-02-11 2030-02-16 DE-TH - - Winterferien
+2030-02-18 2030-03-01 DE-SN - - Winterferien
+2030-02-25 2030-03-05 DE-SL - - Fastnachtsferien
+2030-03-04 2030-03-08 DE-BY - - Frühjahrsferien
+2030-03-04 2030-03-15 DE-HH - - Frühjahrsferien
+2030-04-08 2030-04-23 DE-HB - - Osterferien
+2030-04-08 2030-04-20 DE-TH - - Osterferien
+2030-04-08 2030-04-23 DE-NI - - Osterferien
+2030-04-08 2030-04-22 DE-HE - - Osterferien
+2030-04-08 2030-04-20 DE-SH - - Osterferien
+2030-04-08 2030-04-20 DE-ST - - Osterferien
+2030-04-15 2030-04-26 DE-BW - - Osterferien
+2030-04-15 2030-04-30 DE-RP - - Osterferien
+2030-04-15 2030-04-26 DE-BE - - Osterferien
+2030-04-15 2030-04-26 DE-BB - - Osterferien
+2030-04-15 2030-04-26 DE-SL - - Osterferien
+2030-04-15 2030-04-27 DE-NW - - Osterferien
+2030-04-15 2030-04-26 DE-BY - - Osterferien
+2030-04-17 2030-04-26 DE-MV DE-MV-ABS,DE-MV-BBS - Osterferien
+2030-04-19 2030-04-26 DE-SN - - Osterferien
+2030-05-20 2030-05-24 DE-HH - - Pfingstferien
+2030-05-31 2030-05-31 DE-SH - - Himmelfahrt
+2030-05-31 2030-05-31 DE-BB - - Variabler Ferientag
+2030-05-31 2030-05-31 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2030-05-31 2030-05-31 DE-ST - - Ferientag
+2030-05-31 2030-05-31 DE-TH - - Schulfreier Tag
+2030-05-31 2030-05-31 DE-HH - - Brückentag
+2030-05-31 2030-05-31 DE-BE - - Unterrichtsfreier Tag
+2030-05-31 2030-05-31 DE-SN - - Unterrichtsfreier Tag
+2030-05-31 2030-05-31 DE-NI - - Tag nach Himmelfahrt
+2030-05-31 2030-05-31 DE-HB - - Tag nach Himmelfahrt
+2030-06-03 2030-06-08 DE-ST - - Pfingstferien
+2030-06-07 2030-06-07 DE-BE - - Pfingstferien
+2030-06-07 2030-06-11 DE-MV DE-MV-ABS - Pfingstferien
+2030-06-08 2030-06-11 DE-SN - - Pfingstferien
+2030-06-11 2030-06-21 DE-BW - - Pfingstferien
+2030-06-11 2030-06-11 DE-HB - - Pfingstferien
+2030-06-11 2030-06-21 DE-BY - - Pfingstferien
+2030-06-11 2030-06-11 DE-NI - - Pfingstferien
+2030-06-24 2030-08-06 DE-NW - - Sommerferien
+2030-07-01 2030-08-10 DE-MV DE-MV-ABS - Sommerferien
+2030-07-04 2030-08-14 DE-HH - - Sommerferien
+2030-07-04 2030-08-17 DE-BB - - Sommerferien
+2030-07-04 2030-08-17 DE-BE - - Sommerferien
+2030-07-08 2030-08-10 DE-SH - Exception Sommerferien
+2030-07-08 2030-08-17 DE-SH - - Sommerferien
+2030-07-11 2030-08-21 DE-HB - - Sommerferien
+2030-07-11 2030-08-21 DE-NI - - Sommerferien
+2030-07-13 2030-08-23 DE-ST - - Sommerferien
+2030-07-13 2030-08-23 DE-TH - - Sommerferien
+2030-07-13 2030-08-23 DE-SN - - Sommerferien
+2030-07-15 2030-08-31 DE-MV DE-MV-BBS - Sommerferien
+2030-07-22 2030-08-30 DE-RP - - Sommerferien
+2030-07-22 2030-08-30 DE-SL - - Sommerferien
+2030-07-22 2030-08-30 DE-HE - - Sommerferien
+2030-07-25 2030-09-07 DE-BW - - Sommerferien
+2030-07-29 2030-09-09 DE-BY - - Sommerferien
+2030-10-07 2030-10-25 DE-SH - Exception Herbstferien
+2030-10-14 2030-10-25 DE-SH - - Herbstferien
+2030-11-20 2030-11-20 DE-BY - - Buß- und Bettag
+2030-12-20 2031-01-06 DE-SH - - Weihnachtsferien

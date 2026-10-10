@@ -11,6 +11,7 @@ import '../../../../core/ui/tokens/tokens.dart';
 import '../../../backup/domain/entities/backup_document.dart';
 import '../../../backup/presentation/backup_actions.dart';
 import '../../../device_calendar/presentation/widgets/calendar_conflict_settings_card.dart';
+import '../../../holidays/presentation/widgets/holiday_widgets.dart';
 import '../../../reminders/presentation/reminder_scheduler.dart';
 import '../../../shifts/presentation/controllers/shift_providers.dart';
 import '../../domain/entities/app_settings.dart';
@@ -82,6 +83,8 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ),
               RySectionHeader(l10n.settingsSectionCalendar),
+              const HolidaySettingsTile(),
+              const SizedBox(height: AppSpacing.md),
               const CalendarConflictSettingsCard(),
               RySectionHeader(l10n.settingsSectionReminders),
               const _RemindersCard(),

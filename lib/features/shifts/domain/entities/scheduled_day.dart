@@ -9,6 +9,9 @@ enum ShiftSource {
   /// A manual override.
   override,
 
+  /// A public holiday turned the rotation's work shift into a day off.
+  holiday,
+
   /// No rotation covers the day (before the first version, or not set up).
   none,
 }
@@ -33,6 +36,9 @@ final class ScheduledDay {
   final ShiftType? rotationShift;
 
   bool get isOverridden => source == ShiftSource.override;
+
+  /// The rotation's work shift was replaced because of a public holiday.
+  bool get isHolidayOff => source == ShiftSource.holiday;
 
   @override
   bool operator ==(Object other) =>

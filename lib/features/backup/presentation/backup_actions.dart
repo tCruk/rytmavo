@@ -91,7 +91,7 @@ final class BackupActions {
   /// The backup repository writes past the feature repositories, so their
   /// streams and the settings notifier are re-created explicitly.
   void _refreshAll() {
-    _ref.invalidate(shiftSetupProvider);
+    _ref.invalidate(storedShiftSetupProvider);
     _ref.invalidate(habitPlanProvider);
     _ref.invalidate(settingsControllerProvider);
   }

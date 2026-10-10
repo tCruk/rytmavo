@@ -40,6 +40,13 @@ void main() {
         contrastRatio(s.surface, s.onSurfaceVariant),
         greaterThanOrEqualTo(4.5),
       );
+      final c = theme.extension<AppColors>()!;
+      // Holiday day numbers are text, the school holiday band a graphic.
+      expect(contrastRatio(s.surface, c.holiday), greaterThanOrEqualTo(4.5));
+      expect(
+        contrastRatio(s.surface, c.schoolHoliday),
+        greaterThanOrEqualTo(3),
+      );
     }
   });
 }

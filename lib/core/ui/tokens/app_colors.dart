@@ -26,6 +26,8 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.onWarningContainer,
     required this.surfaceElevated,
     required this.outlineSoft,
+    required this.holiday,
+    required this.schoolHoliday,
   });
 
   final Color shiftEarly;
@@ -50,6 +52,13 @@ class AppColors extends ThemeExtension<AppColors> {
 
   /// Hairline dividers and card borders.
   final Color outlineSoft;
+
+  /// Public holidays in the calendar (ring and day number); text contrast
+  /// on the surface.
+  final Color holiday;
+
+  /// Band below school holiday days; graphic contrast on the surface.
+  final Color schoolHoliday;
 
   static AppColors of(BuildContext context) {
     final ext = Theme.of(context).extension<AppColors>();
@@ -77,6 +86,8 @@ class AppColors extends ThemeExtension<AppColors> {
     onWarningContainer: Color(0xFF3F2500),
     surfaceElevated: Color(0xFFFFFFFF),
     outlineSoft: Color(0xFFE2E4E8),
+    holiday: Color(0xFFB3261E),
+    schoolHoliday: Color(0xFF00796B),
   );
 
   /// Dark palette – lighter accents, dark "on" colours ≥ 4.5:1.
@@ -99,6 +110,8 @@ class AppColors extends ThemeExtension<AppColors> {
     onWarningContainer: Color(0xFFFFE3B8),
     surfaceElevated: Color(0xFF1C1F24),
     outlineSoft: Color(0xFF2E3238),
+    holiday: Color(0xFFF2B8B5),
+    schoolHoliday: Color(0xFF80CBC4),
   );
 
   @override
@@ -121,6 +134,8 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? onWarningContainer,
     Color? surfaceElevated,
     Color? outlineSoft,
+    Color? holiday,
+    Color? schoolHoliday,
   }) {
     return AppColors(
       shiftEarly: shiftEarly ?? this.shiftEarly,
@@ -141,6 +156,8 @@ class AppColors extends ThemeExtension<AppColors> {
       onWarningContainer: onWarningContainer ?? this.onWarningContainer,
       surfaceElevated: surfaceElevated ?? this.surfaceElevated,
       outlineSoft: outlineSoft ?? this.outlineSoft,
+      holiday: holiday ?? this.holiday,
+      schoolHoliday: schoolHoliday ?? this.schoolHoliday,
     );
   }
 
@@ -167,6 +184,8 @@ class AppColors extends ThemeExtension<AppColors> {
       onWarningContainer: l(onWarningContainer, other.onWarningContainer),
       surfaceElevated: l(surfaceElevated, other.surfaceElevated),
       outlineSoft: l(outlineSoft, other.outlineSoft),
+      holiday: l(holiday, other.holiday),
+      schoolHoliday: l(schoolHoliday, other.schoolHoliday),
     );
   }
 }

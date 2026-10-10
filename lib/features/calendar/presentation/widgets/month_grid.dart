@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../app/l10n/generated/app_localizations.dart';
 import '../../../../core/date/local_date.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../holidays/domain/entities/day_marks.dart';
+import '../../../holidays/domain/services/holiday_calendar.dart';
+import '../../../holidays/presentation/holiday_labels.dart';
 import '../../../shifts/domain/entities/shift_setup.dart';
 import '../../../shifts/domain/entities/shift_type.dart';
 import '../../../shifts/presentation/widgets/shift_visuals.dart';
@@ -19,6 +22,7 @@ class MonthGrid extends StatelessWidget {
     required this.onDayTap,
     this.conflictDates = const {},
     this.eventDates = const {},
+    this.holidays,
     super.key,
   });
 
@@ -44,6 +48,9 @@ class MonthGrid extends StatelessWidget {
 
   /// Days with at least one device calendar event.
   final Set<LocalDate> eventDates;
+
+  /// Public and school holidays to mark; `null` marks none.
+  final HolidayCalendar? holidays;
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +95,9 @@ class MonthGrid extends StatelessWidget {
                     hasConflict: conflictDates.contains(
                       gridStart.addDays(r * 7 + c),
                     ),
+                    marks:
+                        holidays?.marksOn(gridStart.addDays(r * 7 + c)) ??
+                        DayMarks.none,
                     setup: setup,
                     onTap: onDayTap,
                   ),
@@ -106,6 +116,7 @@ class _DayCell extends StatelessWidget {
     required this.inMonth,
     required this.hasEvents,
     required this.hasConflict,
+    required this.marks,
     required this.setup,
     required this.onTap,
   });
@@ -117,6 +128,7 @@ class _DayCell extends StatelessWidget {
   final bool inMonth;
   final bool hasEvents;
   final bool hasConflict;
+  final DayMarks marks;
   final ShiftSetup setup;
   final ValueChanged<LocalDate> onTap;
 
@@ -124,6 +136,9 @@ class _DayCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
+    final colors = AppColors.of(context);
+    final holiday = marks.publicHoliday;
+    final school = marks.schoolHoliday;
     final day = setup.dayOn(date);
     final shiftName = day.shift?.displayName(l10n) ?? l10n.todayNoEntry;
     final dateText = MaterialLocalizations.of(context)
@@ -134,6 +149,10 @@ class _DayCell extends StatelessWidget {
       selected: isToday,
       label: [
         l10n.calendarDayA11y(dateText, shiftName),
+        if (holiday != null)
+          '${l10n.calendarHoliday}: ${holiday.displayName(l10n)}',
+        if (day.isHolidayOff) l10n.calendarHolidayOff,
+        if (school != null) school.displayName(l10n),
         if (day.isOverridden) l10n.calendarChanged,
         if (hasEvents) l10n.calendarHasEvents,
         if (hasConflict) l10n.conflictsTitle,
@@ -142,8 +161,18 @@ class _DayCell extends StatelessWidget {
       child: InkWell(
         onTap: () => onTap(date),
         borderRadius: AppRadius.smAll,
-        child: SizedBox(
+        child: Container(
+          key: school == null ? null : const ValueKey('school-holiday-band'),
           height: MonthGrid._cellHeight,
+          // School holidays: a band along the bottom; neighbouring days
+          // join into one continuous stripe.
+          foregroundDecoration: school == null
+              ? null
+              : BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: colors.schoolHoliday, width: 3),
+                  ),
+                ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -154,17 +183,31 @@ class _DayCell extends StatelessWidget {
                     width: 22,
                     height: 22,
                     alignment: Alignment.center,
-                    decoration: isToday
+                    // Public holiday = ring plus coloured, bold number, so it
+                    // reads without colour too; today keeps its filled circle.
+                    decoration: isToday || holiday != null
                         ? BoxDecoration(
-                            color: theme.colorScheme.primary,
+                            color: isToday ? theme.colorScheme.primary : null,
                             shape: BoxShape.circle,
+                            border: holiday == null
+                                ? null
+                                : Border.all(color: colors.holiday, width: 1.5),
                           )
                         : null,
                     child: Text(
                       '${date.day}',
+                      key: holiday == null
+                          ? null
+                          : const ValueKey('holiday-day'),
                       style: theme.textTheme.labelMedium?.copyWith(
-                        color: isToday ? theme.colorScheme.onPrimary : null,
-                        fontWeight: isToday ? FontWeight.w700 : null,
+                        color: isToday
+                            ? theme.colorScheme.onPrimary
+                            : holiday != null
+                            ? colors.holiday
+                            : null,
+                        fontWeight: isToday || holiday != null
+                            ? FontWeight.w700
+                            : null,
                       ),
                     ),
                   ),
@@ -212,7 +255,7 @@ class _DayCell extends StatelessWidget {
                         child: Icon(
                           Icons.event_busy,
                           size: 14,
-                          color: AppColors.of(context).warning,
+                          color: colors.warning,
                         ),
                       ),
                     ),

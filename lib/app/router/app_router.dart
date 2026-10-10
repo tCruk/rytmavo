@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/calendar/presentation/screens/calendar_screen.dart';
 import '../../features/habits/presentation/screens/habit_form_screen.dart';
 import '../../features/habits/presentation/screens/habits_screen.dart';
+import '../../features/holidays/presentation/screens/holiday_settings_screen.dart';
 import '../../features/settings/presentation/screens/info_screen.dart';
 import '../../features/settings/presentation/screens/settings_screen.dart';
 import '../../features/shifts/presentation/screens/onboarding_screen.dart';
@@ -67,6 +68,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         name: 'settings',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.settingsHolidays,
+        name: 'settingsHolidays',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const HolidaySettingsScreen(),
       ),
       GoRoute(
         path: AppRoutes.settingsInfo,

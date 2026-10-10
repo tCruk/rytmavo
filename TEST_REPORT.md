@@ -262,3 +262,37 @@ Flow-Test für Punkte im Monatsraster und Terminliste im Tagesblatt.
 - Kotlin-Code (Handy-Bridge, `android/wear`): wird erst im CI-Job
   „Android debug build“ kompiliert.
 - Übertragung Handy → Uhr auf echten Geräten bzw. gekoppelten Emulatoren.
+
+## Feiertage und Schulferien – 2026-10-10
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test` | 146 Tests, 146 bestanden |
+
+- `test/features/holidays/german_public_holidays_test.dart` (neu, 6): Ostern
+  für bekannte Jahre (früh/spät, 2000, 2038), neun bundesweite Feiertage 2026,
+  Landesfeiertage NW/BY/BW/SL/TH/BB/HH, Buß- und Bettag (auch wenn der
+  22.11. ein Mittwoch ist), Einführungsjahre (Frauentag, Reformationstag
+  2017/2018, Tag der Befreiung BE), Sortierung und Jahresgrenzen für alle
+  Länder.
+- `test/features/holidays/holiday_calendar_test.dart` (neu, 6): Ferien mit
+  inklusiven Grenzen und über den Jahreswechsel, Abschalten, Insel- und
+  Berufsschul-Termine ausgeschlossen, „An Feiertagen frei“, Konsistenz der
+  mitgelieferten Daten (jedes Land, Sommerferien 2025–2030).
+- `test/features/holidays/holiday_flow_test.dart` (neu, 3, Widget): Markierung
+  des 3. Oktober, einmalige Abfrage mit „Nicht jetzt“, Auswahl NRW mit
+  Ferienband und freiem Feiertag, Arbeiten an einem freien Feiertag über das
+  Tagesblatt.
+- `shift_setup_test.dart` (+5): Feiertag ersetzt Arbeitsschicht, Rhythmus-
+  Freitag bleibt, Override gewinnt, ohne Regel keine Änderung, nächste
+  Schicht überspringt freie Feiertage.
+- Einstellungen-Roundtrip und Backup-Codec um die neuen Felder erweitert;
+  Kontrasttest für `holiday` (≥ 4,5:1) und `schoolHoliday` (≥ 3:1).
+
+### Nicht geprüft
+
+- Darstellung auf echten Geräten (kein Android SDK/Xcode im Container).
+- Schulferien-Termine wurden aus der OpenHolidays API übernommen und nur
+  stichprobenartig geprüft (z. B. NRW Herbst 2026: 17.10.–31.10.).

@@ -1,0 +1,127 @@
+2024-12-19 2025-01-07 DE-SH - - Weihnachtsferien
+2024-12-20 2025-01-03 DE-HH - - Weihnachtsferien
+2024-12-23 2025-01-03 DE-SL - - Weihnachtsferien
+2024-12-23 2025-01-08 DE-RP - - Weihnachtsferien
+2024-12-23 2025-01-06 DE-NW - - Weihnachtsferien
+2024-12-23 2025-01-04 DE-MV DE-MV-BBS - Weihnachtsferien
+2024-12-23 2025-01-06 DE-MV DE-MV-ABS - Weihnachtsferien
+2024-12-23 2025-01-03 DE-TH - - Weihnachtsferien
+2024-12-23 2025-01-04 DE-HB - - Weihnachtsferien
+2024-12-23 2025-01-03 DE-SN - - Weihnachtsferien
+2024-12-23 2025-01-10 DE-HE - - Weihnachtsferien
+2024-12-23 2025-01-04 DE-NI - - Weihnachtsferien
+2024-12-23 2025-01-04 DE-BW - - Weihnachtsferien
+2024-12-23 2025-01-04 DE-ST - - Weihnachtsferien
+2024-12-23 2025-01-03 DE-BY - - Weihnachtsferien
+2025-01-27 2025-01-31 DE-ST - - Winterferien
+2025-01-31 2025-01-31 DE-HH - - Halbjahrespause
+2025-02-03 2025-02-14 DE-MV DE-MV-ABS - Winterferien
+2025-02-03 2025-02-04 DE-HB - - Halbjahresferien
+2025-02-03 2025-02-08 DE-TH - - Winterferien
+2025-02-03 2025-02-08 DE-BE - - Winterferien
+2025-02-03 2025-02-08 DE-BB - - Winterferien
+2025-02-03 2025-02-08 DE-MV DE-MV-BBS - Winterferien
+2025-02-03 2025-02-04 DE-NI - - Halbjahresferien
+2025-02-17 2025-03-01 DE-SN - - Winterferien
+2025-02-24 2025-03-04 DE-SL - - Fastnachtsferien
+2025-03-03 2025-03-07 DE-BY - - Frühjahrsferien
+2025-03-10 2025-03-21 DE-HH - - Frühjahrsferien
+2025-04-07 2025-04-19 DE-NI - - Osterferien
+2025-04-07 2025-04-19 DE-ST - - Osterferien
+2025-04-07 2025-04-19 DE-TH - - Osterferien
+2025-04-07 2025-04-19 DE-HB - - Osterferien
+2025-04-07 2025-04-21 DE-HE - - Osterferien
+2025-04-11 2025-04-25 DE-SH - - Osterferien
+2025-04-14 2025-04-25 DE-BY - - Osterferien
+2025-04-14 2025-04-26 DE-BW - - Osterferien
+2025-04-14 2025-04-23 DE-MV DE-MV-ABS - Osterferien
+2025-04-14 2025-04-25 DE-RP - - Osterferien
+2025-04-14 2025-04-25 DE-MV DE-MV-BBS - Osterferien
+2025-04-14 2025-04-25 DE-BB - - Osterferien
+2025-04-14 2025-04-26 DE-NW - - Osterferien
+2025-04-14 2025-04-25 DE-SL - - Osterferien
+2025-04-14 2025-04-25 DE-BE - - Osterferien
+2025-04-18 2025-04-25 DE-SN - - Osterferien
+2025-04-30 2025-05-02 DE-HB - - Kirchentag und Tag nach dem 1. Mai
+2025-04-30 2025-04-30 DE-NI - - Kirchentag
+2025-05-02 2025-05-02 DE-NI - - Tag nach dem 1. Mai
+2025-05-02 2025-05-02 DE-BB - - Variabler Ferientag
+2025-05-02 2025-05-02 DE-BE - - Unterrichtsfreier Tag
+2025-05-02 2025-05-02 DE-MV DE-MV-BBS - Zusätzlicher Ferientag
+2025-05-02 2025-05-02 DE-HH - - Brückentag
+2025-05-26 2025-05-30 DE-HH - - Pfingstferien
+2025-05-30 2025-05-30 DE-SH - - Himmelfahrt
+2025-05-30 2025-05-30 DE-NI - - Tag nach Himmelfahrt
+2025-05-30 2025-05-30 DE-HB - - Tag nach Himmelfahrt
+2025-05-30 2025-05-30 DE-BB - - Variabler Ferientag
+2025-05-30 2025-05-30 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2025-05-30 2025-05-30 DE-TH - - Schulfreier Tag
+2025-05-30 2025-05-30 DE-SN - - Unterrichtsfreier Tag
+2025-05-30 2025-05-30 DE-ST - - Ferientag
+2025-05-30 2025-05-30 DE-BE - - Unterrichtsfreier Tag
+2025-06-06 2025-06-10 DE-MV DE-MV-ABS - Pfingstferien
+2025-06-10 2025-06-10 DE-BE - - Pfingstferien
+2025-06-10 2025-06-10 DE-HB - - Pfingstferien
+2025-06-10 2025-06-10 DE-NW - - Pfingstferien
+2025-06-10 2025-06-20 DE-BW - - Pfingstferien
+2025-06-10 2025-06-10 DE-NI - - Pfingstferien
+2025-06-10 2025-06-20 DE-BY - - Pfingstferien
+2025-06-10 2025-06-10 DE-BB - - Pfingstferien
+2025-06-28 2025-08-08 DE-TH - - Sommerferien
+2025-06-28 2025-08-08 DE-ST - - Sommerferien
+2025-06-28 2025-08-08 DE-SN - - Sommerferien
+2025-07-03 2025-08-13 DE-NI - - Sommerferien
+2025-07-03 2025-08-13 DE-HB - - Sommerferien
+2025-07-07 2025-08-15 DE-RP - - Sommerferien
+2025-07-07 2025-08-14 DE-SL - - Sommerferien
+2025-07-07 2025-08-15 DE-HE - - Sommerferien
+2025-07-14 2025-08-26 DE-NW - - Sommerferien
+2025-07-14 2025-08-30 DE-MV DE-MV-BBS - Sommerferien
+2025-07-24 2025-09-06 DE-BB - - Sommerferien
+2025-07-24 2025-09-03 DE-HH - - Sommerferien
+2025-07-24 2025-09-06 DE-BE - - Sommerferien
+2025-07-28 2025-09-06 DE-SH - - Sommerferien
+2025-07-28 2025-09-06 DE-MV DE-MV-ABS - Sommerferien
+2025-07-28 2025-08-30 DE-SH - Exception Sommerferien
+2025-07-31 2025-09-13 DE-BW - - Sommerferien
+2025-08-01 2025-09-15 DE-BY - - Sommerferien
+2025-10-01 2025-10-01 DE-MV DE-MV-BBS - Zusätzlicher Ferientag
+2025-10-02 2025-10-02 DE-MV DE-MV-ABS - Zusätzlicher Ferientag
+2025-10-06 2025-10-18 DE-HE - - Herbstferien
+2025-10-06 2025-10-18 DE-TH - - Herbstferien
+2025-10-06 2025-10-18 DE-SN - - Herbstferien
+2025-10-13 2025-10-24 DE-RP - - Herbstferien
+2025-10-13 2025-10-24 DE-SL - - Herbstferien
+2025-10-13 2025-10-25 DE-ST - - Herbstferien
+2025-10-13 2025-10-25 DE-HB - - Herbstferien
+2025-10-13 2025-10-25 DE-NI - - Herbstferien
+2025-10-13 2025-10-30 DE-SH - Exception Herbstferien
+2025-10-13 2025-10-25 DE-NW - - Herbstferien
+2025-10-20 2025-11-01 DE-BE - - Herbstferien
+2025-10-20 2025-11-01 DE-BB - - Herbstferien
+2025-10-20 2025-10-24 DE-MV DE-MV-ABS - Herbstferien
+2025-10-20 2025-10-30 DE-SH - - Herbstferien
+2025-10-20 2025-10-31 DE-HH - - Herbstferien
+2025-10-20 2025-10-25 DE-MV DE-MV-BBS - Herbstferien
+2025-10-27 2025-10-30 DE-BW - - Herbstferien
+2025-10-31 2025-10-31 DE-BW - - Reformationsfest
+2025-11-03 2025-11-07 DE-BY - - Herbstferien
+2025-11-03 2025-11-03 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2025-11-19 2025-11-19 DE-BY - - Buß- und Bettag
+2025-12-17 2026-01-02 DE-HH - - Weihnachtsferien
+2025-12-19 2026-01-06 DE-SH - - Weihnachtsferien
+2025-12-20 2026-01-03 DE-MV DE-MV-ABS - Weihnachtsferien
+2025-12-22 2026-01-03 DE-MV DE-MV-BBS - Weihnachtsferien
+2025-12-22 2026-01-06 DE-NW - - Weihnachtsferien
+2025-12-22 2026-01-07 DE-RP - - Weihnachtsferien
+2025-12-22 2026-01-05 DE-NI - - Weihnachtsferien
+2025-12-22 2026-01-02 DE-SN - - Weihnachtsferien
+2025-12-22 2026-01-05 DE-BW - - Weihnachtsferien
+2025-12-22 2026-01-02 DE-BB - - Weihnachtsferien
+2025-12-22 2026-01-02 DE-BE - - Weihnachtsferien
+2025-12-22 2026-01-02 DE-SL - - Weihnachtsferien
+2025-12-22 2026-01-03 DE-TH - - Weihnachtsferien
+2025-12-22 2026-01-05 DE-ST - - Weihnachtsferien
+2025-12-22 2026-01-05 DE-HB - - Weihnachtsferien
+2025-12-22 2026-01-10 DE-HE - - Weihnachtsferien
+2025-12-22 2026-01-05 DE-BY - - Weihnachtsferien

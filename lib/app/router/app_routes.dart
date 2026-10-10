@@ -5,6 +5,7 @@ abstract final class AppRoutes {
   static const String habits = '/habits';
   static const String insights = '/insights';
   static const String settings = '/settings';
+  static const String settingsHolidays = '/settings/holidays';
   static const String settingsInfo = '/settings/info/:kind';
   static String settingsInfoPath(String kind) => '/settings/info/$kind';
   static const String onboarding = '/onboarding';

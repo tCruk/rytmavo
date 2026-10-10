@@ -10,6 +10,7 @@ import 'package:rytmavo/features/backup/domain/services/backup_codec.dart';
 import 'package:rytmavo/features/habits/domain/entities/habit.dart';
 import 'package:rytmavo/features/habits/domain/entities/habit_completion.dart';
 import 'package:rytmavo/features/habits/domain/entities/habit_rule.dart';
+import 'package:rytmavo/features/holidays/domain/entities/german_state.dart';
 import 'package:rytmavo/features/settings/domain/entities/app_settings.dart';
 import 'package:rytmavo/features/shifts/domain/entities/rotation_pattern.dart';
 import 'package:rytmavo/features/shifts/domain/entities/shift_override.dart';
@@ -64,6 +65,10 @@ BackupDocument sampleDocument() => BackupDocument(
     language: AppLanguage.en,
     onboardingCompleted: true,
     remindersEnabled: true,
+    holidayState: GermanState.sn,
+    showSchoolHolidays: true,
+    holidaysAreDaysOff: true,
+    holidaySetupDone: true,
   ),
 );
 
@@ -107,6 +112,10 @@ void main() {
       expect(back.settings.themeMode, AppThemeMode.dark);
       expect(back.settings.language, AppLanguage.en);
       expect(back.settings.remindersEnabled, isTrue);
+      expect(back.settings.holidayState, GermanState.sn);
+      expect(back.settings.showSchoolHolidays, isTrue);
+      expect(back.settings.holidaysAreDaysOff, isTrue);
+      expect(back.settings.holidaySetupDone, isTrue);
     });
 
     test('writes a stable header', () {

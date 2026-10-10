@@ -7,6 +7,7 @@ import '../../../../core/result/result.dart';
 import '../../../habits/domain/entities/habit.dart';
 import '../../../habits/domain/entities/habit_completion.dart';
 import '../../../habits/domain/entities/habit_rule.dart';
+import '../../../holidays/domain/entities/german_state.dart';
 import '../../../settings/domain/entities/app_settings.dart';
 import '../../../shifts/domain/entities/rotation_pattern.dart';
 import '../../../shifts/domain/entities/shift_override.dart';
@@ -110,6 +111,10 @@ abstract final class BackupCodec {
       // Calendar ids are device-specific and deliberately not exported.
       'calendarConflictsEnabled': doc.settings.calendarConflictsEnabled,
       'conflictRemindersEnabled': doc.settings.conflictRemindersEnabled,
+      'holidayState': doc.settings.holidayState?.code,
+      'showSchoolHolidays': doc.settings.showSchoolHolidays,
+      'holidaysAreDaysOff': doc.settings.holidaysAreDaysOff,
+      'holidaySetupDone': doc.settings.holidaySetupDone,
     },
   };
 
@@ -249,6 +254,14 @@ abstract final class BackupCodec {
                 settingsJson['calendarConflictsEnabled'] == true,
             conflictRemindersEnabled:
                 settingsJson['conflictRemindersEnabled'] == true,
+            holidayState: GermanState.fromCode(
+              settingsJson['holidayState'] is String
+                  ? settingsJson['holidayState']! as String
+                  : null,
+            ),
+            showSchoolHolidays: settingsJson['showSchoolHolidays'] == true,
+            holidaysAreDaysOff: settingsJson['holidaysAreDaysOff'] == true,
+            holidaySetupDone: settingsJson['holidaySetupDone'] == true,
           )
         : AppSettings.defaults;
 

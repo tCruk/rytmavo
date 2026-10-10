@@ -9,6 +9,9 @@ import '../../../../core/ui/tokens/tokens.dart';
 import '../../../device_calendar/domain/entities/calendar_event.dart';
 import '../../../device_calendar/domain/entities/shift_conflict.dart';
 import '../../../device_calendar/presentation/widgets/calendar_event_tile.dart';
+import '../../../holidays/presentation/holiday_labels.dart';
+import '../../../holidays/presentation/holiday_providers.dart';
+import '../../../holidays/presentation/widgets/holiday_widgets.dart';
 import '../../../shifts/domain/entities/shift_override.dart';
 import '../../../shifts/domain/entities/shift_setup.dart';
 import '../../../shifts/presentation/widgets/shift_visuals.dart';
@@ -64,6 +67,10 @@ class _DaySheet extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final day = setup.dayOn(date);
+    final marks = ref.watch(holidayCalendarProvider).marksOn(date);
+    // Without an override the day shows the rhythm, or "off" on a public
+    // holiday; picking that again just removes the override.
+    final defaultShiftId = setup.defaultShiftOn(date)?.id;
     final repo = ref.read(shiftRepositoryProvider);
     final navigator = Navigator.of(context);
 
@@ -72,7 +79,8 @@ class _DaySheet extends ConsumerWidget {
         navigator.pop();
         return;
       }
-      final result = day.rotationShift?.id == shiftTypeId
+      final restores = defaultShiftId == shiftTypeId;
+      final result = restores
           ? await repo.removeOverride(date)
           : await repo.setOverride(
               ShiftOverride(date: date, shiftTypeId: shiftTypeId),
@@ -80,7 +88,7 @@ class _DaySheet extends ConsumerWidget {
       navigator.pop(
         result.isFailure
             ? DaySheetOutcome.failed
-            : day.rotationShift?.id == shiftTypeId
+            : restores
             ? DaySheetOutcome.restored
             : DaySheetOutcome.changed,
       );
@@ -127,6 +135,20 @@ class _DaySheet extends ConsumerWidget {
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
+              if (marks.publicHoliday case final holiday?)
+                HolidayInfoLine(
+                  icon: Icons.celebration_outlined,
+                  text: [
+                    '${l10n.calendarHoliday}: ${holiday.displayName(l10n)}',
+                    if (setup.isDayOff?.call(date) ?? false)
+                      l10n.holidaysDaysOffToggle,
+                  ].join(' · '),
+                ),
+              if (marks.schoolHoliday case final school?)
+                HolidayInfoLine(
+                  icon: Icons.backpack_outlined,
+                  text: school.displayName(l10n),
+                ),
               if (listed.isNotEmpty) ...[
                 RySectionHeader(l10n.daySheetEvents),
                 for (final e in listed)

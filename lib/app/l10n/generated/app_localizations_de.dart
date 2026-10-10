@@ -782,4 +782,214 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get eventAllDay => 'Ganztägig';
+
+  @override
+  String get holidayNewYear => 'Neujahr';
+
+  @override
+  String get holidayEpiphany => 'Heilige Drei Könige';
+
+  @override
+  String get holidayWomensDay => 'Internationaler Frauentag';
+
+  @override
+  String get holidayGoodFriday => 'Karfreitag';
+
+  @override
+  String get holidayEasterSunday => 'Ostersonntag';
+
+  @override
+  String get holidayEasterMonday => 'Ostermontag';
+
+  @override
+  String get holidayLabourDay => 'Tag der Arbeit';
+
+  @override
+  String get holidayLiberationDay => 'Tag der Befreiung';
+
+  @override
+  String get holidayAscension => 'Christi Himmelfahrt';
+
+  @override
+  String get holidayWhitSunday => 'Pfingstsonntag';
+
+  @override
+  String get holidayWhitMonday => 'Pfingstmontag';
+
+  @override
+  String get holidayCorpusChristi => 'Fronleichnam';
+
+  @override
+  String get holidayAssumption => 'Mariä Himmelfahrt';
+
+  @override
+  String get holidayChildrensDay => 'Weltkindertag';
+
+  @override
+  String get holidayGermanUnity => 'Tag der Deutschen Einheit';
+
+  @override
+  String get holidayReformation => 'Reformationstag';
+
+  @override
+  String get holidayAllSaints => 'Allerheiligen';
+
+  @override
+  String get holidayRepentance => 'Buß- und Bettag';
+
+  @override
+  String get holidayChristmas => '1. Weihnachtstag';
+
+  @override
+  String get holidayBoxingDay => '2. Weihnachtstag';
+
+  @override
+  String get schoolHolidayWinter => 'Winterferien';
+
+  @override
+  String get schoolHolidayMidYear => 'Halbjahresferien';
+
+  @override
+  String get schoolHolidayCarnival => 'Fastnachtsferien';
+
+  @override
+  String get schoolHolidaySpring => 'Frühjahrsferien';
+
+  @override
+  String get schoolHolidayEaster => 'Osterferien';
+
+  @override
+  String get schoolHolidayWhitsun => 'Pfingstferien';
+
+  @override
+  String get schoolHolidaySummer => 'Sommerferien';
+
+  @override
+  String get schoolHolidayAutumn => 'Herbstferien';
+
+  @override
+  String get schoolHolidayChristmas => 'Weihnachtsferien';
+
+  @override
+  String get schoolHolidayDayOff => 'Schulfreier Tag';
+
+  @override
+  String get stateBw => 'Baden-Württemberg';
+
+  @override
+  String get stateBy => 'Bayern';
+
+  @override
+  String get stateBe => 'Berlin';
+
+  @override
+  String get stateBb => 'Brandenburg';
+
+  @override
+  String get stateHb => 'Bremen';
+
+  @override
+  String get stateHh => 'Hamburg';
+
+  @override
+  String get stateHe => 'Hessen';
+
+  @override
+  String get stateMv => 'Mecklenburg-Vorpommern';
+
+  @override
+  String get stateNi => 'Niedersachsen';
+
+  @override
+  String get stateNw => 'Nordrhein-Westfalen';
+
+  @override
+  String get stateRp => 'Rheinland-Pfalz';
+
+  @override
+  String get stateSl => 'Saarland';
+
+  @override
+  String get stateSn => 'Sachsen';
+
+  @override
+  String get stateSt => 'Sachsen-Anhalt';
+
+  @override
+  String get stateSh => 'Schleswig-Holstein';
+
+  @override
+  String get stateTh => 'Thüringen';
+
+  @override
+  String get holidaysTitle => 'Feiertage & Ferien';
+
+  @override
+  String get holidaysNationwideOnly => 'Nur bundesweite Feiertage';
+
+  @override
+  String get holidaysIntro =>
+      'Bundesweite Feiertage wie Neujahr, Ostern oder der 3. Oktober sind immer markiert. Mit deinem Bundesland kommen regionale Feiertage und auf Wunsch die Schulferien dazu.';
+
+  @override
+  String get holidaysStateLabel => 'Bundesland';
+
+  @override
+  String get holidaysSchoolToggle => 'Schulferien markieren';
+
+  @override
+  String get holidaysSchoolToggleBody =>
+      'Ferien der allgemeinbildenden Schulen als farbiges Band unter den Tagen.';
+
+  @override
+  String get holidaysSchoolNeedsState => 'Dafür zuerst ein Bundesland wählen.';
+
+  @override
+  String get holidaysDaysOffToggle => 'An Feiertagen frei';
+
+  @override
+  String get holidaysDaysOffBody =>
+      'Gesetzliche Feiertage ersetzen Schichten aus deinem Rhythmus durch „Frei“. Musst du doch arbeiten, änderst du den Tag im Kalender.';
+
+  @override
+  String get holidaysSave => 'Speichern';
+
+  @override
+  String get holidaysSaved => 'Feiertage & Ferien gespeichert';
+
+  @override
+  String holidaysSchoolDataUntil(String date) {
+    return 'Schulferien bekannt bis $date.';
+  }
+
+  @override
+  String get holidaysSource =>
+      'Feiertage berechnet die App selbst. Schulferien stammen aus dem OpenHolidays-Projekt (openholidaysapi.org, Datenlizenz ODbL 1.0) und werden mit App-Updates ergänzt. Angaben ohne Gewähr. Feiertage einzelner Gemeinden (z. B. Mariä Himmelfahrt in Teilen Bayerns) sind nicht enthalten.';
+
+  @override
+  String get holidaysPromptTitle => 'Feiertage und Ferien markieren?';
+
+  @override
+  String get holidaysPromptBody =>
+      'Wähle dein Bundesland, dann zeigt der Kalender auch regionale Feiertage und Schulferien.';
+
+  @override
+  String get holidaysPromptAction => 'Auswählen';
+
+  @override
+  String get holidaysPromptDismiss => 'Nicht jetzt';
+
+  @override
+  String get calendarHoliday => 'Feiertag';
+
+  @override
+  String get calendarSchoolHoliday => 'Schulferien';
+
+  @override
+  String get calendarHolidayOff => 'Feiertag, frei';
+
+  @override
+  String holidayOffFrom(String shiftName) {
+    return 'Feiertag frei · laut Rhythmus $shiftName';
+  }
 }

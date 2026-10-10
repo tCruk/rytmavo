@@ -9,6 +9,10 @@ import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
 import '../../../device_calendar/presentation/widgets/upcoming_conflicts_section.dart';
 import '../../../habits/presentation/widgets/today_habits_section.dart';
+import '../../../holidays/domain/entities/day_marks.dart';
+import '../../../holidays/presentation/holiday_labels.dart';
+import '../../../holidays/presentation/holiday_providers.dart';
+import '../../../holidays/presentation/widgets/holiday_widgets.dart';
 import '../../domain/entities/scheduled_day.dart';
 import '../../domain/entities/shift_setup.dart';
 import '../controllers/shift_providers.dart';
@@ -53,7 +57,11 @@ class TodayScreen extends ConsumerWidget {
             sliver: SliverList.list(
               children: [
                 const SizedBox(height: AppSpacing.sm),
-                _TodayCard(setup: value, day: value.dayOn(today)),
+                _TodayCard(
+                  setup: value,
+                  day: value.dayOn(today),
+                  marks: ref.watch(holidayCalendarProvider).marksOn(today),
+                ),
                 UpcomingConflictsSection(from: today),
                 const TodayHabitsSection(),
                 RySectionHeader(l10n.todayNextDays),
@@ -80,10 +88,15 @@ class TodayScreen extends ConsumerWidget {
 }
 
 class _TodayCard extends StatelessWidget {
-  const _TodayCard({required this.setup, required this.day});
+  const _TodayCard({
+    required this.setup,
+    required this.day,
+    required this.marks,
+  });
 
   final ShiftSetup setup;
   final ScheduledDay day;
+  final DayMarks marks;
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +117,16 @@ class _TodayCard extends StatelessWidget {
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
+          if (marks.publicHoliday case final holiday?)
+            HolidayInfoLine(
+              icon: Icons.celebration_outlined,
+              text: '${l10n.calendarHoliday}: ${holiday.displayName(l10n)}',
+            ),
+          if (marks.schoolHoliday case final school?)
+            HolidayInfoLine(
+              icon: Icons.backpack_outlined,
+              text: school.displayName(l10n),
+            ),
           const SizedBox(height: AppSpacing.md),
           Row(
             children: [
@@ -137,6 +160,13 @@ class _TodayCard extends StatelessWidget {
               ),
             ],
           ),
+          if (day.isHolidayOff && day.rotationShift != null) ...[
+            const SizedBox(height: AppSpacing.md),
+            _Hint(
+              icon: Icons.celebration_outlined,
+              text: l10n.holidayOffFrom(day.rotationShift!.displayName(l10n)),
+            ),
+          ],
           if (day.isOverridden && day.rotationShift != null) ...[
             const SizedBox(height: AppSpacing.md),
             _Hint(

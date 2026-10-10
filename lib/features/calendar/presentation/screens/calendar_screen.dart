@@ -11,6 +11,9 @@ import '../../../../core/ui/tokens/tokens.dart';
 import '../../../device_calendar/domain/entities/calendar_event.dart';
 import '../../../device_calendar/domain/entities/shift_conflict.dart';
 import '../../../device_calendar/presentation/calendar_conflict_providers.dart';
+import '../../../holidays/domain/services/holiday_calendar.dart';
+import '../../../holidays/presentation/holiday_providers.dart';
+import '../../../holidays/presentation/widgets/holiday_widgets.dart';
 import '../../../shifts/domain/entities/shift_setup.dart';
 import '../../../shifts/presentation/controllers/shift_providers.dart';
 import '../../../shifts/presentation/widgets/shift_visuals.dart';
@@ -85,6 +88,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
           AsyncData(:final value) => RySliverPadding(
             sliver: SliverList.list(
               children: [
+                const HolidaySetupPrompt(),
                 _MonthHeader(
                   month: month,
                   onPrevious: () => _goTo(_page - 1),
@@ -107,7 +111,10 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                _Legend(setup: value),
+                _Legend(
+                  setup: value,
+                  holidays: ref.watch(holidayCalendarProvider),
+                ),
               ],
             ),
           ),
@@ -183,6 +190,7 @@ class _MonthPage extends ConsumerWidget {
       month: month,
       today: today,
       setup: setup,
+      holidays: ref.watch(holidayCalendarProvider),
       conflictDates: {for (final c in conflicts) c.date},
       eventDates: eventsByDay.keys.toSet(),
       onDayTap: (date) => onDayTap(date, eventsByDay[date] ?? const [], [
@@ -240,9 +248,10 @@ class _MonthHeader extends StatelessWidget {
 }
 
 class _Legend extends StatelessWidget {
-  const _Legend({required this.setup});
+  const _Legend({required this.setup, required this.holidays});
 
   final ShiftSetup setup;
+  final HolidayCalendar holidays;
 
   @override
   Widget build(BuildContext context) {
@@ -266,6 +275,9 @@ class _Legend extends StatelessWidget {
             Text(l10n.calendarChanged, style: theme.textTheme.bodySmall),
           ],
         ),
+        const HolidayLegendItem(),
+        if (holidays.showSchoolHolidays && holidays.state != null)
+          const SchoolHolidayLegendItem(),
       ],
     );
   }

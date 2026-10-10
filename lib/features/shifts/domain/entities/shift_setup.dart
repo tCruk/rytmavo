@@ -11,7 +11,9 @@ final class ShiftSetup {
     required List<ShiftType> types,
     required List<RotationPattern> patterns,
     required List<ShiftOverride> overrides,
-  }) : types = List.unmodifiable(
+    this.isDayOff,
+  }) : _overrideList = List.unmodifiable(overrides),
+       types = List.unmodifiable(
          <ShiftType>[...types]
            ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder)),
        ),
@@ -37,6 +39,32 @@ final class ShiftSetup {
 
   final Map<String, ShiftType> _typesById;
   final Map<LocalDate, String> _overrides;
+  final List<ShiftOverride> _overrideList;
+
+  /// Days on which work shifts of the rotation become a day off
+  /// (public holidays, if the user chose so). `null`: none.
+  final bool Function(LocalDate date)? isDayOff;
+
+  /// Same configuration, with [isDayOff] deciding which days the rotation's
+  /// work shifts are replaced by a day off. Overrides still win.
+  ShiftSetup withDaysOff(bool Function(LocalDate date)? rule) => ShiftSetup(
+    types: types,
+    patterns: patterns,
+    overrides: _overrideList,
+    isDayOff: rule,
+  );
+
+  /// The type shown on a day that became free: the first day-off type,
+  /// preferring active ones.
+  ShiftType? get _offType {
+    ShiftType? archived;
+    for (final t in types) {
+      if (t.isWorkShift) continue;
+      if (!t.isArchived) return t;
+      archived ??= t;
+    }
+    return archived;
+  }
 
   bool get hasRotation => patterns.isNotEmpty;
 
@@ -63,12 +91,10 @@ final class ShiftSetup {
   RotationPattern? get currentPattern =>
       patterns.isEmpty ? null : patterns.last;
 
-  /// Resolves the shift for [date]: override > rotation > none.
+  /// Resolves the shift for [date]: override > holiday off > rotation >
+  /// none.
   ScheduledDay dayOn(LocalDate date) {
-    final pattern = patternOn(date);
-    final rotationShift = pattern == null
-        ? null
-        : _typesById[pattern.shiftIdOn(date)];
+    final rotationShift = _rotationShiftOn(date);
     final overrideId = _overrides[date];
     if (overrideId != null) {
       final overrideShift = _typesById[overrideId];
@@ -80,6 +106,30 @@ final class ShiftSetup {
           rotationShift: rotationShift,
         );
       }
+    }
+    return _withoutOverride(date, rotationShift);
+  }
+
+  /// The shift [date] has when no override exists (holiday off or
+  /// rotation). Choosing it again means removing the override.
+  ShiftType? defaultShiftOn(LocalDate date) =>
+      _withoutOverride(date, _rotationShiftOn(date)).shift;
+
+  ShiftType? _rotationShiftOn(LocalDate date) {
+    final pattern = patternOn(date);
+    return pattern == null ? null : _typesById[pattern.shiftIdOn(date)];
+  }
+
+  ScheduledDay _withoutOverride(LocalDate date, ShiftType? rotationShift) {
+    if (rotationShift != null &&
+        rotationShift.isWorkShift &&
+        (isDayOff?.call(date) ?? false)) {
+      return ScheduledDay(
+        date: date,
+        shift: _offType,
+        source: ShiftSource.holiday,
+        rotationShift: rotationShift,
+      );
     }
     if (rotationShift != null) {
       return ScheduledDay(

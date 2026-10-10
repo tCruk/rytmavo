@@ -236,7 +236,30 @@ Verdacht für veraltete Anzeigen). Schreibvorgänge am Feature-Repository
 vorbei (Backup-Import, Löschen) invalidieren die betroffenen Provider
 explizit.
 
-## 12. Offene Architekturpunkte
+## 12. Feiertage und Schulferien
+
+- `features/holidays/domain`: `GermanPublicHolidays.forYear(year, state:)`
+  berechnet gesetzliche Feiertage (Gauß/anonymer gregorianischer Algorithmus
+  für Ostern, Einführungsjahre wie Frauentag BE 2019 / MV 2023 berücksichtigt).
+  Gemeindebezogene Feiertage fehlen bewusst (nur Bundesland bekannt).
+  `HolidayCalendar` beantwortet `marksOn(date)` und `isDayOff(date)`.
+- `features/holidays/data/school_holiday_data.dart` ist **generiert**
+  (`python3 tool/generate_school_holidays.py`) aus `tool/school_holidays/*.txt`
+  (Auszug OpenHolidays API, ODbL 1.0). Neue Jahre: Rohdaten ergänzen,
+  Skript laufen lassen, `dart format`.
+- Einstellungen (`holidayState`, `showSchoolHolidays`, `holidaysAreDaysOff`,
+  `holidaySetupDone`) liegen in `settings_entries`; kein Schemawechsel.
+
+### ADR-015 Feiertage als Regel, nicht als gespeicherte Overrides
+„An Feiertagen frei“ schreibt keine Overrides in die Datenbank, sondern
+`shiftSetupProvider` legt eine Regel über das gespeicherte Setup
+(`ShiftSetup.withDaysOff`). Auflösung: Override > Feiertag frei > Rhythmus.
+So bleibt die Option jederzeit umkehrbar, Backups bleiben unverändert, und
+alle Verbraucher (Heute, Kalender, Erinnerungen, Uhr, Konflikte, Statistik)
+sehen dieselben Tage. `storedShiftSetupProvider` liefert das ungefilterte
+Setup.
+
+## 13. Offene Architekturpunkte
 
 - Golden-Tests für zentrale Screens, sobald Referenzbilder aus einem
   reproduzierbaren CI-Lauf vorliegen.

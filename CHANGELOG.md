@@ -5,6 +5,22 @@ Versionierung SemVer. Noch unveröffentlicht.
 
 ## [Unreleased] – Branch `main`
 
+### Feiertage und Schulferien (2026-10-10)
+- Gesetzliche Feiertage werden offline berechnet (Osterformel plus feste
+  Tage). Die neun bundesweiten Feiertage sind immer im Kalender markiert:
+  Tageszahl mit Ring, Name im Tagesblatt, auf Heute und für Screenreader.
+- Der Kalender fragt einmal nach dem Bundesland (Einstellungen → Kalender →
+  Feiertage & Ferien): regionale Feiertage (z. B. Fronleichnam,
+  Reformationstag, Buß- und Bettag) und optional die Schulferien als Band
+  unter den Tagen. Ferien sind für alle 16 Länder von Ende 2024 bis 2030
+  mitgeliefert (allgemeinbildende Schulen, ohne Inselsonderregeln).
+- Option „An Feiertagen frei“: Arbeitsschichten aus dem Rhythmus werden an
+  gesetzlichen Feiertagen zu „Frei“ (Heute, Kalender, Erinnerungen, Uhr,
+  Terminkonflikte). Wer doch arbeitet, ändert den Tag im Kalender; die
+  Änderung hat Vorrang.
+- Neue Farb-Tokens `holiday` und `schoolHoliday` (Kontrast getestet).
+- Backup enthält die Feiertags-Einstellungen.
+
 ### Gerätekalender (2026-10-10)
 - Optionaler Abgleich mit dem Gerätekalender (Einstellungen → Gerätekalender):
   Zugriff wird erst beim Einschalten erfragt, nur lesend über

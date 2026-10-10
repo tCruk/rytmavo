@@ -1,0 +1,92 @@
+2028-01-28 2028-01-28 DE-HH - - Halbjahrespause
+2028-01-31 2028-02-01 DE-NI - - Halbjahresferien
+2028-01-31 2028-02-01 DE-HB - - Halbjahresferien
+2028-01-31 2028-02-05 DE-BB - - Winterferien
+2028-01-31 2028-02-05 DE-BE - - Winterferien
+2028-02-05 2028-02-17 DE-MV DE-MV-ABS - Winterferien
+2028-02-05 2028-02-12 DE-MV DE-MV-BBS - Winterferien
+2028-02-07 2028-02-12 DE-TH - - Winterferien
+2028-02-07 2028-02-12 DE-ST - - Winterferien
+2028-02-14 2028-02-26 DE-SN - - Winterferien
+2028-02-18 2028-02-18 DE-MV DE-MV-ABS - Schulfrei
+2028-02-21 2028-02-29 DE-SL - - Fastnachtsferien
+2028-02-28 2028-03-03 DE-BY - - Frühjahrsferien
+2028-03-06 2028-03-17 DE-HH - - Frühjahrsferien
+2028-03-09 2028-03-09 DE-MV DE-MV-BBS - Zusätzlicher Ferientag
+2028-03-10 2028-03-10 DE-MV DE-MV-BBS - Zusätzlicher Ferientag
+2028-04-03 2028-04-15 DE-TH - - Osterferien
+2028-04-03 2028-04-14 DE-HE - - Osterferien
+2028-04-03 2028-04-15 DE-SH - - Osterferien
+2028-04-10 2028-04-22 DE-NI - - Osterferien
+2028-04-10 2028-04-22 DE-HB - - Osterferien
+2028-04-10 2028-04-22 DE-BE - - Osterferien
+2028-04-10 2028-04-21 DE-BY - - Osterferien
+2028-04-10 2028-04-22 DE-NW - - Osterferien
+2028-04-10 2028-04-21 DE-RP - - Osterferien
+2028-04-10 2028-04-22 DE-BB - - Osterferien
+2028-04-10 2028-04-22 DE-ST - - Osterferien
+2028-04-12 2028-04-21 DE-MV DE-MV-ABS,DE-MV-BBS - Osterferien
+2028-04-12 2028-04-21 DE-SL - - Osterferien
+2028-04-13 2028-04-13 DE-BW - - Gründonnerstag
+2028-04-14 2028-04-22 DE-SN - - Osterferien
+2028-04-18 2028-04-22 DE-BW - - Osterferien
+2028-05-22 2028-05-26 DE-HH - - Pfingstferien
+2028-05-26 2028-05-26 DE-TH - - Schulfreier Tag
+2028-05-26 2028-05-26 DE-SN - - Unterrichtsfreier Tag
+2028-05-26 2028-05-26 DE-NI - - Tag nach Himmelfahrt
+2028-05-26 2028-05-26 DE-SH - - Himmelfahrt
+2028-05-26 2028-05-26 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2028-05-26 2028-05-26 DE-BE - - Unterrichtsfreier Tag
+2028-05-26 2028-05-26 DE-BB - - Variabler Ferientag
+2028-05-26 2028-05-26 DE-HB - - Tag nach Himmelfahrt
+2028-06-01 2028-06-02 DE-BE - - Pfingstferien
+2028-06-02 2028-06-06 DE-MV DE-MV-ABS - Pfingstferien
+2028-06-03 2028-06-10 DE-ST - - Pfingstferien
+2028-06-06 2028-06-06 DE-NI - - Pfingstferien
+2028-06-06 2028-06-17 DE-BW - - Pfingstferien
+2028-06-06 2028-06-06 DE-HB - - Pfingstferien
+2028-06-06 2028-06-16 DE-BY - - Pfingstferien
+2028-06-24 2028-08-04 DE-SH - - Sommerferien
+2028-06-24 2028-07-28 DE-SH - Exception Sommerferien
+2028-06-26 2028-08-05 DE-MV DE-MV-ABS - Sommerferien
+2028-06-29 2028-08-12 DE-BB - - Sommerferien
+2028-07-01 2028-08-12 DE-BE - - Sommerferien
+2028-07-03 2028-08-11 DE-HH - - Sommerferien
+2028-07-03 2028-08-11 DE-HE - - Sommerferien
+2028-07-03 2028-08-11 DE-RP - - Sommerferien
+2028-07-03 2028-08-11 DE-SL - - Sommerferien
+2028-07-10 2028-08-22 DE-NW - - Sommerferien
+2028-07-17 2028-09-02 DE-MV DE-MV-BBS - Sommerferien
+2028-07-20 2028-08-30 DE-HB - - Sommerferien
+2028-07-20 2028-08-30 DE-NI - - Sommerferien
+2028-07-22 2028-09-01 DE-SN - - Sommerferien
+2028-07-22 2028-09-01 DE-ST - - Sommerferien
+2028-07-22 2028-09-01 DE-TH - - Sommerferien
+2028-07-27 2028-09-09 DE-BW - - Sommerferien
+2028-07-31 2028-09-11 DE-BY - - Sommerferien
+2028-10-02 2028-10-13 DE-HH - - Herbstferien
+2028-10-02 2028-10-02 DE-MV DE-MV-BBS - Zusätzlicher Ferientag
+2028-10-02 2028-10-02 DE-MV DE-MV-ABS - Zusätzlicher Ferientag
+2028-10-02 2028-10-14 DE-BB - - Herbstferien
+2028-10-02 2028-10-02 DE-NI - - Tag vor dem 3. Oktober
+2028-10-02 2028-10-02 DE-HB - - Tag vor dem 3. Oktober
+2028-10-02 2028-10-14 DE-BE - - Herbstferien
+2028-10-02 2028-10-02 DE-ST - - Ferientag
+2028-10-09 2028-10-30 DE-SH - Exception Herbstferien
+2028-10-09 2028-10-20 DE-SL - - Herbstferien
+2028-10-09 2028-10-20 DE-RP - - Herbstferien
+2028-10-09 2028-10-20 DE-HE - - Herbstferien
+2028-10-16 2028-10-30 DE-SH - - Herbstferien
+2028-10-23 2028-11-03 DE-TH - - Herbstferien
+2028-10-23 2028-10-28 DE-MV DE-MV-ABS,DE-MV-BBS - Herbstferien
+2028-10-23 2028-11-04 DE-NW - - Herbstferien
+2028-10-23 2028-11-03 DE-SN - - Herbstferien
+2028-10-23 2028-11-04 DE-NI - - Herbstferien
+2028-10-23 2028-11-04 DE-HB - - Herbstferien
+2028-10-30 2028-10-30 DE-MV DE-MV-ABS,DE-MV-BBS - Zusätzlicher Ferientag
+2028-10-30 2028-11-03 DE-BY - - Herbstferien
+2028-10-30 2028-11-03 DE-ST - - Herbstferien
+2028-10-30 2028-10-30 DE-BB - - Variabler Ferientag
+2028-10-30 2028-10-30 DE-HH - - Brückentag
+2028-10-30 2028-11-03 DE-BW - - Herbstferien
+2028-11-22 2028-11-22 DE-BY - - Buß- und Bettag
