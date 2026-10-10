@@ -178,6 +178,20 @@ Umgebung: wie zuvor.
   der Gewohnheit fragt Berechtigung ab und schaltet Erinnerungen global ein;
   verweigerte Berechtigung lässt sie aus und zeigt den Hinweis.
 
+## Review-Runde 3 – 2026-10-10
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test --timeout 30s` | 92 Tests, 92 bestanden |
+| Reproduktion „erst nach Neustart sichtbar“ auf Gerät | **nicht möglich** (kein Gerät); In-Prozess-Streams nachweislich korrekt, Fix absichert beide Pfade – auf Gerät gegenprüfen |
+
+- `test/app/drift_app_flow_test.dart` (2, neu): App mit echter Drift-DB
+  (In-Memory): Schichtmodell anlegen, über den Stift-Knopf bearbeiten, Heute
+  zeigt sofort das neue Modell; Gewohnheit anlegen und umbenennen, Liste
+  aktualisiert sich. Der Test deckte die ID-Kollision bei stehender Uhr auf.
+
 ### Offene Prüfungen
 
 - Golden-Tests für zentrale Screens (bewusst zurückgestellt: Goldens sind

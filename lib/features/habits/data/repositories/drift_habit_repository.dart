@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 
 import '../../../../core/database/app_database.dart';
+import '../../../../core/database/write_notifier.dart';
 import '../../../../core/date/local_date.dart';
 import '../../../../core/date/local_time.dart';
 import '../../../../core/result/result.dart';
@@ -12,7 +13,7 @@ import '../../domain/entities/habit_plan.dart';
 import '../../domain/entities/habit_rule.dart';
 import '../../domain/repositories/habit_repository.dart';
 
-final class DriftHabitRepository implements HabitRepository {
+final class DriftHabitRepository with WriteNotifier implements HabitRepository {
   DriftHabitRepository(this._db);
 
   final AppDatabase _db;
@@ -35,18 +36,22 @@ final class DriftHabitRepository implements HabitRepository {
     );
   }
 
+  /// Reloads on drift's table updates and after every write through this
+  /// repository (see ADR-010 / ADR-014).
   @override
-  Stream<HabitPlan> watch() => _db
-      .customSelect(
-        'SELECT 1',
-        readsFrom: {_db.habits, _db.habitRules, _db.habitCompletions},
-      )
-      .watch()
-      .asyncMap((_) => load());
+  Stream<HabitPlan> watch() => reloadOn(
+    _db
+        .customSelect(
+          'SELECT 1',
+          readsFrom: {_db.habits, _db.habitRules, _db.habitCompletions},
+        )
+        .watch(),
+    load,
+  );
 
   @override
   Future<Result<void>> saveHabit(Habit habit, HabitRule rule) =>
-      guardStorage(context: 'saveHabit', () async {
+      write('saveHabit', () async {
         await _db.transaction(() async {
           await _db
               .into(_db.habits)
@@ -108,14 +113,14 @@ final class DriftHabitRepository implements HabitRepository {
 
   @override
   Future<Result<void>> archiveHabit(String habitId, LocalDate from) =>
-      guardStorage(context: 'archiveHabit', () async {
+      write('archiveHabit', () async {
         await (_db.update(_db.habits)..where((h) => h.id.equals(habitId)))
             .write(HabitsCompanion(archivedOn: Value(from.toIsoString())));
       });
 
   @override
   Future<Result<void>> deleteHabit(String habitId) =>
-      guardStorage(context: 'deleteHabit', () async {
+      write('deleteHabit', () async {
         // Rules and completions cascade (foreign keys are enabled).
         await (_db.delete(_db.habits)..where((h) => h.id.equals(habitId))).go();
       });
@@ -126,7 +131,7 @@ final class DriftHabitRepository implements HabitRepository {
     LocalDate date, {
     required bool completed,
     required DateTime now,
-  }) => guardStorage(context: 'setCompleted', () async {
+  }) => write('setCompleted', () async {
     if (completed) {
       await _db
           .into(_db.habitCompletions)
@@ -149,7 +154,7 @@ final class DriftHabitRepository implements HabitRepository {
 
   @override
   Future<Result<void>> reorder(List<String> habitIdsInOrder) =>
-      guardStorage(context: 'reorder', () async {
+      write('reorder', () async {
         await _db.batch((batch) {
           for (var i = 0; i < habitIdsInOrder.length; i++) {
             batch.update(

@@ -4,6 +4,9 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../../app/di/providers.dart';
 import '../../../core/result/failure.dart';
 import '../../../core/result/result.dart';
+import '../../habits/presentation/controllers/habit_providers.dart';
+import '../../settings/presentation/controllers/settings_controller.dart';
+import '../../shifts/presentation/controllers/shift_providers.dart';
 import '../data/platform_backup_file_gateway.dart';
 import '../domain/entities/backup_document.dart';
 import '../domain/gateways/backup_file_gateway.dart';
@@ -71,9 +74,25 @@ final class BackupActions {
     return BackupCodec.decode(text).map((doc) => doc);
   }
 
-  Future<Result<void>> import(BackupDocument doc) =>
-      _ref.read(backupRepositoryProvider).importDocument(doc);
+  Future<Result<void>> import(BackupDocument doc) async {
+    final result = await _ref
+        .read(backupRepositoryProvider)
+        .importDocument(doc);
+    if (result.isSuccess) _refreshAll();
+    return result;
+  }
 
-  Future<Result<void>> deleteAll() =>
-      _ref.read(backupRepositoryProvider).deleteAll();
+  Future<Result<void>> deleteAll() async {
+    final result = await _ref.read(backupRepositoryProvider).deleteAll();
+    if (result.isSuccess) _refreshAll();
+    return result;
+  }
+
+  /// The backup repository writes past the feature repositories, so their
+  /// streams and the settings notifier are re-created explicitly.
+  void _refreshAll() {
+    _ref.invalidate(shiftSetupProvider);
+    _ref.invalidate(habitPlanProvider);
+    _ref.invalidate(settingsControllerProvider);
+  }
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 
 import '../../../../core/database/app_database.dart';
+import '../../../../core/database/write_notifier.dart';
 import '../../../../core/date/clock.dart';
 import '../../../../core/date/local_date.dart';
 import '../../../../core/date/local_time.dart';
@@ -13,7 +14,7 @@ import '../../domain/entities/shift_setup.dart';
 import '../../domain/entities/shift_type.dart';
 import '../../domain/repositories/shift_repository.dart';
 
-final class DriftShiftRepository implements ShiftRepository {
+final class DriftShiftRepository with WriteNotifier implements ShiftRepository {
   DriftShiftRepository(this._db, this._clock);
 
   final AppDatabase _db;
@@ -37,21 +38,22 @@ final class DriftShiftRepository implements ShiftRepository {
     );
   }
 
-  /// Uses a drift query stream over all three tables (instead of
-  /// `tableUpdates` in an `async*` generator, whose cancellation hangs) so
-  /// listeners can unsubscribe immediately.
+  /// Reloads on drift's table updates (a query stream over all three
+  /// tables, see ADR-010) and after every write through this repository.
   @override
-  Stream<ShiftSetup> watch() => _db
-      .customSelect(
-        'SELECT 1',
-        readsFrom: {_db.shiftTypes, _db.rotationPatterns, _db.shiftOverrides},
-      )
-      .watch()
-      .asyncMap((_) => load());
+  Stream<ShiftSetup> watch() => reloadOn(
+    _db
+        .customSelect(
+          'SELECT 1',
+          readsFrom: {_db.shiftTypes, _db.rotationPatterns, _db.shiftOverrides},
+        )
+        .watch(),
+    load,
+  );
 
   @override
   Future<Result<void>> saveShiftTypes(List<ShiftType> types) =>
-      guardStorage(context: 'saveShiftTypes', () async {
+      write('saveShiftTypes', () async {
         final now = _clock.now();
         await _db.batch((batch) {
           for (final t in types) {
@@ -90,7 +92,7 @@ final class DriftShiftRepository implements ShiftRepository {
   Future<Result<void>> addRotationVersion(
     RotationPattern pattern, {
     bool replaceHistory = false,
-  }) => guardStorage(context: 'addRotationVersion', () async {
+  }) => write('addRotationVersion', () async {
     await _db.transaction(() async {
       if (replaceHistory) {
         await _db.delete(_db.rotationPatterns).go();
@@ -116,7 +118,7 @@ final class DriftShiftRepository implements ShiftRepository {
 
   @override
   Future<Result<void>> setOverride(ShiftOverride override) =>
-      guardStorage(context: 'setOverride', () async {
+      write('setOverride', () async {
         await _db
             .into(_db.shiftOverrides)
             .insertOnConflictUpdate(
@@ -130,7 +132,7 @@ final class DriftShiftRepository implements ShiftRepository {
 
   @override
   Future<Result<void>> removeOverride(LocalDate date) =>
-      guardStorage(context: 'removeOverride', () async {
+      write('removeOverride', () async {
         await (_db.delete(
           _db.shiftOverrides,
         )..where((o) => o.date.equals(date.toIsoString()))).go();

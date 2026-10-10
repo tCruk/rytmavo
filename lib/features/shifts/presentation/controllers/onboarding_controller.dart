@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/di/providers.dart';
@@ -187,12 +189,18 @@ class OnboardingController extends Notifier<OnboardingDraft> {
     state = state.copyWith(step: OnboardingStep.values[state.step.index - 1]);
   }
 
+  static final Random _random = Random();
+
   /// The rotation version the draft would store.
   RotationPattern draftPattern() {
     final today = ref.read(todayProvider);
     final firstVersion = !state.isEdit || state.applyToPast;
     return RotationPattern(
-      id: 'rotation-${ref.read(clockProvider).now().microsecondsSinceEpoch}',
+      // Clock stamp plus a random suffix: two saves in the same instant
+      // (fixed clocks in tests, fast double taps) must not share an id.
+      id:
+          'rotation-${ref.read(clockProvider).now().microsecondsSinceEpoch}-'
+          '${_random.nextInt(1 << 20)}',
       validFrom: firstVersion ? RotationRules.firstVersionValidFrom : today,
       anchorDate: RotationRules.anchorFor(
         today: today,

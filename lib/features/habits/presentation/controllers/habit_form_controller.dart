@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/di/providers.dart';
@@ -83,6 +85,8 @@ class HabitFormController extends Notifier<HabitDraft> {
 
   final String? habitId;
 
+  static final Random _random = Random();
+
   @override
   HabitDraft build() {
     final plan = ref.read(habitPlanProvider).value ?? HabitPlan.empty;
@@ -165,7 +169,11 @@ class HabitFormController extends Notifier<HabitDraft> {
     }
     state = state.copyWith(saving: true);
     final today = ref.read(todayProvider);
-    final stamp = ref.read(clockProvider).now().microsecondsSinceEpoch;
+    // Clock stamp plus a random suffix so two saves in the same instant
+    // never collide on the primary key.
+    final stamp =
+        '${ref.read(clockProvider).now().microsecondsSinceEpoch}-'
+        '${_random.nextInt(1 << 20)}';
     final plan = ref.read(habitPlanProvider).value ?? HabitPlan.empty;
     final description = state.description.trim();
 

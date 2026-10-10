@@ -217,6 +217,18 @@ alle anderen Strings übersetzt und per `gen-l10n` typgeprüft werden.
 Betreiberdaten sind als `[… – vom Betreiber zu ergänzen]` markiert und
 müssen vor einem Release ersetzt werden (siehe `RELEASE_CHECKLIST.md`).
 
+### ADR-014 Streams reagieren auf eigene Schreibvorgänge
+Die Drift-Repositories mischen in `watch()` den Drift-Query-Stream
+(ADR-010) mit einem eigenen Signal, das nach jedem erfolgreichen Schreiben
+über das Repository feuert (`core/database/write_notifier.dart`). Damit
+hängt „Änderung sofort sichtbar“ nicht allein an Drifts
+Tabellen-Benachrichtigung über die Datenbank-Isolate-Grenze. Die
+Datenbank wird ohne `shareAcrossIsolates` geöffnet (kein zweiter Isolate
+braucht sie; der geteilte Server-Isolate überlebt Hot-Restarts und war ein
+Verdacht für veraltete Anzeigen). Schreibvorgänge am Feature-Repository
+vorbei (Backup-Import, Löschen) invalidieren die betroffenen Provider
+explizit.
+
 ## 12. Offene Architekturpunkte
 
 - Golden-Tests für zentrale Screens, sobald Referenzbilder aus einem

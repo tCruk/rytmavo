@@ -62,6 +62,19 @@ Versionierung SemVer. Noch unveröffentlicht.
 - Tests: Fälligkeit und Statistik, drift-Repository, Widget-Flows
   (Gewohnheit anlegen → abhaken → rückgängig; Auswertung).
 
+### Review-Runde 3 (2026-10-10)
+- Fix: Änderungen (Schichtmodell, Gewohnheiten, Erledigungen, Import)
+  erscheinen sofort, nicht erst nach Neustart. Die Drift-Repositories
+  melden eigene Schreibvorgänge zusätzlich an ihre `watch()`-Streams
+  (`WriteNotifier`), die Datenbank wird ohne geteilten Isolate-Server
+  geöffnet, und Backup-Import/-Löschen setzen die Provider explizit zurück
+  (ADR-014).
+- Fix: IDs für Rotations- und Regelversionen erhalten einen Zufallsanteil,
+  damit zwei Speichervorgänge im selben Augenblick nicht kollidieren
+  (vorher „Speichern fehlgeschlagen“ bei stehender Uhr).
+- Neuer End-to-End-Test mit echter Drift-Datenbank (Schichtmodell anlegen
+  und bearbeiten, Gewohnheit umbenennen).
+
 ### Review-Runde 2 (2026-10-10)
 - App-Icon (Rytmavo-„R“) für iOS und Android aus `assets/icon/` erzeugt
   (`tool/generate_icons.py`, adaptives Android-Icon mit eigener
