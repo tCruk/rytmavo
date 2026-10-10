@@ -1,6 +1,6 @@
 // Apple signing for the Runner target. The Team ID is not a secret, so it
 // is committed here once known; Xcode's automatic signing does the rest.
 // Find it under https://developer.apple.com/account → Membership details.
-// Empty = no team selected (simulator builds still work).
-DEVELOPMENT_TEAM =
+// Team: Tim Kremers (set 2026-10-10).
+DEVELOPMENT_TEAM = YXU94SP639
 CODE_SIGN_STYLE = Automatic
