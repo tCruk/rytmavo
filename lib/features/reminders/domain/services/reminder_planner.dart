@@ -1,4 +1,5 @@
 import '../../../../core/date/local_date.dart';
+import '../../../device_calendar/domain/entities/shift_conflict.dart';
 import '../../../habits/domain/entities/habit_plan.dart';
 import '../../../habits/domain/entities/habit_rule.dart';
 import '../../../shifts/domain/entities/shift_setup.dart';
@@ -52,9 +53,45 @@ abstract final class ReminderPlanner {
         );
       }
     }
-    result.sort((a, b) => a.at.compareTo(b.at));
-    return result.length > maxScheduled
-        ? result.sublist(0, maxScheduled)
-        : result;
+    return capped(result);
+  }
+
+  /// Hour on the evening before a shift at which appointment conflicts
+  /// are announced.
+  static const int conflictWarningHour = 18;
+
+  /// One warning per shift day with overlapping appointments, delivered at
+  /// [conflictWarningHour] on the day before. Warnings whose time has
+  /// passed are dropped; the app shows the conflict anyway.
+  static List<PlannedReminder> planConflicts({
+    required List<ShiftConflict> conflicts,
+    required DateTime now,
+  }) {
+    final byDate = <LocalDate, List<ShiftConflict>>{};
+    for (final c in conflicts) {
+      (byDate[c.date] ??= []).add(c);
+    }
+    final result = <PlannedReminder>[];
+    for (final MapEntry(key: date, value: dayConflicts) in byDate.entries) {
+      final eve = date.addDays(-1);
+      final at = DateTime(eve.year, eve.month, eve.day, conflictWarningHour);
+      if (!at.isAfter(now)) continue;
+      result.add(
+        PlannedReminder.conflict(
+          date: date,
+          at: at,
+          conflicts: List.unmodifiable(dayConflicts),
+        ),
+      );
+    }
+    return capped(result);
+  }
+
+  /// Sorts by delivery time and keeps the earliest [maxScheduled].
+  static List<PlannedReminder> capped(List<PlannedReminder> reminders) {
+    final sorted = [...reminders]..sort((a, b) => a.at.compareTo(b.at));
+    return sorted.length > maxScheduled
+        ? sorted.sublist(0, maxScheduled)
+        : sorted;
   }
 }

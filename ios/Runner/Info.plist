@@ -31,6 +31,10 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Rytmavo liest deine Termine, um Überschneidungen mit deinen Schichten anzuzeigen. Termine werden nicht verändert oder gespeichert.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Rytmavo liest deine Termine, um Überschneidungen mit deinen Schichten anzuzeigen. Termine werden nicht verändert oder gespeichert.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

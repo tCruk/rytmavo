@@ -17,6 +17,7 @@ class MonthGrid extends StatelessWidget {
     required this.today,
     required this.setup,
     required this.onDayTap,
+    this.conflictDates = const {},
     super.key,
   });
 
@@ -36,6 +37,9 @@ class MonthGrid extends StatelessWidget {
     final scale = MediaQuery.textScalerOf(context).scale(header);
     return scale * 1.4 + AppSpacing.xs + _rows * _cellHeight;
   }
+
+  /// Days whose shift overlaps a device calendar event.
+  final Set<LocalDate> conflictDates;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +78,9 @@ class MonthGrid extends StatelessWidget {
                     date: gridStart.addDays(r * 7 + c),
                     isToday: gridStart.addDays(r * 7 + c) == today,
                     inMonth: gridStart.addDays(r * 7 + c).month == month.month,
+                    hasConflict: conflictDates.contains(
+                      gridStart.addDays(r * 7 + c),
+                    ),
                     setup: setup,
                     onTap: onDayTap,
                   ),
@@ -90,6 +97,7 @@ class _DayCell extends StatelessWidget {
     required this.date,
     required this.isToday,
     required this.inMonth,
+    required this.hasConflict,
     required this.setup,
     required this.onTap,
   });
@@ -99,6 +107,7 @@ class _DayCell extends StatelessWidget {
 
   /// False for the muted days of the previous / next month.
   final bool inMonth;
+  final bool hasConflict;
   final ShiftSetup setup;
   final ValueChanged<LocalDate> onTap;
 
@@ -114,9 +123,11 @@ class _DayCell extends StatelessWidget {
     final cell = Semantics(
       button: true,
       selected: isToday,
-      label: day.isOverridden
-          ? '${l10n.calendarDayA11y(dateText, shiftName)}, ${l10n.calendarChanged}'
-          : l10n.calendarDayA11y(dateText, shiftName),
+      label: [
+        l10n.calendarDayA11y(dateText, shiftName),
+        if (day.isOverridden) l10n.calendarChanged,
+        if (hasConflict) l10n.conflictsTitle,
+      ].join(', '),
       excludeSemantics: true,
       child: InkWell(
         onTap: () => onTap(date),
@@ -160,6 +171,22 @@ class _DayCell extends StatelessWidget {
                         Icons.circle,
                         size: 8,
                         color: theme.colorScheme.onSurface,
+                      ),
+                    ),
+                  if (hasConflict)
+                    Positioned(
+                      left: -5,
+                      bottom: -5,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.surface,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.event_busy,
+                          size: 14,
+                          color: AppColors.of(context).warning,
+                        ),
                       ),
                     ),
                 ],

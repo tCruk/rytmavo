@@ -26,6 +26,9 @@ void main() {
       language: AppLanguage.en,
       onboardingCompleted: true,
       remindersEnabled: true,
+      calendarConflictsEnabled: true,
+      conflictCalendarIds: ['1', 'Kalender, mit Komma'],
+      conflictRemindersEnabled: true,
     );
     await repo.save(s);
     expect(await repo.load(), s);

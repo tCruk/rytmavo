@@ -10,6 +10,7 @@ import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
 import '../../../backup/domain/entities/backup_document.dart';
 import '../../../backup/presentation/backup_actions.dart';
+import '../../../device_calendar/presentation/widgets/calendar_conflict_settings_card.dart';
 import '../../../reminders/presentation/reminder_scheduler.dart';
 import '../../../shifts/presentation/controllers/shift_providers.dart';
 import '../../domain/entities/app_settings.dart';
@@ -80,6 +81,8 @@ class SettingsScreen extends ConsumerWidget {
                   onTap: () => context.push(AppRoutes.onboarding),
                 ),
               ),
+              RySectionHeader(l10n.settingsSectionCalendar),
+              const CalendarConflictSettingsCard(),
               RySectionHeader(l10n.settingsSectionReminders),
               const _RemindersCard(),
               RySectionHeader(l10n.settingsSectionData),

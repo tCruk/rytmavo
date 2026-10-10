@@ -6,6 +6,8 @@ import '../../../../app/l10n/generated/app_localizations.dart';
 import '../../../../core/date/local_date.dart';
 import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../device_calendar/domain/entities/shift_conflict.dart';
+import '../../../device_calendar/presentation/widgets/shift_conflict_tile.dart';
 import '../../../shifts/domain/entities/shift_override.dart';
 import '../../../shifts/domain/entities/shift_setup.dart';
 import '../../../shifts/presentation/widgets/shift_visuals.dart';
@@ -18,6 +20,7 @@ Future<DaySheetOutcome?> showDaySheet(
   BuildContext context, {
   required ShiftSetup setup,
   required LocalDate date,
+  List<ShiftConflict> conflicts = const [],
 }) {
   return showModalBottomSheet<DaySheetOutcome>(
     context: context,
@@ -26,15 +29,24 @@ Future<DaySheetOutcome?> showDaySheet(
     useRootNavigator: true,
     showDragHandle: true,
     shape: const RoundedRectangleBorder(borderRadius: AppRadius.sheetTop),
-    builder: (context) => _DaySheet(setup: setup, date: date),
+    isScrollControlled: conflicts.isNotEmpty,
+    builder: (context) =>
+        _DaySheet(setup: setup, date: date, conflicts: conflicts),
   );
 }
 
 class _DaySheet extends ConsumerWidget {
-  const _DaySheet({required this.setup, required this.date});
+  const _DaySheet({
+    required this.setup,
+    required this.date,
+    required this.conflicts,
+  });
 
   final ShiftSetup setup;
   final LocalDate date;
+
+  /// Device calendar events overlapping this day's shift.
+  final List<ShiftConflict> conflicts;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -96,6 +108,10 @@ class _DaySheet extends ConsumerWidget {
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
+            if (conflicts.isNotEmpty) ...[
+              RySectionHeader(l10n.conflictsTitle),
+              for (final c in conflicts) ShiftConflictTile(conflict: c),
+            ],
             RySectionHeader(l10n.daySheetChange),
             RadioGroup<String>(
               groupValue: day.shift?.id,

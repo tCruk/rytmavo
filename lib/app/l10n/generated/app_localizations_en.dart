@@ -668,7 +668,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get infoPrivacyBody =>
-      'Last updated: October 2026\n\n# 1. Controller\n\nThe controller within the meaning of the General Data Protection Regulation (GDPR) is:\n\nTim Kremers\nResinovo\nIn Venrath 17B\n41812 Erkelenz\nGermany\n\nPhone: +49 176 43594878\nE-mail: kontakt@resinovo.de\n\n# 2. Data protection officer\n\nNo data protection officer has been appointed, as the legal requirements for one are not met.\n\n# 3. The essentials\n\nRytmavo works entirely offline. There is no user account, no advertising, no tracking and no provider server. All data stays on your device. Data leaves the device only when you export or share a backup yourself.\n\n# 4. Local processing on the device\n\nThe app stores the following data only locally in the app\'s storage on your device: shift types with times and colours, rotation patterns and anchor date, day overrides, habits with rules and reminder times, daily completions, and app settings (language, theme, reminder status). This data is not transmitted to the provider. You can delete it item by item in the app, delete everything under Settings → Data, or uninstall the app. Whether device backups (e.g. iCloud, Google backup) include this data depends on your device and on Apple\'s or Google\'s rules.\n\nLegal basis: Art. 6 (1) (b) GDPR (providing the app\'s functions).\n\n# 5. Reminders (notifications)\n\nOn request the app schedules local reminders through your device\'s notification system and asks once for notification permission. No push service and no server is used; reminders are created and stay on the device. You can turn them off at any time in the app\'s or the device\'s settings.\n\n# 6. Backup, import and sharing\n\nA backup (JSON file) is created only on your instruction. When sharing, the app hands the file to the destination you choose (e.g. Files app, e-mail, cloud storage); from there the respective provider\'s privacy terms apply. On import the app reads only the file you select. The provider does not receive these files. The file is unencrypted.\n\n# 7. Purchase through the app stores\n\nThe app is purchased exclusively through the Apple App Store or Google Play. Apple or Google process your data as independent controllers under their own privacy policies. The provider receives no personal purchase data.\n\n# 8. No processing on provider servers\n\nAll features run on the device. Should server-based features be added in future, this privacy notice will be updated beforehand and shown in the app.\n\n# 9. Recipients and transfers to third countries\n\nNo data is transferred to third parties except to the destinations you choose when sharing, and to Apple or Google in the course of the purchase. The provider does not transfer data to third countries.\n\n# 10. Retention\n\nLocal data remains stored until you delete it or uninstall the app. E-mail enquiries to the provider are deleted once the matter is settled and no statutory retention obligations apply.\n\n# 11. No automated decision-making\n\nThere is no automated decision-making or profiling.\n\n# 12. Minors\n\nThe app is aimed at working adults. It is not intended for children under 13; no personal data of children is knowingly collected.\n\n# 13. Your rights\n\nYou have the right of access (Art. 15 GDPR), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18) and data portability (Art. 20), and the right to withdraw consent with effect for the future. Where processing is based on legitimate interests you may object at any time (Art. 21 GDPR). An e-mail to kontakt@resinovo.de is sufficient. As the app\'s data lives only on your device, you can view, export and delete it directly in the app.\n\n# 14. Right to lodge a complaint\n\nYou have the right to lodge a complaint with a data protection supervisory authority. The competent authority is the Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213 Düsseldorf, Germany.\n\n# 15. Changes to this privacy notice\n\nThis notice is updated when the legal situation, the technology or the app\'s features change. The current version is always available in the app under Settings → Privacy.';
+      'Last updated: October 2026\n\n# 1. Controller\n\nThe controller within the meaning of the General Data Protection Regulation (GDPR) is:\n\nTim Kremers\nResinovo\nIn Venrath 17B\n41812 Erkelenz\nGermany\n\nPhone: +49 176 43594878\nE-mail: kontakt@resinovo.de\n\n# 2. Data protection officer\n\nNo data protection officer has been appointed, as the legal requirements for one are not met.\n\n# 3. The essentials\n\nRytmavo works entirely offline. There is no user account, no advertising, no tracking and no provider server. All data stays on your device. Data leaves the device only when you export or share a backup yourself.\n\n# 4. Local processing on the device\n\nThe app stores the following data only locally in the app\'s storage on your device: shift types with times and colours, rotation patterns and anchor date, day overrides, habits with rules and reminder times, daily completions, and app settings (language, theme, reminder status). This data is not transmitted to the provider. You can delete it item by item in the app, delete everything under Settings → Data, or uninstall the app. Whether device backups (e.g. iCloud, Google backup) include this data depends on your device and on Apple\'s or Google\'s rules.\n\nLegal basis: Art. 6 (1) (b) GDPR (providing the app\'s functions).\n\n# 5. Reminders (notifications)\n\nOn request the app schedules local reminders through your device\'s notification system and asks once for notification permission. No push service and no server is used; reminders are created and stay on the device. You can turn them off at any time in the app\'s or the device\'s settings.\n\n# 6. Device calendar (optional)\n\nOnly if you turn on “Check appointments against shifts” under Settings → Device calendar does the app ask for access to your device calendar. It then reads the titles and times of appointments in the calendars you choose, to show overlaps with your shifts and, if you wish, remind you the evening before. Appointments are evaluated on the device only, never changed, not stored in the app and not transmitted. You can turn the feature off in the app or revoke access in the system settings at any time.\n\nLegal basis: Art. 6 (1) (a) GDPR (your consent by turning on the feature and granting calendar access).\n\n# 7. Backup, import and sharing\n\nA backup (JSON file) is created only on your instruction. When sharing, the app hands the file to the destination you choose (e.g. Files app, e-mail, cloud storage); from there the respective provider\'s privacy terms apply. On import the app reads only the file you select. The provider does not receive these files. The file is unencrypted.\n\n# 8. Purchase through the app stores\n\nThe app is purchased exclusively through the Apple App Store or Google Play. Apple or Google process your data as independent controllers under their own privacy policies. The provider receives no personal purchase data.\n\n# 9. No processing on provider servers\n\nAll features run on the device. Should server-based features be added in future, this privacy notice will be updated beforehand and shown in the app.\n\n# 10. Recipients and transfers to third countries\n\nNo data is transferred to third parties except to the destinations you choose when sharing, and to Apple or Google in the course of the purchase. The provider does not transfer data to third countries.\n\n# 11. Retention\n\nLocal data remains stored until you delete it or uninstall the app. E-mail enquiries to the provider are deleted once the matter is settled and no statutory retention obligations apply.\n\n# 12. No automated decision-making\n\nThere is no automated decision-making or profiling.\n\n# 13. Minors\n\nThe app is aimed at working adults. It is not intended for children under 13; no personal data of children is knowingly collected.\n\n# 14. Your rights\n\nYou have the right of access (Art. 15 GDPR), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18) and data portability (Art. 20), and the right to withdraw consent with effect for the future. Where processing is based on legitimate interests you may object at any time (Art. 21 GDPR). An e-mail to kontakt@resinovo.de is sufficient. As the app\'s data lives only on your device, you can view, export and delete it directly in the app.\n\n# 15. Right to lodge a complaint\n\nYou have the right to lodge a complaint with a data protection supervisory authority. The competent authority is the Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213 Düsseldorf, Germany.\n\n# 16. Changes to this privacy notice\n\nThis notice is updated when the legal situation, the technology or the app\'s features change. The current version is always available in the app under Settings → Privacy.';
 
   @override
   String get infoImprintTitle => 'Imprint';
@@ -683,5 +683,84 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String infoSupportBody(String version) {
     return 'For questions or problems, reach us at:\n\nE-mail: kontakt@resinovo.de\nWebsite: resinovo.de\n\n# Helpful in a request\n\nApp version: $version\n\nDescribe what you did and what happened instead. Please do not attach a backup file unless you want to share the data in it.\n\n# Back up your data\n\nYou can create a backup any time under Settings → Data → Export data.';
+  }
+
+  @override
+  String get settingsSectionCalendar => 'Device calendar';
+
+  @override
+  String get calendarSyncToggle => 'Check appointments against shifts';
+
+  @override
+  String get calendarSyncOn => 'On – appointments during a shift are flagged.';
+
+  @override
+  String get calendarSyncOff => 'Off – Rytmavo does not read any appointments.';
+
+  @override
+  String get calendarSyncDenied =>
+      'No calendar access. Allow it for Rytmavo in the system settings.';
+
+  @override
+  String get calendarSyncOpenSettings => 'Open system settings';
+
+  @override
+  String get calendarSyncCalendars => 'Calendars';
+
+  @override
+  String get calendarSyncAllCalendars => 'All calendars';
+
+  @override
+  String calendarSyncSomeCalendars(int count, int total) {
+    return '$count of $total calendars';
+  }
+
+  @override
+  String get calendarSyncPickTitle => 'Choose calendars';
+
+  @override
+  String get calendarSyncPickApply => 'Apply';
+
+  @override
+  String get calendarSyncNoCalendars => 'No calendars found on this device.';
+
+  @override
+  String get calendarSyncReminder => 'Remind me the evening before';
+
+  @override
+  String get calendarSyncReminderOn =>
+      'Notification at 6 pm on the day before the shift.';
+
+  @override
+  String get calendarSyncReminderNeedsReminders => 'Turn on reminders first.';
+
+  @override
+  String get calendarSyncHint =>
+      'Rytmavo reads appointments only on this device, never changes them and does not store them. All-day events are not checked.';
+
+  @override
+  String get conflictsTitle => 'Appointment conflicts';
+
+  @override
+  String conflictDuringShift(String time, String shiftName) {
+    return '$time · during $shiftName';
+  }
+
+  @override
+  String get conflictUntitled => 'Untitled appointment';
+
+  @override
+  String reminderConflictTitle(String shiftName) {
+    return 'Tomorrow: appointment during $shiftName';
+  }
+
+  @override
+  String reminderConflictBodyOne(String title, String time, String shiftTime) {
+    return '“$title” ($time) overlaps your shift ($shiftTime).';
+  }
+
+  @override
+  String reminderConflictBodyMany(int count, String shiftTime) {
+    return '$count appointments overlap your shift ($shiftTime).';
   }
 }

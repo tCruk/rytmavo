@@ -4,6 +4,12 @@
          a reboot. -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- Device calendar check (optional, asked only when turned on in the
+         settings). The app only reads events; WRITE_CALENDAR is declared
+         because device_calendar_plus requests read and write together for
+         full access (one permission group, one system dialog). -->
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
     <application
         android:label="Rytmavo"
         android:name="${applicationName}"

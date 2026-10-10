@@ -56,7 +56,7 @@ Stand: 2026-10-10 | Version: [VERSION – festzulegen] | Release-Verantwortliche
 - [ ] `targetSdk` entspricht der zum Release-Zeitpunkt gültigen Play-Store-Anforderung (verifiziert, nicht angenommen).
 - [ ] Signing über lokale `key.properties` (Vorlage `android/key.properties.example`, Anleitung `docs/RELEASE.md`); **`key.properties` und Keystore nicht in Git** (`.gitignore` geprüft).
 - [ ] `flutter build appbundle --release` erfolgreich; AAB auf Gerät als Release getestet.
-- [ ] Merged Manifest geprüft: nur erwartete Berechtigungen (`POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`; kein `SCHEDULE_EXACT_ALARM` ohne Notwendigkeit; kein `INTERNET`).
+- [ ] Merged Manifest geprüft: nur erwartete Berechtigungen (`POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`, `READ_CALENDAR`, `WRITE_CALENDAR`; kein `SCHEDULE_EXACT_ALARM` ohne Notwendigkeit; kein `INTERNET`).
 - [ ] Data-Safety-Formular passend zu `PRIVACY_DATA_MAP.md` ausgefüllt.
 - [ ] Preisstufe 9,99 EUR gesetzt; Länder und Währungen geprüft.
 - [ ] Keine In-App-Produkte, keine Abonnements, keine Werbung angelegt oder deklariert.

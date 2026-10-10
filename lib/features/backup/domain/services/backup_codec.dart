@@ -107,6 +107,9 @@ abstract final class BackupCodec {
       'language': doc.settings.language.name,
       'onboardingCompleted': doc.settings.onboardingCompleted,
       'remindersEnabled': doc.settings.remindersEnabled,
+      // Calendar ids are device-specific and deliberately not exported.
+      'calendarConflictsEnabled': doc.settings.calendarConflictsEnabled,
+      'conflictRemindersEnabled': doc.settings.conflictRemindersEnabled,
     },
   };
 
@@ -242,6 +245,10 @@ abstract final class BackupCodec {
             ),
             onboardingCompleted: settingsJson['onboardingCompleted'] == true,
             remindersEnabled: settingsJson['remindersEnabled'] == true,
+            calendarConflictsEnabled:
+                settingsJson['calendarConflictsEnabled'] == true,
+            conflictRemindersEnabled:
+                settingsJson['conflictRemindersEnabled'] == true,
           )
         : AppSettings.defaults;
 
