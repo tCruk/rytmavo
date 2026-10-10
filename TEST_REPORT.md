@@ -166,6 +166,18 @@ Umgebung: wie zuvor.
   Versionszeile) öffnen und schließen; Heute- und Einstellungsseite bei 200 %
   Textskalierung ohne Ausnahme (Overflow) gerendert.
 
+## Review-Runde 1 – 2026-10-10
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test --timeout 30s` | 90 Tests, 90 bestanden |
+
+- `test/features/habits/habits_flow_test.dart` (geändert +1): Erinnerung in
+  der Gewohnheit fragt Berechtigung ab und schaltet Erinnerungen global ein;
+  verweigerte Berechtigung lässt sie aus und zeigt den Hinweis.
+
 ### Offene Prüfungen
 
 - Golden-Tests für zentrale Screens (bewusst zurückgestellt: Goldens sind

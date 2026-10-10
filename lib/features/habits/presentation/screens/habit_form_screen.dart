@@ -6,6 +6,7 @@ import '../../../../app/l10n/generated/app_localizations.dart';
 import '../../../../core/date/local_time.dart';
 import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../reminders/presentation/reminder_scheduler.dart';
 import '../../../settings/domain/entities/app_settings.dart';
 import '../../../settings/presentation/controllers/settings_controller.dart';
 import '../../../shifts/domain/entities/shift_type.dart';
@@ -66,6 +67,20 @@ class _HabitFormScreenState extends ConsumerState<HabitFormScreen> {
       );
       if (picked == null) return;
       controller.setReminder(key, LocalTime(picked.hour, picked.minute));
+      if (remindersEnabled) return;
+      // First reminder while the global switch is off: ask the OS now and
+      // turn reminders on, so the user never has to find the Settings switch.
+      final granted = await ref
+          .read(notificationGatewayProvider)
+          .requestPermission();
+      if (!context.mounted) return;
+      if (granted) {
+        await ref
+            .read(settingsControllerProvider.notifier)
+            .setRemindersEnabled(enabled: true);
+      } else {
+        showRySnackBar(context, l10n.settingsRemindersDenied);
+      }
     }
 
     final reminderKeys = draft.everyShift

@@ -41,6 +41,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
           icon: const Icon(Icons.today_outlined),
           onPressed: () => setState(() => _visibleMonth = null),
         ),
+        if (setupAsync.value?.hasRotation ?? false) const EditShiftsAction(),
         const SettingsAction(),
       ],
       slivers: [

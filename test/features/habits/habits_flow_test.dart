@@ -46,13 +46,13 @@ void main() {
     await habitRepo.dispose();
   });
 
-  Widget app() => ProviderScope(
+  Widget app({bool permission = true}) => ProviderScope(
     overrides: [
       settingsRepositoryProvider.overrideWithValue(settingsRepo),
       shiftRepositoryProvider.overrideWithValue(shiftRepo),
       habitRepositoryProvider.overrideWithValue(habitRepo),
       notificationGatewayProvider.overrideWithValue(
-        const NoopNotificationGateway(),
+        NoopNotificationGateway(permission: permission),
       ),
       clockProvider.overrideWithValue(clock),
     ],
@@ -65,7 +65,7 @@ void main() {
     }
   }
 
-  Future<void> start(WidgetTester tester) async {
+  Future<void> start(WidgetTester tester, {bool permission = true}) async {
     tester.platformDispatcher.localesTestValue = const [Locale('de', 'DE')];
     addTearDown(tester.platformDispatcher.clearLocalesTestValue);
     tester.view.physicalSize = const Size(1200, 3600);
@@ -75,7 +75,7 @@ void main() {
       await tester.pumpWidget(const SizedBox.shrink());
       await settle(tester);
     });
-    await tester.pumpWidget(app());
+    await tester.pumpWidget(app(permission: permission));
     await settle(tester);
   }
 
@@ -152,7 +152,7 @@ void main() {
     expect(find.bySemanticsLabel('100 %'), findsWidgets);
   });
 
-  testWidgets('reminder time is stored on the rule; settings switch', (
+  testWidgets('reminder time is stored on the rule; permission asked', (
     tester,
   ) async {
     await start(tester);
@@ -167,9 +167,12 @@ void main() {
     await tester.tap(find.text('OK'));
     await settle(tester);
     expect(find.text('Keine Erinnerung'), findsNothing);
+    // The noop gateway grants permission, so the global switch turns on
+    // right here instead of sending the user to Settings.
+    expect(settingsRepo.current.remindersEnabled, isTrue);
     expect(
       find.text('Erinnerungen sind in den Einstellungen ausgeschaltet.'),
-      findsOneWidget,
+      findsNothing,
     );
     await tapText(tester, 'Speichern');
 
@@ -178,17 +181,33 @@ void main() {
     );
     expect(rule?.reminders?['*'], const LocalTime(9, 0));
 
-    // Turn reminders on in settings (noop gateway grants permission).
+    // Settings reflect it and the switch can turn it off again.
     await tester.tap(find.byTooltip('Einstellungen öffnen'));
     await settle(tester);
     await tester.ensureVisible(find.byType(SwitchListTile));
     await settle(tester);
-    await tester.tap(find.byType(SwitchListTile));
-    await settle(tester);
-    expect(settingsRepo.current.remindersEnabled, isTrue);
     expect(
       find.text('An – du wirst an fällige Gewohnheiten erinnert.'),
       findsOneWidget,
     );
+    await tester.tap(find.byType(SwitchListTile));
+    await settle(tester);
+    expect(settingsRepo.current.remindersEnabled, isFalse);
+  });
+
+  testWidgets('denied permission keeps reminders off and explains', (
+    tester,
+  ) async {
+    await start(tester, permission: false);
+    await tester.tap(find.text('Gewohnheiten'));
+    await settle(tester);
+    await tapText(tester, 'Gewohnheit anlegen');
+    await tester.enterText(find.byType(TextField).first, 'Dehnen');
+    await tapText(tester, 'Keine Erinnerung');
+    await tester.tap(find.text('OK'));
+    await settle(tester);
+
+    expect(settingsRepo.current.remindersEnabled, isFalse);
+    expect(find.textContaining('Berechtigung verweigert'), findsOneWidget);
   });
 }

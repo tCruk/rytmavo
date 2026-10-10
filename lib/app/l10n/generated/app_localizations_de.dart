@@ -31,6 +31,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsOpen => 'Einstellungen öffnen';
 
   @override
+  String get shiftsEditAction => 'Schichtmodell bearbeiten';
+
+  @override
   String get commonOk => 'OK';
 
   @override

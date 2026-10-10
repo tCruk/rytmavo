@@ -31,6 +31,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsOpen => 'Open settings';
 
   @override
+  String get shiftsEditAction => 'Edit shift model';
+
+  @override
   String get commonOk => 'OK';
 
   @override

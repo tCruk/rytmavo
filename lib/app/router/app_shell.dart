@@ -68,3 +68,19 @@ class SettingsAction extends StatelessWidget {
     );
   }
 }
+
+/// App-bar shortcut to the rotation editor, shown wherever the plan is
+/// visible so users don't have to find it in Settings.
+class EditShiftsAction extends StatelessWidget {
+  const EditShiftsAction({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return IconButton(
+      tooltip: l10n.shiftsEditAction,
+      icon: const Icon(Icons.edit_calendar_outlined),
+      onPressed: () => context.push(AppRoutes.onboarding),
+    );
+  }
+}

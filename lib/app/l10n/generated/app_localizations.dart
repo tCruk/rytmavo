@@ -140,6 +140,12 @@ abstract class AppLocalizations {
   /// **'Einstellungen öffnen'**
   String get settingsOpen;
 
+  /// No description provided for @shiftsEditAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Schichtmodell bearbeiten'**
+  String get shiftsEditAction;
+
   /// No description provided for @commonOk.
   ///
   /// In de, this message translates to:

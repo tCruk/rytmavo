@@ -24,9 +24,14 @@ class TodayScreen extends ConsumerWidget {
     final setupAsync = ref.watch(shiftSetupProvider);
     final today = ref.watch(todayProvider);
 
+    final hasRotation = setupAsync.value?.hasRotation ?? false;
+
     return RyPage(
       title: l10n.todayTitle,
-      actions: const [SettingsAction()],
+      actions: [
+        if (hasRotation) const EditShiftsAction(),
+        const SettingsAction(),
+      ],
       slivers: [
         switch (setupAsync) {
           AsyncData(:final value) when !value.hasRotation =>

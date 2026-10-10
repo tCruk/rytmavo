@@ -62,6 +62,14 @@ Versionierung SemVer. Noch unveröffentlicht.
 - Tests: Fälligkeit und Statistik, drift-Repository, Widget-Flows
   (Gewohnheit anlegen → abhaken → rückgängig; Auswertung).
 
+### Review-Runde 1 (2026-10-10)
+- Schichtmodell bearbeiten: eigener Knopf in der App-Leiste von „Heute“ und
+  „Kalender“ (zusätzlich zu Einstellungen → Rhythmus und Zeiten ändern).
+- Berechtigungsabfrage für Mitteilungen erscheint beim Setzen der ersten
+  Erinnerung in einer Gewohnheit; bei Erteilung werden Erinnerungen global
+  eingeschaltet, bei Ablehnung erklärt ein Hinweis den Weg über die
+  Systemeinstellungen. Die Abfrage in den Einstellungen bleibt.
+
 ### Phase 6 – Feinschliff (2026-10-10)
 - Einstellungen → Über die App: Datenschutzhinweis, Impressum und Support als
   eigene Seiten (`InfoScreen`, Texte DE/EN in den ARB-Dateien, Betreiberdaten
