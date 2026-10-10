@@ -400,4 +400,178 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsShiftsNotSet => 'Not set up yet';
+
+  @override
+  String get habitNewTitle => 'New habit';
+
+  @override
+  String get habitEditTitle => 'Edit habit';
+
+  @override
+  String get habitName => 'Name';
+
+  @override
+  String get habitNameHint => 'e.g. walk 20 minutes';
+
+  @override
+  String get habitNameRequired => 'Please enter a name.';
+
+  @override
+  String get habitDescription => 'Note (optional)';
+
+  @override
+  String get habitIcon => 'Icon';
+
+  @override
+  String get habitColor => 'Colour';
+
+  @override
+  String get habitDueOn => 'Due on';
+
+  @override
+  String get habitDueEveryDay => 'Every day';
+
+  @override
+  String get habitDueOnShifts => 'Only on certain shifts';
+
+  @override
+  String get habitWeekdays => 'Only on weekdays (optional)';
+
+  @override
+  String get habitWeekdaysAny => 'Any weekday';
+
+  @override
+  String get habitRuleHint =>
+      'Changes to the due rule apply from today. Past days are not re-evaluated.';
+
+  @override
+  String get habitArchive => 'Archive';
+
+  @override
+  String get habitArchiveBody =>
+      'The habit disappears from the list. Its history stays in the statistics.';
+
+  @override
+  String get habitArchived => 'Habit archived';
+
+  @override
+  String get habitDelete => 'Delete permanently';
+
+  @override
+  String get habitDeleteBody =>
+      'Every completion of this habit will be deleted. This cannot be undone.';
+
+  @override
+  String get habitDeleted => 'Habit deleted';
+
+  @override
+  String get habitSaved => 'Habit saved';
+
+  @override
+  String get habitShowArchived => 'Show archived';
+
+  @override
+  String get habitRestore => 'Restore';
+
+  @override
+  String get habitDueSummaryEveryDay => 'Every day';
+
+  @override
+  String habitDueSummaryShifts(String shifts) {
+    return 'On: $shifts';
+  }
+
+  @override
+  String get habitReorder => 'Reorder';
+
+  @override
+  String get todayHabitsSection => 'Habits today';
+
+  @override
+  String get todayHabitsNone => 'No habit is due today.';
+
+  @override
+  String todayHabitsProgress(int done, int total) {
+    return '$done of $total done';
+  }
+
+  @override
+  String todayHabitDone(String name) {
+    return '$name done';
+  }
+
+  @override
+  String todayHabitUndone(String name) {
+    return '$name reopened';
+  }
+
+  @override
+  String a11yHabitToggle(String name, String state) {
+    return '$name, $state';
+  }
+
+  @override
+  String get a11yStateDone => 'done';
+
+  @override
+  String get a11yStateOpen => 'open';
+
+  @override
+  String get statsPeriod7 => '7 days';
+
+  @override
+  String get statsPeriod30 => '30 days';
+
+  @override
+  String get statsPeriod90 => '90 days';
+
+  @override
+  String get statsOverall => 'Overall';
+
+  @override
+  String get statsRate => 'Success rate';
+
+  @override
+  String statsDueDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count due days',
+      one: '1 due day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String statsCompleted(int done, int total) {
+    return '$done of $total';
+  }
+
+  @override
+  String get statsNotDue => 'Not due in this period';
+
+  @override
+  String get statsStreak => 'Current streak';
+
+  @override
+  String get statsBestStreak => 'Best streak';
+
+  @override
+  String statsStreakDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statsByShift => 'By shift';
+
+  @override
+  String statsPercent(int value) {
+    return '$value%';
+  }
 }

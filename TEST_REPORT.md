@@ -81,6 +81,33 @@ Umgebung: wie Phase 0/1 (Linux-Container, Flutter 3.47.7, kein Gerät).
 - Widget-Tests räumen den Baum jetzt in `addTearDown` ab, damit ein
   fehlschlagender Test nicht die folgenden blockiert.
 
+## Phase 3 – 2026-10-10
+
+Umgebung: wie zuvor.
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test --timeout 30s` | 68 Tests, 68 bestanden, 0 fehlgeschlagen |
+| `flutter gen-l10n` | 49 neue Schlüssel in DE und EN |
+| Builds / Gerätetests | **nicht ausgeführt** – kein SDK/Gerät im Container |
+
+### Neue Tests
+
+- `test/features/habits/habit_plan_test.dart` (11): leere Ziele = jeden Tag
+  (auch ohne Schicht), Zielschichten, Wochentage, vor Erstellung / ab
+  Archivierung nicht fällig, Regelversionen (Vergangenheit behält alte
+  Regel), Erledigung je Tag; Statistik: Quote nur über fällige Tage, `null`
+  statt 0 % ohne fällige Tage, Zukunft nicht gezählt, Serien (offener
+  heutiger Tag bricht nicht), Gesamtwerte.
+- `test/features/habits/drift_habit_repository_test.dart` (6): Round-Trip
+  inkl. Erinnerungszeiten, Upsert + Versionierung, idempotentes Abhaken,
+  Archivieren behält Daten / Löschen kaskadiert, Reihenfolge, `watch()`.
+- `test/features/habits/habits_flow_test.dart` (2): Gewohnheit anlegen
+  (leerer Name abgelehnt, Schichten Früh+Nacht), Heute abhaken, Rückgängig;
+  Auswertung zeigt 1 von 1 und 100 %.
+
 ### Offene Prüfungen
 
 - Golden-Tests für zentrale Screens (geplant für Phase 6, Feinschliff).

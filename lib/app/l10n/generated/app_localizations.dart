@@ -805,6 +805,288 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Noch nicht eingerichtet'**
   String get settingsShiftsNotSet;
+
+  /// No description provided for @habitNewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Gewohnheit'**
+  String get habitNewTitle;
+
+  /// No description provided for @habitEditTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gewohnheit bearbeiten'**
+  String get habitEditTitle;
+
+  /// No description provided for @habitName.
+  ///
+  /// In de, this message translates to:
+  /// **'Name'**
+  String get habitName;
+
+  /// No description provided for @habitNameHint.
+  ///
+  /// In de, this message translates to:
+  /// **'z. B. 20 Minuten spazieren'**
+  String get habitNameHint;
+
+  /// No description provided for @habitNameRequired.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte gib einen Namen ein.'**
+  String get habitNameRequired;
+
+  /// No description provided for @habitDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Notiz (optional)'**
+  String get habitDescription;
+
+  /// No description provided for @habitIcon.
+  ///
+  /// In de, this message translates to:
+  /// **'Symbol'**
+  String get habitIcon;
+
+  /// No description provided for @habitColor.
+  ///
+  /// In de, this message translates to:
+  /// **'Farbe'**
+  String get habitColor;
+
+  /// No description provided for @habitDueOn.
+  ///
+  /// In de, this message translates to:
+  /// **'Fällig an'**
+  String get habitDueOn;
+
+  /// No description provided for @habitDueEveryDay.
+  ///
+  /// In de, this message translates to:
+  /// **'Jeden Tag'**
+  String get habitDueEveryDay;
+
+  /// No description provided for @habitDueOnShifts.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur an bestimmten Schichten'**
+  String get habitDueOnShifts;
+
+  /// No description provided for @habitWeekdays.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur an Wochentagen (optional)'**
+  String get habitWeekdays;
+
+  /// No description provided for @habitWeekdaysAny.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Wochentage'**
+  String get habitWeekdaysAny;
+
+  /// No description provided for @habitRuleHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Änderungen an der Fälligkeit gelten ab heute. Vergangene Tage werden nicht neu bewertet.'**
+  String get habitRuleHint;
+
+  /// No description provided for @habitArchive.
+  ///
+  /// In de, this message translates to:
+  /// **'Archivieren'**
+  String get habitArchive;
+
+  /// No description provided for @habitArchiveBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Gewohnheit verschwindet aus der Liste. Ihre Historie bleibt in der Auswertung erhalten.'**
+  String get habitArchiveBody;
+
+  /// No description provided for @habitArchived.
+  ///
+  /// In de, this message translates to:
+  /// **'Gewohnheit archiviert'**
+  String get habitArchived;
+
+  /// No description provided for @habitDelete.
+  ///
+  /// In de, this message translates to:
+  /// **'Endgültig löschen'**
+  String get habitDelete;
+
+  /// No description provided for @habitDeleteBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Erledigungen dieser Gewohnheit werden gelöscht. Das lässt sich nicht rückgängig machen.'**
+  String get habitDeleteBody;
+
+  /// No description provided for @habitDeleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Gewohnheit gelöscht'**
+  String get habitDeleted;
+
+  /// No description provided for @habitSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Gewohnheit gespeichert'**
+  String get habitSaved;
+
+  /// No description provided for @habitShowArchived.
+  ///
+  /// In de, this message translates to:
+  /// **'Archivierte anzeigen'**
+  String get habitShowArchived;
+
+  /// No description provided for @habitRestore.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederherstellen'**
+  String get habitRestore;
+
+  /// No description provided for @habitDueSummaryEveryDay.
+  ///
+  /// In de, this message translates to:
+  /// **'Jeden Tag'**
+  String get habitDueSummaryEveryDay;
+
+  /// No description provided for @habitDueSummaryShifts.
+  ///
+  /// In de, this message translates to:
+  /// **'An: {shifts}'**
+  String habitDueSummaryShifts(String shifts);
+
+  /// No description provided for @habitReorder.
+  ///
+  /// In de, this message translates to:
+  /// **'Reihenfolge ändern'**
+  String get habitReorder;
+
+  /// No description provided for @todayHabitsSection.
+  ///
+  /// In de, this message translates to:
+  /// **'Gewohnheiten heute'**
+  String get todayHabitsSection;
+
+  /// No description provided for @todayHabitsNone.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute ist keine Gewohnheit fällig.'**
+  String get todayHabitsNone;
+
+  /// No description provided for @todayHabitsProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'{done} von {total} erledigt'**
+  String todayHabitsProgress(int done, int total);
+
+  /// No description provided for @todayHabitDone.
+  ///
+  /// In de, this message translates to:
+  /// **'{name} erledigt'**
+  String todayHabitDone(String name);
+
+  /// No description provided for @todayHabitUndone.
+  ///
+  /// In de, this message translates to:
+  /// **'{name} wieder offen'**
+  String todayHabitUndone(String name);
+
+  /// No description provided for @a11yHabitToggle.
+  ///
+  /// In de, this message translates to:
+  /// **'{name}, {state}'**
+  String a11yHabitToggle(String name, String state);
+
+  /// No description provided for @a11yStateDone.
+  ///
+  /// In de, this message translates to:
+  /// **'erledigt'**
+  String get a11yStateDone;
+
+  /// No description provided for @a11yStateOpen.
+  ///
+  /// In de, this message translates to:
+  /// **'offen'**
+  String get a11yStateOpen;
+
+  /// No description provided for @statsPeriod7.
+  ///
+  /// In de, this message translates to:
+  /// **'7 Tage'**
+  String get statsPeriod7;
+
+  /// No description provided for @statsPeriod30.
+  ///
+  /// In de, this message translates to:
+  /// **'30 Tage'**
+  String get statsPeriod30;
+
+  /// No description provided for @statsPeriod90.
+  ///
+  /// In de, this message translates to:
+  /// **'90 Tage'**
+  String get statsPeriod90;
+
+  /// No description provided for @statsOverall.
+  ///
+  /// In de, this message translates to:
+  /// **'Gesamt'**
+  String get statsOverall;
+
+  /// No description provided for @statsRate.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfolgsquote'**
+  String get statsRate;
+
+  /// No description provided for @statsDueDays.
+  ///
+  /// In de, this message translates to:
+  /// **'{count, plural, =1{1 fälliger Tag} other{{count} fällige Tage}}'**
+  String statsDueDays(int count);
+
+  /// No description provided for @statsCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'{done} von {total}'**
+  String statsCompleted(int done, int total);
+
+  /// No description provided for @statsNotDue.
+  ///
+  /// In de, this message translates to:
+  /// **'In diesem Zeitraum nicht fällig'**
+  String get statsNotDue;
+
+  /// No description provided for @statsStreak.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuelle Serie'**
+  String get statsStreak;
+
+  /// No description provided for @statsBestStreak.
+  ///
+  /// In de, this message translates to:
+  /// **'Beste Serie'**
+  String get statsBestStreak;
+
+  /// No description provided for @statsStreakDays.
+  ///
+  /// In de, this message translates to:
+  /// **'{count, plural, =1{1 Tag} other{{count} Tage}}'**
+  String statsStreakDays(int count);
+
+  /// No description provided for @statsByShift.
+  ///
+  /// In de, this message translates to:
+  /// **'Nach Schicht'**
+  String get statsByShift;
+
+  /// No description provided for @statsPercent.
+  ///
+  /// In de, this message translates to:
+  /// **'{value} %'**
+  String statsPercent(int value);
 }
 
 class _AppLocalizationsDelegate

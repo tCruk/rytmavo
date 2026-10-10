@@ -7,6 +7,7 @@ import '../../../../app/router/app_routes.dart';
 import '../../../../app/router/app_shell.dart';
 import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../habits/presentation/widgets/today_habits_section.dart';
 import '../../domain/entities/scheduled_day.dart';
 import '../../domain/entities/shift_setup.dart';
 import '../controllers/shift_providers.dart';
@@ -47,6 +48,7 @@ class TodayScreen extends ConsumerWidget {
               children: [
                 const SizedBox(height: AppSpacing.sm),
                 _TodayCard(setup: value, day: value.dayOn(today)),
+                const TodayHabitsSection(),
                 RySectionHeader(l10n.todayNextDays),
                 _UpcomingRow(days: value.daysFrom(today.addDays(1), 7)),
               ],

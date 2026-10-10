@@ -402,4 +402,178 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsShiftsNotSet => 'Noch nicht eingerichtet';
+
+  @override
+  String get habitNewTitle => 'Neue Gewohnheit';
+
+  @override
+  String get habitEditTitle => 'Gewohnheit bearbeiten';
+
+  @override
+  String get habitName => 'Name';
+
+  @override
+  String get habitNameHint => 'z. B. 20 Minuten spazieren';
+
+  @override
+  String get habitNameRequired => 'Bitte gib einen Namen ein.';
+
+  @override
+  String get habitDescription => 'Notiz (optional)';
+
+  @override
+  String get habitIcon => 'Symbol';
+
+  @override
+  String get habitColor => 'Farbe';
+
+  @override
+  String get habitDueOn => 'Fällig an';
+
+  @override
+  String get habitDueEveryDay => 'Jeden Tag';
+
+  @override
+  String get habitDueOnShifts => 'Nur an bestimmten Schichten';
+
+  @override
+  String get habitWeekdays => 'Nur an Wochentagen (optional)';
+
+  @override
+  String get habitWeekdaysAny => 'Alle Wochentage';
+
+  @override
+  String get habitRuleHint =>
+      'Änderungen an der Fälligkeit gelten ab heute. Vergangene Tage werden nicht neu bewertet.';
+
+  @override
+  String get habitArchive => 'Archivieren';
+
+  @override
+  String get habitArchiveBody =>
+      'Die Gewohnheit verschwindet aus der Liste. Ihre Historie bleibt in der Auswertung erhalten.';
+
+  @override
+  String get habitArchived => 'Gewohnheit archiviert';
+
+  @override
+  String get habitDelete => 'Endgültig löschen';
+
+  @override
+  String get habitDeleteBody =>
+      'Alle Erledigungen dieser Gewohnheit werden gelöscht. Das lässt sich nicht rückgängig machen.';
+
+  @override
+  String get habitDeleted => 'Gewohnheit gelöscht';
+
+  @override
+  String get habitSaved => 'Gewohnheit gespeichert';
+
+  @override
+  String get habitShowArchived => 'Archivierte anzeigen';
+
+  @override
+  String get habitRestore => 'Wiederherstellen';
+
+  @override
+  String get habitDueSummaryEveryDay => 'Jeden Tag';
+
+  @override
+  String habitDueSummaryShifts(String shifts) {
+    return 'An: $shifts';
+  }
+
+  @override
+  String get habitReorder => 'Reihenfolge ändern';
+
+  @override
+  String get todayHabitsSection => 'Gewohnheiten heute';
+
+  @override
+  String get todayHabitsNone => 'Heute ist keine Gewohnheit fällig.';
+
+  @override
+  String todayHabitsProgress(int done, int total) {
+    return '$done von $total erledigt';
+  }
+
+  @override
+  String todayHabitDone(String name) {
+    return '$name erledigt';
+  }
+
+  @override
+  String todayHabitUndone(String name) {
+    return '$name wieder offen';
+  }
+
+  @override
+  String a11yHabitToggle(String name, String state) {
+    return '$name, $state';
+  }
+
+  @override
+  String get a11yStateDone => 'erledigt';
+
+  @override
+  String get a11yStateOpen => 'offen';
+
+  @override
+  String get statsPeriod7 => '7 Tage';
+
+  @override
+  String get statsPeriod30 => '30 Tage';
+
+  @override
+  String get statsPeriod90 => '90 Tage';
+
+  @override
+  String get statsOverall => 'Gesamt';
+
+  @override
+  String get statsRate => 'Erfolgsquote';
+
+  @override
+  String statsDueDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count fällige Tage',
+      one: '1 fälliger Tag',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String statsCompleted(int done, int total) {
+    return '$done von $total';
+  }
+
+  @override
+  String get statsNotDue => 'In diesem Zeitraum nicht fällig';
+
+  @override
+  String get statsStreak => 'Aktuelle Serie';
+
+  @override
+  String get statsBestStreak => 'Beste Serie';
+
+  @override
+  String statsStreakDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Tage',
+      one: '1 Tag',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statsByShift => 'Nach Schicht';
+
+  @override
+  String statsPercent(int value) {
+    return '$value %';
+  }
 }

@@ -5,26 +5,31 @@ import 'package:rytmavo/app/app.dart';
 import 'package:rytmavo/app/di/providers.dart';
 import 'package:rytmavo/features/settings/domain/entities/app_settings.dart';
 
+import '../support/in_memory_habit_repository.dart';
 import '../support/in_memory_settings_repository.dart';
 import '../support/in_memory_shift_repository.dart';
 
 void main() {
   late InMemorySettingsRepository settingsRepo;
   late InMemoryShiftRepository shiftRepo;
+  late InMemoryHabitRepository habitRepo;
 
   setUp(() {
     settingsRepo = InMemorySettingsRepository();
     shiftRepo = InMemoryShiftRepository();
+    habitRepo = InMemoryHabitRepository();
   });
   tearDown(() async {
     await settingsRepo.dispose();
     await shiftRepo.dispose();
+    await habitRepo.dispose();
   });
 
   Widget app() => ProviderScope(
     overrides: [
       settingsRepositoryProvider.overrideWithValue(settingsRepo),
       shiftRepositoryProvider.overrideWithValue(shiftRepo),
+      habitRepositoryProvider.overrideWithValue(habitRepo),
     ],
     child: const RytmavoApp(),
   );

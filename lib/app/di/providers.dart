@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/database/app_database.dart';
 import '../../core/date/clock.dart';
+import '../../features/habits/data/repositories/drift_habit_repository.dart';
+import '../../features/habits/domain/repositories/habit_repository.dart';
 import '../../features/settings/data/repositories/drift_settings_repository.dart';
 import '../../features/settings/domain/repositories/settings_repository.dart';
 import '../../features/shifts/data/repositories/drift_shift_repository.dart';
@@ -28,4 +30,8 @@ final shiftRepositoryProvider = Provider<ShiftRepository>(
     ref.watch(appDatabaseProvider),
     ref.watch(clockProvider),
   ),
+);
+
+final habitRepositoryProvider = Provider<HabitRepository>(
+  (ref) => DriftHabitRepository(ref.watch(appDatabaseProvider)),
 );

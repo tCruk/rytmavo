@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/calendar/presentation/screens/calendar_screen.dart';
+import '../../features/habits/presentation/screens/habit_form_screen.dart';
 import '../../features/habits/presentation/screens/habits_screen.dart';
 import '../../features/settings/presentation/screens/settings_screen.dart';
 import '../../features/shifts/presentation/screens/onboarding_screen.dart';
@@ -65,6 +66,19 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         name: 'settings',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.habitNew,
+        name: 'habitNew',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const HabitFormScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.habitEdit,
+        name: 'habitEdit',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) =>
+            HabitFormScreen(habitId: state.pathParameters['id']),
       ),
       GoRoute(
         path: AppRoutes.onboarding,

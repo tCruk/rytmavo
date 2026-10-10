@@ -206,5 +206,124 @@
   },
   "settingsSectionShifts": "Schichtsystem",
   "settingsEditShifts": "Rhythmus und Zeiten ändern",
-  "settingsShiftsNotSet": "Noch nicht eingerichtet"
+  "settingsShiftsNotSet": "Noch nicht eingerichtet",
+  "habitNewTitle": "Neue Gewohnheit",
+  "habitEditTitle": "Gewohnheit bearbeiten",
+  "habitName": "Name",
+  "habitNameHint": "z. B. 20 Minuten spazieren",
+  "habitNameRequired": "Bitte gib einen Namen ein.",
+  "habitDescription": "Notiz (optional)",
+  "habitIcon": "Symbol",
+  "habitColor": "Farbe",
+  "habitDueOn": "Fällig an",
+  "habitDueEveryDay": "Jeden Tag",
+  "habitDueOnShifts": "Nur an bestimmten Schichten",
+  "habitWeekdays": "Nur an Wochentagen (optional)",
+  "habitWeekdaysAny": "Alle Wochentage",
+  "habitRuleHint": "Änderungen an der Fälligkeit gelten ab heute. Vergangene Tage werden nicht neu bewertet.",
+  "habitArchive": "Archivieren",
+  "habitArchiveBody": "Die Gewohnheit verschwindet aus der Liste. Ihre Historie bleibt in der Auswertung erhalten.",
+  "habitArchived": "Gewohnheit archiviert",
+  "habitDelete": "Endgültig löschen",
+  "habitDeleteBody": "Alle Erledigungen dieser Gewohnheit werden gelöscht. Das lässt sich nicht rückgängig machen.",
+  "habitDeleted": "Gewohnheit gelöscht",
+  "habitSaved": "Gewohnheit gespeichert",
+  "habitShowArchived": "Archivierte anzeigen",
+  "habitRestore": "Wiederherstellen",
+  "habitDueSummaryEveryDay": "Jeden Tag",
+  "habitDueSummaryShifts": "An: {shifts}",
+  "@habitDueSummaryShifts": {
+    "placeholders": {
+      "shifts": {
+        "type": "String"
+      }
+    }
+  },
+  "habitReorder": "Reihenfolge ändern",
+  "todayHabitsSection": "Gewohnheiten heute",
+  "todayHabitsNone": "Heute ist keine Gewohnheit fällig.",
+  "todayHabitsProgress": "{done} von {total} erledigt",
+  "@todayHabitsProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "todayHabitDone": "{name} erledigt",
+  "@todayHabitDone": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "todayHabitUndone": "{name} wieder offen",
+  "@todayHabitUndone": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "a11yHabitToggle": "{name}, {state}",
+  "@a11yHabitToggle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "state": {
+        "type": "String"
+      }
+    }
+  },
+  "a11yStateDone": "erledigt",
+  "a11yStateOpen": "offen",
+  "statsPeriod7": "7 Tage",
+  "statsPeriod30": "30 Tage",
+  "statsPeriod90": "90 Tage",
+  "statsOverall": "Gesamt",
+  "statsRate": "Erfolgsquote",
+  "statsDueDays": "{count, plural, =1{1 fälliger Tag} other{{count} fällige Tage}}",
+  "@statsDueDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "statsCompleted": "{done} von {total}",
+  "@statsCompleted": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "statsNotDue": "In diesem Zeitraum nicht fällig",
+  "statsStreak": "Aktuelle Serie",
+  "statsBestStreak": "Beste Serie",
+  "statsStreakDays": "{count, plural, =1{1 Tag} other{{count} Tage}}",
+  "@statsStreakDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "statsByShift": "Nach Schicht",
+  "statsPercent": "{value} %",
+  "@statsPercent": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  }
 }

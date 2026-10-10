@@ -43,3 +43,21 @@ Versionierung SemVer. Noch unveröffentlicht.
 - Einstellungen: Einstieg „Rhythmus und Zeiten ändern“.
 - Tests: Rotations-Engine (Anker, Vor-Anker, DST, 29. Februar, Jahreswechsel,
   Versionen, Overrides), drift-Repository, Onboarding- und Kalender-Widget-Tests.
+
+### Phase 3 – Gewohnheiten und Auswertung (2026-10-10)
+- Domain: `Habit`, versionierte `HabitRule` (Zielschichten, Wochentage,
+  Erinnerungszeiten), `HabitCompletion`, `HabitPlan` (Fälligkeit:
+  erstellt ≤ Tag, nicht archiviert, Regel passt zu Schicht und Wochentag),
+  `HabitStatistics` (Quote nur über fällige Tage, aktuelle und beste Serie,
+  offener heutiger Tag bricht die Serie nicht).
+- Data: `DriftHabitRepository` (Habit upsert, Regelversionen, Erledigungen
+  idempotent, Archivieren, Löschen mit Kaskade, Reihenfolge, Live-Stream).
+- Gewohnheiten: Liste mit Fälligkeits-Zusammenfassung, Formular (Name, Notiz,
+  Symbol, Farbe, „Jeden Tag“ oder bestimmte Schichten, Wochentage), Menü
+  Bearbeiten/Archivieren/Wiederherstellen/Löschen, archivierte einblendbar.
+- Heute: Abschnitt „Gewohnheiten heute“ mit Fortschritt, Abhaken und
+  Rückgängig per Snackbar.
+- Auswertung: Zeitraum 7/30/90 Tage, Gesamtquote, je Gewohnheit Quote,
+  erledigt/fällig, aktuelle und beste Serie.
+- Tests: Fälligkeit und Statistik, drift-Repository, Widget-Flows
+  (Gewohnheit anlegen → abhaken → rückgängig; Auswertung).

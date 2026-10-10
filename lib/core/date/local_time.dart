@@ -20,6 +20,15 @@ final class LocalTime implements Comparable<LocalTime> {
     return LocalTime(hour, minute);
   }
 
+  /// Returns `null` instead of throwing for invalid input.
+  static LocalTime? tryParse(String text) {
+    try {
+      return LocalTime.parse(text);
+    } on FormatException {
+      return null;
+    }
+  }
+
   final int hour;
   final int minute;
 

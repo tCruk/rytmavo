@@ -1,6 +1,6 @@
 # Rytmavo – Architektur
 
-Stand: 2026-10-10 (Phase 2). Dieses Dokument beschreibt Schichten, Datenfluss,
+Stand: 2026-10-10 (Phase 3). Dieses Dokument beschreibt Schichten, Datenfluss,
 Datenmodell und die Architekturentscheidungen (ADRs).
 
 ## 1. Schichten
@@ -150,9 +150,21 @@ ab heute (Vergangenheit bleibt), optional ersetzt sie die Historie.
 Das Tagesblatt im Kalender setzt einen Override; die Wahl des Rotations-
 Schichttyps entfernt ihn wieder.
 
-## 8. Offene Architekturpunkte
+## 8. Gewohnheiten (Phase 3)
 
-- Phase 3: Eligibility-/Statistik-Services, Heute-Ansicht mit Undo.
+`HabitPlan` ist das Pendant zu `ShiftSetup`: ein Snapshot aus Habits, allen
+Regelversionen und Erledigungen. `dueRuleFor(habit, scheduledDay)` ist rein
+und erhält den bereits aufgelösten Tag, sodass die Habit-Domain nicht vom
+Schicht-Repository abhängt. Fällig an Tag `d`, wenn `createdOn <= d`, nicht
+archiviert vor/an `d`, eine Regel mit `validFrom <= d` existiert und deren
+Zielschichten (leer = immer) und Wochentage passen. Eine Regeländerung im
+Formular erzeugt eine neue Version ab heute; unveränderte Bedingungen
+erzeugen keine Version. Erledigungen sind `(habitId, date)`-eindeutig.
+Statistik zählt nur fällige Tage; `rate` ist `null` statt 0 %, wenn nichts
+fällig war.
+
+## 9. Offene Architekturpunkte
+
 - Phase 4: Reminder-Scheduler (Rolling Window, Rescheduling nach Neustart,
   nicht-exakte Alarme), Zeitzonen-/DST-Strategie.
 - Phase 5: Backup-Schema v1 (JSON, `schemaVersion`), Import-Validierung.
