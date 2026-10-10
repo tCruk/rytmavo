@@ -134,6 +134,13 @@ Streams in Tests (hängender Teardown). Ein drift-Query-Stream mit
 `readsFrom` über alle drei Tabellen liefert dieselben Updates und lässt
 sich sofort abbrechen.
 
+### ADR-011 Native Uhr-Apps statt Flutter auf der Uhr
+Flutter läuft nicht auf watchOS und kann auf Wear OS weder Tiles noch
+Komplikationen. Die Uhr-Apps sind deshalb nativ (SwiftUI/WidgetKit bzw.
+Kotlin/Compose for Wear OS). Das Handy schickt eine fertig lokalisierte,
+datierte 14-Tage-Übersicht (JSON v1) direkt an die Uhr; die Uhr enthält
+keine Schichtlogik. Details: `docs/WATCH.md`.
+
 ## 7. Schicht-Engine (Phase 2)
 
 `ShiftSetup` ist ein unveränderlicher Snapshot aus Schichttypen, allen

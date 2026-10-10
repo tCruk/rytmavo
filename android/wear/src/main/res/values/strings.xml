@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- German is the default, like in the phone app. -->
+<resources>
+    <string name="app_name">Rytmavo</string>
+    <string name="tile_label">Heutige Schicht</string>
+    <string name="complication_label">Heutige Schicht</string>
+    <string name="today">Heute</string>
+    <string name="next_days">Nächste Tage</string>
+    <string name="changed">Geändert</string>
+    <string name="no_entry">Kein Eintrag</string>
+    <string name="empty">Öffne Rytmavo auf dem Handy, um deine Schichten hier zu sehen.</string>
+    <string name="next_shift">Nächste: %1$s</string>
+</resources>

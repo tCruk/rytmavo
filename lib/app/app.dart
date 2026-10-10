@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../features/reminders/presentation/reminder_scheduler.dart';
 import '../features/settings/domain/entities/app_settings.dart';
 import '../features/settings/presentation/controllers/settings_controller.dart';
+import '../features/watch/presentation/watch_sync.dart';
 import 'l10n/generated/app_localizations.dart';
 import 'router/app_router.dart';
 import 'theme/app_theme.dart';
@@ -25,7 +26,11 @@ class _RytmavoAppState extends ConsumerState<RytmavoApp> {
     // Re-plan the rolling reminder window whenever the app comes back,
     // so the window never runs dry while the app sits in the background.
     _lifecycle = AppLifecycleListener(
-      onResume: () => ref.read(reminderSchedulerProvider).scheduleSync(),
+      onResume: () {
+        ref.read(reminderSchedulerProvider).scheduleSync();
+        // The watch picks today itself; resume only refreshes the window.
+        ref.read(watchSyncProvider).scheduleSync();
+      },
     );
   }
 
@@ -39,6 +44,7 @@ class _RytmavoAppState extends ConsumerState<RytmavoApp> {
   Widget build(BuildContext context) {
     // Keeps the scheduler alive; it syncs on start and on every change.
     ref.watch(reminderSchedulerProvider).scheduleSync();
+    ref.watch(watchSyncProvider).scheduleSync();
     final router = ref.watch(appRouterProvider);
     final settings =
         ref.watch(settingsControllerProvider).value ?? AppSettings.defaults;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_label">Today\'s shift</string>
+    <string name="complication_label">Today\'s shift</string>
+    <string name="today">Today</string>
+    <string name="next_days">Next days</string>
+    <string name="changed">Changed</string>
+    <string name="no_entry">No entry</string>
+    <string name="empty">Open Rytmavo on your phone to see your shifts here.</string>
+    <string name="next_shift">Next: %1$s</string>
+</resources>

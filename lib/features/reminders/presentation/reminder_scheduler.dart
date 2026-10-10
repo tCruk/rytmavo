@@ -1,12 +1,11 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/di/providers.dart';
+import '../../../app/l10n/app_localizations_for.dart';
 import '../../../app/l10n/generated/app_localizations.dart';
 import '../../habits/presentation/controllers/habit_providers.dart';
-import '../../settings/domain/entities/app_settings.dart';
 import '../../settings/presentation/controllers/settings_controller.dart';
 import '../../shifts/domain/entities/shift_setup.dart';
 import '../../shifts/domain/entities/shift_type.dart';
@@ -79,7 +78,7 @@ final class ReminderScheduler {
       plan: plan,
       now: _ref.read(clockProvider).now(),
     );
-    final l10n = _localizations(settings.language);
+    final l10n = appLocalizationsFor(settings.language);
     await gateway.replaceAll(reminders, (r) => _textFor(r, setup, l10n));
   }
 
@@ -108,20 +107,6 @@ final class ReminderScheduler {
       ShiftKind.off => l10n.shiftOff,
       ShiftKind.custom => shift.id,
     };
-  }
-
-  static AppLocalizations _localizations(AppLanguage language) {
-    final locale = switch (language) {
-      AppLanguage.de => const Locale('de'),
-      AppLanguage.en => const Locale('en'),
-      AppLanguage.system => PlatformDispatcher.instance.locale,
-    };
-    final supported = AppLocalizations.supportedLocales.any(
-      (l) => l.languageCode == locale.languageCode,
-    );
-    return lookupAppLocalizations(
-      supported ? Locale(locale.languageCode) : const Locale('de'),
-    );
   }
 
   void dispose() {

@@ -208,3 +208,26 @@ Umgebung: wie zuvor.
   rot; sinnvoll erst nach dem ersten Gerätebuild).
 - Migrationstests (ab erster Schema-Erhöhung).
 - Textskalierung 200 % und Screenreader auf realen Geräten.
+
+## Uhr-Anzeige – 2026-10-10
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test --timeout 30s` | 100 Tests, 100 bestanden (nach Rebase auf main) |
+
+- `test/features/watch/watch_snapshot_builder_test.dart` (neu, 5): 14-Tage-
+  Fenster über den Jahreswechsel, Namen/Farbe/Zeiten inkl. Nachtschicht,
+  Override-Markierung, Tage ohne Rotation, JSON-Form.
+- `test/features/watch/watch_sync_test.dart` (neu, 3): lokalisierte Namen
+  DE/EN, kein erneutes Senden unveränderter Daten, erneutes Senden nach
+  Schichtänderung.
+
+### Nicht geprüft (kein Xcode/Android SDK im Container)
+
+- Swift-Code (iPhone-Bridge, watchOS-App, Komplikation): nicht kompiliert;
+  Xcode-Targets müssen auf dem Mac angelegt werden (`docs/WATCH.md`).
+- Kotlin-Code (Handy-Bridge, `android/wear`): wird erst im CI-Job
+  „Android debug build“ kompiliert.
+- Übertragung Handy → Uhr auf echten Geräten bzw. gekoppelten Emulatoren.
