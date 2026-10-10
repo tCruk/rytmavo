@@ -50,6 +50,9 @@ Maske anlegen.
    committet werden; Zertifikate und Profile verwaltet Xcode automatisch.
 2. Auf macOS: `flutter build ipa --release`, Archiv in Xcode validieren.
 3. `CFBundleDevelopmentRegion` ist `de`, `CFBundleLocalizations` = de, en.
+4. Mindestversion iOS 15.0, an drei Stellen gleich: `Podfile`
+   (`platform :ios`), `Runner.xcodeproj` (`IPHONEOS_DEPLOYMENT_TARGET`)
+   und `Flutter/AppFrameworkInfo.plist` (`MinimumOSVersion`).
 
 ## Version
 
