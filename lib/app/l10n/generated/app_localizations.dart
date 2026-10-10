@@ -493,6 +493,318 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Schicht: {shiftName}'**
   String a11yShiftBadge(String shiftName);
+
+  /// No description provided for @onboardingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Schichtsystem einrichten'**
+  String get onboardingTitle;
+
+  /// No description provided for @onboardingEditTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Schichtsystem ändern'**
+  String get onboardingEditTitle;
+
+  /// No description provided for @onboardingStepOf.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt {current} von {total}'**
+  String onboardingStepOf(int current, int total);
+
+  /// No description provided for @onboardingPresetTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie arbeitest du?'**
+  String get onboardingPresetTitle;
+
+  /// No description provided for @onboardingPresetBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wähle eine Vorlage. Im nächsten Schritt kannst du jeden Tag einzeln anpassen.'**
+  String get onboardingPresetBody;
+
+  /// No description provided for @presetWeekly3Name.
+  ///
+  /// In de, this message translates to:
+  /// **'3-Schicht, wöchentlich'**
+  String get presetWeekly3Name;
+
+  /// No description provided for @presetWeekly3Desc.
+  ///
+  /// In de, this message translates to:
+  /// **'5 Früh · 2 frei · 5 Spät · 2 frei · 5 Nacht · 2 frei'**
+  String get presetWeekly3Desc;
+
+  /// No description provided for @presetWeekly2Name.
+  ///
+  /// In de, this message translates to:
+  /// **'2-Schicht, wöchentlich'**
+  String get presetWeekly2Name;
+
+  /// No description provided for @presetWeekly2Desc.
+  ///
+  /// In de, this message translates to:
+  /// **'5 Früh · 2 frei · 5 Spät · 2 frei'**
+  String get presetWeekly2Desc;
+
+  /// No description provided for @presetConti4Name.
+  ///
+  /// In de, this message translates to:
+  /// **'Konti, 4 Gruppen'**
+  String get presetConti4Name;
+
+  /// No description provided for @presetConti4Desc.
+  ///
+  /// In de, this message translates to:
+  /// **'2 Früh · 2 Spät · 2 Nacht · 2 frei'**
+  String get presetConti4Desc;
+
+  /// No description provided for @presetConti5Name.
+  ///
+  /// In de, this message translates to:
+  /// **'Konti, 5 Gruppen'**
+  String get presetConti5Name;
+
+  /// No description provided for @presetConti5Desc.
+  ///
+  /// In de, this message translates to:
+  /// **'2 Früh · 2 Spät · 2 Nacht · 4 frei'**
+  String get presetConti5Desc;
+
+  /// No description provided for @presetCustomName.
+  ///
+  /// In de, this message translates to:
+  /// **'Eigener Rhythmus'**
+  String get presetCustomName;
+
+  /// No description provided for @presetCustomDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Baue deinen Zyklus selbst, Tag für Tag.'**
+  String get presetCustomDesc;
+
+  /// No description provided for @presetCurrentName.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktueller Rhythmus'**
+  String get presetCurrentName;
+
+  /// No description provided for @presetCurrentDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Deinen bestehenden Zyklus weiter anpassen.'**
+  String get presetCurrentDesc;
+
+  /// No description provided for @cycleLength.
+  ///
+  /// In de, this message translates to:
+  /// **'{count, plural, =1{1 Tag} other{{count} Tage}}'**
+  String cycleLength(int count);
+
+  /// No description provided for @onboardingRhythmTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Dein Rhythmus'**
+  String get onboardingRhythmTitle;
+
+  /// No description provided for @onboardingRhythmBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Tippe auf einen Tag, um die Schicht zu wechseln.'**
+  String get onboardingRhythmBody;
+
+  /// No description provided for @onboardingDayN.
+  ///
+  /// In de, this message translates to:
+  /// **'Tag {number}'**
+  String onboardingDayN(int number);
+
+  /// No description provided for @onboardingAddDay.
+  ///
+  /// In de, this message translates to:
+  /// **'Tag hinzufügen'**
+  String get onboardingAddDay;
+
+  /// No description provided for @onboardingRemoveDay.
+  ///
+  /// In de, this message translates to:
+  /// **'Letzten Tag entfernen'**
+  String get onboardingRemoveDay;
+
+  /// No description provided for @onboardingTodayTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Welcher Tag ist heute?'**
+  String get onboardingTodayTitle;
+
+  /// No description provided for @onboardingTodayBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wähle, an welcher Stelle deines Zyklus du heute stehst. Daraus berechnet Rytmavo alle anderen Tage.'**
+  String get onboardingTodayBody;
+
+  /// No description provided for @onboardingPreview.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorschau'**
+  String get onboardingPreview;
+
+  /// No description provided for @onboardingTimesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Schichtzeiten'**
+  String get onboardingTimesTitle;
+
+  /// No description provided for @onboardingTimesBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Zeiten erscheinen in der Tagesansicht und im Kalender.'**
+  String get onboardingTimesBody;
+
+  /// No description provided for @onboardingNightHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine Nachtschicht zählt zu dem Tag, an dem sie beginnt.'**
+  String get onboardingNightHint;
+
+  /// No description provided for @onboardingEditHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Änderungen gelten ab heute. Vergangene Tage bleiben, wie sie waren.'**
+  String get onboardingEditHint;
+
+  /// No description provided for @onboardingSaveError.
+  ///
+  /// In de, this message translates to:
+  /// **'Speichern fehlgeschlagen. Bitte versuche es erneut.'**
+  String get onboardingSaveError;
+
+  /// No description provided for @shiftStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Beginn'**
+  String get shiftStart;
+
+  /// No description provided for @shiftEnd.
+  ///
+  /// In de, this message translates to:
+  /// **'Ende'**
+  String get shiftEnd;
+
+  /// No description provided for @shiftTimeRange.
+  ///
+  /// In de, this message translates to:
+  /// **'{start}–{end}'**
+  String shiftTimeRange(String start, String end);
+
+  /// No description provided for @shiftEndsNextDay.
+  ///
+  /// In de, this message translates to:
+  /// **'endet am Folgetag'**
+  String get shiftEndsNextDay;
+
+  /// No description provided for @todayNextDays.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächste Tage'**
+  String get todayNextDays;
+
+  /// No description provided for @todayOverriddenFrom.
+  ///
+  /// In de, this message translates to:
+  /// **'Geändert · laut Rhythmus {shiftName}'**
+  String todayOverriddenFrom(String shiftName);
+
+  /// No description provided for @todayNoEntry.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein Eintrag'**
+  String get todayNoEntry;
+
+  /// No description provided for @todayDayOffBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute hast du frei.'**
+  String get todayDayOffBody;
+
+  /// No description provided for @todayNextShift.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächste Schicht: {shiftName}, {date}'**
+  String todayNextShift(String shiftName, String date);
+
+  /// No description provided for @calendarPrevMonth.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorheriger Monat'**
+  String get calendarPrevMonth;
+
+  /// No description provided for @calendarNextMonth.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächster Monat'**
+  String get calendarNextMonth;
+
+  /// No description provided for @calendarChanged.
+  ///
+  /// In de, this message translates to:
+  /// **'geändert'**
+  String get calendarChanged;
+
+  /// No description provided for @calendarDayA11y.
+  ///
+  /// In de, this message translates to:
+  /// **'{date}, {shiftName}'**
+  String calendarDayA11y(String date, String shiftName);
+
+  /// No description provided for @daySheetRotation.
+  ///
+  /// In de, this message translates to:
+  /// **'Laut Rhythmus: {shiftName}'**
+  String daySheetRotation(String shiftName);
+
+  /// No description provided for @daySheetChange.
+  ///
+  /// In de, this message translates to:
+  /// **'Schicht für diesen Tag'**
+  String get daySheetChange;
+
+  /// No description provided for @daySheetReset.
+  ///
+  /// In de, this message translates to:
+  /// **'Rhythmus wiederherstellen'**
+  String get daySheetReset;
+
+  /// No description provided for @daySheetSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Schicht für {date} geändert'**
+  String daySheetSaved(String date);
+
+  /// No description provided for @daySheetResetDone.
+  ///
+  /// In de, this message translates to:
+  /// **'Rhythmus für {date} wiederhergestellt'**
+  String daySheetResetDone(String date);
+
+  /// No description provided for @settingsSectionShifts.
+  ///
+  /// In de, this message translates to:
+  /// **'Schichtsystem'**
+  String get settingsSectionShifts;
+
+  /// No description provided for @settingsEditShifts.
+  ///
+  /// In de, this message translates to:
+  /// **'Rhythmus und Zeiten ändern'**
+  String get settingsEditShifts;
+
+  /// No description provided for @settingsShiftsNotSet.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch nicht eingerichtet'**
+  String get settingsShiftsNotSet;
 }
 
 class _AppLocalizationsDelegate

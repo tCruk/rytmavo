@@ -39,8 +39,50 @@ Dart 3.13.5. Kein Android-SDK, kein Xcode, kein Gerät/Emulator.
   (Deutsch), Sprachwechsel auf Englisch mit Persistenz, Dark-Theme,
   Mindesthöhe der Navigationsleiste.
 
+## Phase 2 – 2026-10-10
+
+Umgebung: wie Phase 0/1 (Linux-Container, Flutter 3.47.7, kein Gerät).
+
+| Befehl | Ergebnis |
+|---|---|
+| `dart format --output=none --set-exit-if-changed .` | Exit 0 |
+| `flutter analyze` | „No issues found!“ |
+| `flutter test --timeout 30s` | 49 Tests, 49 bestanden, 0 fehlgeschlagen |
+| `flutter gen-l10n` | 52 neue Schlüssel in DE und EN, keine fehlenden |
+| `flutter build apk` / `ipa`, Gerätetests | **nicht ausgeführt** – kein SDK/Gerät im Container |
+
+### Neue Tests
+
+- `test/features/shifts/shift_setup_test.dart` (17): Ankertag = Slot 0,
+  Zyklus-Wiederholung, Tage vor dem Anker (negative Differenz → `floorMod`),
+  Stabilität über DST (29.03./25.10.2026), 29.02.2028 und Jahreswechsel,
+  Versionierung (neue Version ab `validFrom`, Vergangenheit bleibt), Overrides
+  (gewinnen, merken Rotationsschicht, unbekannter Typ fällt zurück),
+  `daysFrom`, `nextWorkDayAfter`, Nachtschicht über Mitternacht,
+  `RotationRules` (Presets gültig, leer/zu lang/unbekannt ungültig, Anker).
+- `test/features/shifts/drift_shift_repository_test.dart` (8): Round-Trip
+  und Upsert der Schichttypen, Versionen (gleiches `validFrom` ersetzt,
+  `replaceHistory` löscht Historie), Overrides setzen/ersetzen/entfernen,
+  Fremdschlüssel-Verstoß liefert `Failure` statt Exception, defekte Zeilen
+  werden übersprungen, `watch()` emittiert nach Änderungen.
+- `test/features/shifts/onboarding_flow_test.dart` (2): kompletter
+  Onboarding-Durchlauf (Vorlage Konti 4, Tag 8 umschalten, heutige Position,
+  Fertig → Heute zeigt Nacht mit „endet am Folgetag“, Setting
+  `onboardingCompleted`); Kalender-Override setzen, Markierung „geändert“,
+  Rhythmus wiederherstellen, Monatswechsel, „Zu heute“.
+
+### Befunde
+
+- Tagesblatt öffnete sich im Branch-Navigator und lag damit unter der
+  Bottom-Navigation bzw. unter Snackbars (Tap im Test traf die Snackbar).
+  Behoben mit `useRootNavigator: true`.
+- `tableUpdates()` in einem `async*`-Stream ließ sich nicht abbestellen
+  (Test-Teardown hing). Ersetzt durch drift-Query-Stream (ADR-010).
+- Widget-Tests räumen den Baum jetzt in `addTearDown` ab, damit ein
+  fehlschlagender Test nicht die folgenden blockiert.
+
 ### Offene Prüfungen
 
-- Golden-Tests für zentrale Screens (ab Phase 2, wenn echte Inhalte existieren).
+- Golden-Tests für zentrale Screens (geplant für Phase 6, Feinschliff).
 - Migrationstests (ab erster Schema-Erhöhung).
 - Textskalierung 200 % und Screenreader auf realen Geräten.

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../l10n/generated/app_localizations.dart';
+import 'app_routes.dart';
 
 /// Bottom navigation shell for the four primary destinations.
 class AppShell extends StatelessWidget {
@@ -63,7 +64,7 @@ class SettingsAction extends StatelessWidget {
     return IconButton(
       tooltip: l10n.settingsOpen,
       icon: const Icon(Icons.settings_outlined),
-      onPressed: () => context.push('/settings'),
+      onPressed: () => context.push(AppRoutes.settings),
     );
   }
 }

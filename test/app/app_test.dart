@@ -6,15 +6,26 @@ import 'package:rytmavo/app/di/providers.dart';
 import 'package:rytmavo/features/settings/domain/entities/app_settings.dart';
 
 import '../support/in_memory_settings_repository.dart';
+import '../support/in_memory_shift_repository.dart';
 
 void main() {
   late InMemorySettingsRepository settingsRepo;
+  late InMemoryShiftRepository shiftRepo;
 
-  setUp(() => settingsRepo = InMemorySettingsRepository());
-  tearDown(() => settingsRepo.dispose());
+  setUp(() {
+    settingsRepo = InMemorySettingsRepository();
+    shiftRepo = InMemoryShiftRepository();
+  });
+  tearDown(() async {
+    await settingsRepo.dispose();
+    await shiftRepo.dispose();
+  });
 
   Widget app() => ProviderScope(
-    overrides: [settingsRepositoryProvider.overrideWithValue(settingsRepo)],
+    overrides: [
+      settingsRepositoryProvider.overrideWithValue(settingsRepo),
+      shiftRepositoryProvider.overrideWithValue(shiftRepo),
+    ],
     child: const RytmavoApp(),
   );
 
@@ -29,14 +40,13 @@ void main() {
   Future<void> start(WidgetTester tester) async {
     tester.platformDispatcher.localesTestValue = const [Locale('de', 'DE')];
     addTearDown(tester.platformDispatcher.clearLocalesTestValue);
+    // Disposes the tree inside the test zone (also on failure) so Riverpod's
+    // scheduled clean-up timers run before the pending-timer check.
+    addTearDown(() async {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await settle(tester);
+    });
     await tester.pumpWidget(app());
-    await settle(tester);
-  }
-
-  /// Disposes the tree inside the test body so Riverpod's scheduled
-  /// clean-up timers run before the framework checks for pending timers.
-  Future<void> finish(WidgetTester tester) async {
-    await tester.pumpWidget(const SizedBox.shrink());
     await settle(tester);
   }
 
@@ -58,8 +68,6 @@ void main() {
     await tester.tap(find.text('Auswertung'));
     await settle(tester);
     expect(find.text('Noch keine Auswertung'), findsOneWidget);
-
-    await finish(tester);
   });
 
   testWidgets('settings: switching to English persists and re-renders', (
@@ -79,8 +87,6 @@ void main() {
     expect(find.text('Settings'), findsWidgets);
     expect(find.text('Language'), findsOneWidget);
     expect(settingsRepo.current.language, AppLanguage.en);
-
-    await finish(tester);
   });
 
   testWidgets('settings: dark theme applies', (tester) async {
@@ -95,8 +101,6 @@ void main() {
     final context = tester.element(find.text('Erscheinungsbild'));
     expect(Theme.of(context).brightness, Brightness.dark);
     expect(settingsRepo.current.themeMode, AppThemeMode.dark);
-
-    await finish(tester);
   });
 
   testWidgets('navigation bar touch targets are at least 48 px', (
@@ -105,6 +109,5 @@ void main() {
     await start(tester);
     final size = tester.getSize(find.byType(NavigationBar));
     expect(size.height, greaterThanOrEqualTo(48));
-    await finish(tester);
   });
 }

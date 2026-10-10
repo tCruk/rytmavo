@@ -1,26 +1,192 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n/generated/app_localizations.dart';
+import '../../../../app/router/app_routes.dart';
 import '../../../../app/router/app_shell.dart';
+import '../../../../core/date/local_date.dart';
 import '../../../../core/ui/components/components.dart';
+import '../../../../core/ui/tokens/tokens.dart';
+import '../../../shifts/domain/entities/shift_setup.dart';
+import '../../../shifts/presentation/controllers/shift_providers.dart';
+import '../../../shifts/presentation/widgets/shift_visuals.dart';
+import '../widgets/day_sheet.dart';
+import '../widgets/month_grid.dart';
 
-class CalendarScreen extends StatelessWidget {
+/// Month view of the resolved schedule. Tapping a day opens [showDaySheet]
+/// to override or restore that day's shift.
+class CalendarScreen extends ConsumerStatefulWidget {
   const CalendarScreen({super.key});
+
+  @override
+  ConsumerState<CalendarScreen> createState() => _CalendarScreenState();
+}
+
+class _CalendarScreenState extends ConsumerState<CalendarScreen> {
+  LocalDate? _visibleMonth;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final today = ref.watch(todayProvider);
+    final month = _visibleMonth ?? today.firstDayOfMonth;
+    final setupAsync = ref.watch(shiftSetupProvider);
+
     return RyPage(
       title: l10n.calendarTitle,
-      actions: const [SettingsAction()],
+      actions: [
+        IconButton(
+          tooltip: l10n.calendarJumpToToday,
+          icon: const Icon(Icons.today_outlined),
+          onPressed: () => setState(() => _visibleMonth = null),
+        ),
+        const SettingsAction(),
+      ],
       slivers: [
-        SliverFillRemaining(
-          hasScrollBody: false,
-          child: RyEmptyState(
-            icon: Icons.calendar_month_outlined,
-            title: l10n.todayEmptyTitle,
-            body: l10n.todayEmptyBody,
+        switch (setupAsync) {
+          AsyncData(:final value) when !value.hasRotation =>
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: RyEmptyState(
+                icon: Icons.calendar_month_outlined,
+                title: l10n.todayEmptyTitle,
+                body: l10n.todayEmptyBody,
+                action: RyButton(
+                  label: l10n.todaySetupAction,
+                  icon: Icons.tune,
+                  onPressed: () => context.push(AppRoutes.onboarding),
+                ),
+              ),
+            ),
+          AsyncData(:final value) => RySliverPadding(
+            sliver: SliverList.list(
+              children: [
+                _MonthHeader(
+                  month: month,
+                  onPrevious: () =>
+                      setState(() => _visibleMonth = month.addMonths(-1)),
+                  onNext: () =>
+                      setState(() => _visibleMonth = month.addMonths(1)),
+                ),
+                MonthGrid(
+                  month: month,
+                  today: today,
+                  setup: value,
+                  onDayTap: (date) => _openDay(context, value, date),
+                ),
+                const SizedBox(height: AppSpacing.lg),
+                _Legend(setup: value),
+              ],
+            ),
           ),
+          AsyncError() => SliverFillRemaining(
+            hasScrollBody: false,
+            child: RyEmptyState(
+              icon: Icons.error_outline,
+              title: l10n.errorGenericTitle,
+              body: l10n.errorGenericBody,
+            ),
+          ),
+          _ => const SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(child: CircularProgressIndicator()),
+          ),
+        },
+      ],
+    );
+  }
+
+  Future<void> _openDay(
+    BuildContext context,
+    ShiftSetup setup,
+    LocalDate date,
+  ) async {
+    final l10n = AppLocalizations.of(context);
+    final outcome = await showDaySheet(context, setup: setup, date: date);
+    if (!context.mounted || outcome == null) return;
+    final dateText = MaterialLocalizations.of(context)
+        .formatMediumDate(date.toLocalDateTime());
+    showRySnackBar(context, switch (outcome) {
+      DaySheetOutcome.changed => l10n.daySheetSaved(dateText),
+      DaySheetOutcome.restored => l10n.daySheetResetDone(dateText),
+      DaySheetOutcome.failed => l10n.onboardingSaveError,
+    });
+  }
+}
+
+class _MonthHeader extends StatelessWidget {
+  const _MonthHeader({
+    required this.month,
+    required this.onPrevious,
+    required this.onNext,
+  });
+
+  final LocalDate month;
+  final VoidCallback onPrevious;
+  final VoidCallback onNext;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final title = MaterialLocalizations.of(context)
+        .formatMonthYear(month.toLocalDateTime());
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+      child: Row(
+        children: [
+          IconButton(
+            tooltip: l10n.calendarPrevMonth,
+            icon: const Icon(Icons.chevron_left),
+            onPressed: onPrevious,
+          ),
+          Expanded(
+            child: Semantics(
+              header: true,
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
+          ),
+          IconButton(
+            tooltip: l10n.calendarNextMonth,
+            icon: const Icon(Icons.chevron_right),
+            onPressed: onNext,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Legend extends StatelessWidget {
+  const _Legend({required this.setup});
+
+  final ShiftSetup setup;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    return Wrap(
+      spacing: AppSpacing.lg,
+      runSpacing: AppSpacing.sm,
+      children: [
+        for (final type in setup.activeTypes)
+          LegendItem(type: type, label: type.displayName(l10n)),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.circle,
+              size: 8,
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            Text(l10n.calendarChanged, style: theme.textTheme.bodySmall),
+          ],
         ),
       ],
     );

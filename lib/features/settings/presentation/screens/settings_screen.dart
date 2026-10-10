@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n/generated/app_localizations.dart';
+import '../../../../app/router/app_routes.dart';
 import '../../../../core/ui/components/components.dart';
 import '../../../../core/ui/tokens/tokens.dart';
+import '../../../shifts/presentation/controllers/shift_providers.dart';
 import '../../domain/entities/app_settings.dart';
 import '../controllers/settings_controller.dart';
 
@@ -16,6 +19,8 @@ class SettingsScreen extends ConsumerWidget {
     final settings =
         ref.watch(settingsControllerProvider).value ?? AppSettings.defaults;
     final controller = ref.read(settingsControllerProvider.notifier);
+    final hasRotation =
+        ref.watch(shiftSetupProvider).value?.hasRotation ?? false;
 
     return RyPage(
       title: l10n.settingsTitle,
@@ -54,6 +59,19 @@ class SettingsScreen extends ConsumerWidget {
                       onChanged: controller.setThemeMode,
                     ),
                   ],
+                ),
+              ),
+              RySectionHeader(l10n.settingsSectionShifts),
+              RyCard(
+                padding: EdgeInsets.zero,
+                child: ListTile(
+                  leading: const Icon(Icons.tune),
+                  title: Text(l10n.settingsEditShifts),
+                  subtitle: hasRotation
+                      ? null
+                      : Text(l10n.settingsShiftsNotSet),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push(AppRoutes.onboarding),
                 ),
               ),
               RySectionHeader(l10n.settingsSectionReminders),

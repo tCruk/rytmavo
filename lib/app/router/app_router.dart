@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/calendar/presentation/screens/calendar_screen.dart';
 import '../../features/habits/presentation/screens/habits_screen.dart';
 import '../../features/settings/presentation/screens/settings_screen.dart';
+import '../../features/shifts/presentation/screens/onboarding_screen.dart';
 import '../../features/shifts/presentation/screens/today_screen.dart';
 import '../../features/statistics/presentation/screens/insights_screen.dart';
 import 'app_routes.dart';
@@ -64,6 +65,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         name: 'settings',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.onboarding,
+        name: 'onboarding',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const OnboardingScreen(),
       ),
     ],
   );

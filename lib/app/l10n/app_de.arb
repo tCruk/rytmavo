@@ -72,5 +72,139 @@
         "type": "String"
       }
     }
-  }
+  },
+  "onboardingTitle": "Schichtsystem einrichten",
+  "onboardingEditTitle": "Schichtsystem ändern",
+  "onboardingStepOf": "Schritt {current} von {total}",
+  "@onboardingStepOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingPresetTitle": "Wie arbeitest du?",
+  "onboardingPresetBody": "Wähle eine Vorlage. Im nächsten Schritt kannst du jeden Tag einzeln anpassen.",
+  "presetWeekly3Name": "3-Schicht, wöchentlich",
+  "presetWeekly3Desc": "5 Früh · 2 frei · 5 Spät · 2 frei · 5 Nacht · 2 frei",
+  "presetWeekly2Name": "2-Schicht, wöchentlich",
+  "presetWeekly2Desc": "5 Früh · 2 frei · 5 Spät · 2 frei",
+  "presetConti4Name": "Konti, 4 Gruppen",
+  "presetConti4Desc": "2 Früh · 2 Spät · 2 Nacht · 2 frei",
+  "presetConti5Name": "Konti, 5 Gruppen",
+  "presetConti5Desc": "2 Früh · 2 Spät · 2 Nacht · 4 frei",
+  "presetCustomName": "Eigener Rhythmus",
+  "presetCustomDesc": "Baue deinen Zyklus selbst, Tag für Tag.",
+  "presetCurrentName": "Aktueller Rhythmus",
+  "presetCurrentDesc": "Deinen bestehenden Zyklus weiter anpassen.",
+  "cycleLength": "{count, plural, =1{1 Tag} other{{count} Tage}}",
+  "@cycleLength": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingRhythmTitle": "Dein Rhythmus",
+  "onboardingRhythmBody": "Tippe auf einen Tag, um die Schicht zu wechseln.",
+  "onboardingDayN": "Tag {number}",
+  "@onboardingDayN": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingAddDay": "Tag hinzufügen",
+  "onboardingRemoveDay": "Letzten Tag entfernen",
+  "onboardingTodayTitle": "Welcher Tag ist heute?",
+  "onboardingTodayBody": "Wähle, an welcher Stelle deines Zyklus du heute stehst. Daraus berechnet Rytmavo alle anderen Tage.",
+  "onboardingPreview": "Vorschau",
+  "onboardingTimesTitle": "Schichtzeiten",
+  "onboardingTimesBody": "Die Zeiten erscheinen in der Tagesansicht und im Kalender.",
+  "onboardingNightHint": "Eine Nachtschicht zählt zu dem Tag, an dem sie beginnt.",
+  "onboardingEditHint": "Änderungen gelten ab heute. Vergangene Tage bleiben, wie sie waren.",
+  "onboardingSaveError": "Speichern fehlgeschlagen. Bitte versuche es erneut.",
+  "shiftStart": "Beginn",
+  "shiftEnd": "Ende",
+  "shiftTimeRange": "{start}–{end}",
+  "@shiftTimeRange": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
+  "shiftEndsNextDay": "endet am Folgetag",
+  "todayNextDays": "Nächste Tage",
+  "todayOverriddenFrom": "Geändert · laut Rhythmus {shiftName}",
+  "@todayOverriddenFrom": {
+    "placeholders": {
+      "shiftName": {
+        "type": "String"
+      }
+    }
+  },
+  "todayNoEntry": "Kein Eintrag",
+  "todayDayOffBody": "Heute hast du frei.",
+  "todayNextShift": "Nächste Schicht: {shiftName}, {date}",
+  "@todayNextShift": {
+    "placeholders": {
+      "shiftName": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "calendarPrevMonth": "Vorheriger Monat",
+  "calendarNextMonth": "Nächster Monat",
+  "calendarChanged": "geändert",
+  "calendarDayA11y": "{date}, {shiftName}",
+  "@calendarDayA11y": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "shiftName": {
+        "type": "String"
+      }
+    }
+  },
+  "daySheetRotation": "Laut Rhythmus: {shiftName}",
+  "@daySheetRotation": {
+    "placeholders": {
+      "shiftName": {
+        "type": "String"
+      }
+    }
+  },
+  "daySheetChange": "Schicht für diesen Tag",
+  "daySheetReset": "Rhythmus wiederherstellen",
+  "daySheetSaved": "Schicht für {date} geändert",
+  "@daySheetSaved": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "daySheetResetDone": "Rhythmus für {date} wiederhergestellt",
+  "@daySheetResetDone": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsSectionShifts": "Schichtsystem",
+  "settingsEditShifts": "Rhythmus und Zeiten ändern",
+  "settingsShiftsNotSet": "Noch nicht eingerichtet"
 }

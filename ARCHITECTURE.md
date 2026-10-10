@@ -1,6 +1,6 @@
 # Rytmavo – Architektur
 
-Stand: 2026-10-10 (Phase 1). Dieses Dokument beschreibt Schichten, Datenfluss,
+Stand: 2026-10-10 (Phase 2). Dieses Dokument beschreibt Schichten, Datenfluss,
 Datenmodell und die Architekturentscheidungen (ADRs).
 
 ## 1. Schichten
@@ -128,10 +128,30 @@ Fehler werden nur im Debug-Modus geloggt. Entspricht der Produktgrenze
 Platzhalter bis zur Markenfreigabe; **vor dem ersten Store-Upload** final
 festlegen (danach auf iOS nicht mehr änderbar). Siehe `RELEASE_CHECKLIST.md`.
 
-## 7. Offene Architekturpunkte
+### ADR-010 Rotations-Repository streamt über `customSelect(...).watch()`
+`tableUpdates()` in einem `async*`-Generator blockierte das Abbestellen des
+Streams in Tests (hängender Teardown). Ein drift-Query-Stream mit
+`readsFrom` über alle drei Tabellen liefert dieselben Updates und lässt
+sich sofort abbrechen.
 
-- Phase 2: Pattern-Engine (`ShiftScheduleService`), Onboarding-Flow,
-  Kalender-Monatsansicht, Override-Sheet.
+## 7. Schicht-Engine (Phase 2)
+
+`ShiftSetup` ist ein unveränderlicher Snapshot aus Schichttypen, allen
+Rotationsversionen und Overrides. `dayOn(date)` löst einen Tag auf:
+
+1. `patternOn(date)`: Version mit größtem `validFrom <= date`.
+2. Position im Zyklus: `floorMod(date.daysSince(anchorDate), slots.length)`.
+3. Override für `date` gewinnt; `rotationShift` bleibt erhalten, damit die UI
+   „geändert, laut Rhythmus X“ zeigen kann.
+
+Beim ersten Einrichten erhält die Rotation `validFrom = 2000-01-01`, damit
+der Kalender auch rückwärts gefüllt ist. Beim Ändern entsteht eine Version
+ab heute (Vergangenheit bleibt), optional ersetzt sie die Historie.
+Das Tagesblatt im Kalender setzt einen Override; die Wahl des Rotations-
+Schichttyps entfernt ihn wieder.
+
+## 8. Offene Architekturpunkte
+
 - Phase 3: Eligibility-/Statistik-Services, Heute-Ansicht mit Undo.
 - Phase 4: Reminder-Scheduler (Rolling Window, Rescheduling nach Neustart,
   nicht-exakte Alarme), Zeitzonen-/DST-Strategie.

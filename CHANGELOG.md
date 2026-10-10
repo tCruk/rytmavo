@@ -25,3 +25,21 @@ Versionierung SemVer. Noch unveröffentlicht.
   Gewohnheiten, Regeln, Erledigungen, Einstellungen).
 - Einstellungen: Sprache und Erscheinungsbild persistent.
 - Tests: LocalDate/LocalTime/Result, Farbkontrast, Settings-Repository, App-Navigation.
+
+### Phase 2 – Schichtsystem (2026-10-10)
+- Domain: `ShiftType`, `RotationPattern` (versioniert, Ankerdatum, `floorMod`),
+  `ShiftOverride`, `ShiftSetup` (Override > Rotation > kein Eintrag),
+  `RotationPreset` (3-Schicht/2-Schicht wöchentlich, Konti 4/5, eigener
+  Rhythmus), `RotationRules` (Validierung, Ankerberechnung).
+- Data: `DriftShiftRepository` (Typen upsert, Rotationsversionen, Overrides,
+  Live-Stream über alle drei Tabellen; defekte Zeilen werden übersprungen).
+- Onboarding in vier Schritten: Vorlage → Rhythmus (Tag antippen) → heutige
+  Position mit 7-Tage-Vorschau → Schichtzeiten. Im Änderungsmodus wahlweise
+  ab heute (neue Version) oder rückwirkend.
+- Heute-Ansicht: heutige Schicht mit Zeiten, Hinweis bei Abweichung vom
+  Rhythmus, nächste Schicht an freien Tagen, 7-Tage-Streifen.
+- Kalender: Monatsraster (Mo–So), Tagesblatt zum Ändern/Zurücksetzen einer
+  Schicht, Legende, Markierung geänderter Tage, Monatswechsel, „Zu heute“.
+- Einstellungen: Einstieg „Rhythmus und Zeiten ändern“.
+- Tests: Rotations-Engine (Anker, Vor-Anker, DST, 29. Februar, Jahreswechsel,
+  Versionen, Overrides), drift-Repository, Onboarding- und Kalender-Widget-Tests.
