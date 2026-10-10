@@ -109,7 +109,9 @@ Versionierung SemVer. Noch unveröffentlicht.
 - iOS: Bundle-Name „Rytmavo“, Entwicklungsregion Deutsch, Lokalisierungen
   de/en, `Signing.xcconfig` für die Team-ID.
 - `docs/RELEASE.md` mit den Schritten für Icon, Android und iOS.
-- iOS-Mindestversion 15.0 (Podfile, Xcode-Projekt, AppFrameworkInfo.plist).
+- iOS-Mindestversion 15.0 (Xcode-Projekt, AppFrameworkInfo.plist).
+- iOS: CocoaPods-Integration entfernt (Podfile), Plugins ausschließlich über
+  Swift Package Manager.
 
 ### Review-Runde 1 (2026-10-10)
 - Schichtmodell bearbeiten: eigener Knopf in der App-Leiste von „Heute“ und

@@ -50,9 +50,14 @@ Maske anlegen.
    committet werden; Zertifikate und Profile verwaltet Xcode automatisch.
 2. Auf macOS: `flutter build ipa --release`, Archiv in Xcode validieren.
 3. `CFBundleDevelopmentRegion` ist `de`, `CFBundleLocalizations` = de, en.
-4. Mindestversion iOS 15.0, an drei Stellen gleich: `Podfile`
-   (`platform :ios`), `Runner.xcodeproj` (`IPHONEOS_DEPLOYMENT_TARGET`)
-   und `Flutter/AppFrameworkInfo.plist` (`MinimumOSVersion`).
+4. Mindestversion iOS 15.0, an zwei Stellen gleich: `Runner.xcodeproj`
+   (`IPHONEOS_DEPLOYMENT_TARGET`) und `Flutter/AppFrameworkInfo.plist`
+   (`MinimumOSVersion`).
+5. Plugins werden über Swift Package Manager eingebunden
+   (`FlutterGeneratedPluginSwiftPackage` im Xcode-Projekt). Es gibt kein
+   Podfile mehr. Wer noch ein `ios/Pods`-Verzeichnis oder eine
+   `Podfile.lock` aus einem früheren Build hat, führt einmal
+   `cd ios && pod deintegrate` aus und löscht `ios/Podfile.lock`.
 
 ## Version
 
