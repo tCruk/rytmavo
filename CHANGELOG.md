@@ -147,3 +147,16 @@ Versionierung SemVer. Noch unveröffentlicht.
   Core-Library-Desugaring. iOS: `UNUserNotificationCenter`-Delegate.
 - Tests: Planer, Scheduler mit aufzeichnendem Gateway (DE/EN-Texte,
   Erledigung entfernt Erinnerung, Aus = alles abbrechen), Widget-Flow.
+
+### Uhr-Anzeige: Apple Watch und Wear OS (2026-10-10, Branch `claude/project-thread-5siseb`)
+- Flutter: `features/watch` mit `WatchSnapshotBuilder` (14 Tage, lokalisierte
+  Namen, JSON v1) und `WatchSync` (entprellt, nur bei Änderungen) über den
+  MethodChannel `com.rytmavo/watch`.
+- iOS: `WatchBridge` (WatchConnectivity) in `AppDelegate.swift`; Quellen für
+  watchOS-App und WidgetKit-Komplikation in `ios/RytmavoWatch*`
+  (Targets in Xcode anlegen, siehe `docs/WATCH.md`).
+- Android: Data-Layer-Versand in `MainActivity.kt`
+  (`play-services-wearable`); neues Modul `android/wear` mit Compose-App,
+  Tile und Komplikation.
+- Tests: Snapshot-Builder (Jahreswechsel, Override, ohne Rotation,
+  JSON-Form) und Sync (Lokalisierung DE/EN, kein doppeltes Senden).

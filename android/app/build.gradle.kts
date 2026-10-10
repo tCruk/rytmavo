@@ -80,4 +80,6 @@ flutter {
 
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    // Sends the shift snapshot to a paired Wear OS watch (see android/wear).
+    implementation("com.google.android.gms:play-services-wearable:19.0.0")
 }

@@ -26,6 +26,7 @@ Hinweis: "Rytmavo" ist ein Arbeitsname (siehe `TRADEMARK_CLEARANCE.md`).
 | Gewohnheiten (Name, Zielschichten, Wochentage, Erinnerungszeit) | Habit-Tracking, Tagesansicht | Lokale SQLite-DB | Lokal | Keine, außer Backup-Export durch Nutzeraktion | App deinstallieren oder "Lokale Daten löschen" |
 | Erledigungen (eine je Gewohnheit und lokalem Kalendertag) | Verlauf, Statistik (7/30 Tage), Serien | Lokale SQLite-DB | Lokal (Statistikberechnung) | Keine, außer Backup-Export durch Nutzeraktion | App deinstallieren oder "Lokale Daten löschen" |
 | Einstellungen (Sprache DE/EN, Theme, Erinnerungsstatus, Onboarding-Status) | Anpassung der App | Lokale SQLite-DB bzw. lokaler App-Speicher im Sandbox-Verzeichnis | Lokal | Keine, außer Backup-Export durch Nutzeraktion | App deinstallieren oder "Lokale Daten löschen" |
+| Uhr-Übersicht (Schichten der nächsten 14 Tage: Datum, Name, Kürzel, Farbe, Zeiten) | Anzeige auf gekoppelter Apple Watch / Wear-OS-Uhr | iOS: WatchConnectivity-Kontext und App-Group-Speicher der Watch-App; Android: Wearable Data Layer und App-Speicher der Wear-App | Direkt zwischen Handy und eigener Uhr (Bluetooth/WLAN), kein Server | Nur an die gekoppelte Uhr des Nutzers | Watch-App deinstallieren; wird bei jeder Änderung überschrieben |
 | Backup-Dateien (versioniertes JSON) | Sicherung, Geräte-Umzug | Entsteht nur auf ausdrückliche Nutzeraktion; temporär im App-Cache, danach im vom Nutzer gewählten Ziel | Erzeugung lokal; Teilen über System-Teilen-Menü (share_plus); Import über Dateiauswahl (file_picker) | Nur an das vom Nutzer gewählte Ziel (z. B. Dateien, E-Mail, Cloud-Dienst des Nutzers) | Temporäre Datei durch App entfernen; Kopien beim Nutzer löscht der Nutzer selbst |
 
 Hinweise:
@@ -65,6 +66,9 @@ Alle Bibliotheken laufen lokal im App-Prozess. Die Angaben zum Netzwerkzugriff s
 | share_plus | System-Teilen-Menü für Backup | Nein (Weitergabe erfolgt über die vom Nutzer gewählte Ziel-App) | Zu verifizieren im finalen Build |
 | file_picker | Auswahl der Backup-Datei beim Import | Nein | Zu verifizieren im finalen Build |
 | package_info_plus | Anzeige von Version und Build | Nein | Zu verifizieren im finalen Build |
+| com.google.android.gms:play-services-wearable (Android, Handy + Uhr) | Übertragung der Schichtübersicht an die gekoppelte Wear-OS-Uhr | Nein für unsere Daten (Gerät-zu-Gerät); Google-Play-Dienste selbst sind Systemsoftware | Merged Manifest auf `INTERNET` prüfen |
+| WatchConnectivity / WidgetKit (iOS, Systemframeworks) | Übertragung an die Apple Watch, Komplikation | Nein (Gerät-zu-Gerät) | Systemframework |
+| androidx.wear (Compose, Tiles, Komplikationen), Guava (nur Wear-App) | Oberfläche der Wear-OS-App | Nein | Zu verifizieren im finalen Build |
 
 Nicht enthalten (und nicht zu ergänzen ohne Änderung dieser Datenkarte): Analytics, Crash-Reporting, Werbe-SDKs, Attribution, Push-Dienste (FCM/APNs-Remote), In-App-Purchase-Bibliotheken.
 
